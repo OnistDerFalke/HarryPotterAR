@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="voldemort" size="2.000000 3.360000" />
+    <ImageTarget name="ron" size="2.000000 3.360000" />
+    <ImageTarget name="peter" size="2.000000 3.360000" />
+    <ImageTarget name="neville" size="2.000000 3.360000" />
+    <ImageTarget name="malfoy" size="2.000000 3.360000" />
+    <ImageTarget name="luna" size="2.000000 3.360000" />
+    <ImageTarget name="lucius" size="2.000000 3.360000" />
+    <ImageTarget name="hermiona" size="2.000000 3.360000" />
+    <ImageTarget name="harry" size="2.000000 3.360000" />
+    <ImageTarget name="ginnie" size="2.000000 3.360000" />
+    <ImageTarget name="cedric" size="2.000000 3.360000" />
+    <ImageTarget name="bellatrix" size="2.000000 3.360000" />
+  </Tracking>
+</QCARConfig>
