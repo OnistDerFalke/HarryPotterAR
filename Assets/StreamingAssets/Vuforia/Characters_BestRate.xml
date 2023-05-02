@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="ginnie" size="1.000000 1.000000" />
+    <ImageTarget name="neville" size="1.000000 1.000000" />
+    <ImageTarget name="cerdik" size="1.000000 1.000000" />
+    <ImageTarget name="ron" size="1.000000 1.000000" />
+    <ImageTarget name="draco" size="1.000000 1.000000" />
+    <ImageTarget name="peter" size="1.000000 1.000000" />
+    <ImageTarget name="luna" size="1.000000 1.000000" />
+    <ImageTarget name="hermiona" size="1.000000 1.000000" />
+    <ImageTarget name="harry" size="1.000000 1.000000" />
+  </Tracking>
+</QCARConfig>
