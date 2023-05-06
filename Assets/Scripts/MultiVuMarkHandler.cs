@@ -32,6 +32,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
 
     void Update()
     {
+        Debug.Log("Works");
         foreach(var elem in currentTrackedObjects)
         {
             foreach (var model in models)
