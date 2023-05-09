@@ -8,6 +8,16 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     [SerializeField] public List<string> availableIds = new List<string>();
     [SerializeField] public List<GameObject> models = new List<GameObject>();
 
+    public List<string> CurrentTrackedObjects { get => currentTrackedObjects; }
+
+    public GameObject FindModelById(string id)
+    {
+        if (!availableIds.Contains(id)) return null;
+
+        int index = availableIds.FindIndex((i) => i == id);
+        return models[index];
+    }
+
     protected override void OnTrackingFound()
     {
         base.OnTrackingFound();
@@ -32,7 +42,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
 
     void Update()
     {
-        Debug.Log("Works");
+        //Debug.Log("Works");
         foreach(var elem in currentTrackedObjects)
         {
             foreach (var model in models)

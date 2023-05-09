@@ -4,112 +4,121 @@ using UnityEngine;
 
 public class CoordinatesConverter : MonoBehaviour
 {
+    public GameObject BottomLeft;
+    public GameObject UpperLeft;
+    public GameObject BottomRight;
+    public GameObject UpperRight;
+    public float boardSize = 25f;
+
+
     // marks that identify the position and orientation of a board, sticked to the board
-    [SerializeField] private List<Vector2> boardMarks;
+    [SerializeField] private List<Vector2> boardMarkPositions;
+    [SerializeField] private MultiVuMarkHandler vuMarkHandler;
 
-    private float scale;
-    private float rotation;
-    private Vector2 boardOrigin;
-    private float originHeight;
-
-    public Vector2 BoardOrigin2D { get => boardOrigin; }
-    public Vector3 BoardOrigin3D { get => FromV2(BoardOrigin2D, originHeight); }
-
-    private Vector3 FromV2 (Vector2 v, float height = 0f)
-    {
-        return new Vector3(v.x, height, v.y);
-    }
-
-    private List<(int, Vector3)> ReadMarksPositions()
-    {
-        // TODO
-        return new List<(int, Vector3)> { (0, Vector3.zero), (1, Vector3.left), (2, Vector3.forward) };
-    }
-
-    public void EstimateWorldPosition(List<(int i, Vector3 pos)> marksInSight)
-    {
-        // y position will be ignored
-        originHeight = marksInSight[0].pos.y;
-        List<(Vector2 board, Vector2 world)> markers = new List<(Vector2 board, Vector2 world)>();
-        foreach(var v in marksInSight)
-        {
-            markers.Add((boardMarks[v.i], new Vector2(v.pos.x, v.pos.z)));
-        }
-        (Vector2 board, Vector2 world) a = markers[0];
-        (Vector2 board, Vector2 world) b = markers[1];
-
-        scale = Vector2.Distance(b.world, a.world) / Vector2.Distance(b.board, a.board);
+    private Dictionary<string, Vector2> boardMarks;
+    private Transform referenceTransform;
+    private string referenceMarkerId;
 
 
-        Vector2 ab_dir_board = (b.board - a.board).normalized;
-        Vector2 ab_dir_world = (b.world - a.world).normalized;
+    //private float scale;
+    //private float boardRotationZ;
+    //private Vector2 boardOrigin;
 
-        float board_angle = Mathf.Atan2(ab_dir_board.y, ab_dir_board.x);
-        float world_angle = Mathf.Atan2(ab_dir_world.y, ab_dir_world.x);
 
-        rotation = world_angle - board_angle;
+    //public void EstimateWorldPosition()
+    //{
+    //    if(vuMarkHandler.CurrentTrackedObjects.Count >= 2)
+    //    {
+    //        string id1 = vuMarkHandler.CurrentTrackedObjects[0];
+    //        string id2 = vuMarkHandler.CurrentTrackedObjects[1];
+    //        GameObject g1 = vuMarkHandler.FindModelById(id1);
+    //        GameObject g2 = vuMarkHandler.FindModelById(id2);
 
-        float a_board_point_angle = Mathf.Atan2(a.board.y, a.board.x);
-        boardOrigin = a.world - RotatePoint(a.board, Mathf.PI + a_board_point_angle + rotation) * scale;
-    }
+    //        if(g1 != null && g2 != null)
+    //        {
+    //            float worldDist = Vector2.Distance(V3toV2(g2.transform.position), V3toV2(g1.transform.position));
+    //            float boardDist = Vector2.Distance(boardMarks[id1], boardMarks[id2]);
+    //            scale =  worldDist / boardDist;
+    //        }
+    //    }
 
-    public Vector2 GetFieldPosition_World2D(Field field)
-    {
-        return GetPointPosition_World2D(field.Position2D);
-    }
+    //    if(vuMarkHandler.CurrentTrackedObjects.Count > 0)
+    //    {
+    //        string id = vuMarkHandler.CurrentTrackedObjects[0];
+    //        GameObject marker = vuMarkHandler.FindModelById(id);
+    //        if(marker != null)
+    //        {
+    //            Transform t = marker.transform;
+    //            boardRotationZ = t.rotation.eulerAngles.y;
 
-    public Vector3 GetFieldPosition_World3D(Field field)
-    {
-        return GetPointPosition_World3D(field.Position2D);
-    }
+    //        }
+    //    }
+    //}
 
-    private Vector2 RotatePoint(Vector2 point, float rotation)
-    {
-        // x' = x*cos(a) - y*sin(a)
-        // y' = y*cos(a) + x*sin(a)
-        float x1_rotated = point.x * Mathf.Cos(rotation) - point.y * Mathf.Sin(rotation);
-        float y1_rotated = point.y * Mathf.Cos(rotation) + point.x * Mathf.Sin(rotation);
-        return new Vector2(x1_rotated, y1_rotated);
-    }
+    //public Vector2 GetFieldPosition_World2D(Field field)
+    //{
+    //    return GetPointPosition_World2D(field.Position2D);
+    //}
+
+    //private Vector2 RotatePoint(Vector2 point, float rotation)
+    //{
+    //    // x' = x*cos(a) - y*sin(a)
+    //    // y' = y*cos(a) + x*sin(a)
+    //    float x1_rotated = point.x * Mathf.Cos(rotation) - point.y * Mathf.Sin(rotation);
+    //    float y1_rotated = point.y * Mathf.Cos(rotation) + point.x * Mathf.Sin(rotation);
+    //    return new Vector2(x1_rotated, y1_rotated);
+    //}
+
+    //public Vector2 GetPointPosition_World2D(Vector2 point)
+    //{
+    //    return boardOrigin + RotatePoint(point, boardRotationZ) * scale;
+    //}
 
     public Vector2 GetPointPosition_World2D(Vector2 point)
     {
-        return BoardOrigin2D + RotatePoint(point, rotation) * scale;
+        return V3toV2(referenceTransform.position) + 
+            (point.x - boardMarks[referenceMarkerId].x) * V3toV2(referenceTransform.right) +
+            (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.up);
     }
 
-    public Vector3 GetPointPosition_World3D(Vector2 point)
+    public Vector2 V3toV2(Vector3 v3)
     {
-        return BoardOrigin3D + FromV2(RotatePoint(point, rotation) * scale);
+        return new Vector2(v3.x, v3.z);
     }
 
-    private void Test()
+    public Vector3 V2toV3(Vector2 v2, float height = 0f)
     {
-        // TEST
-        boardMarks = new List<Vector2>() { new Vector2(1, 1), new Vector2(2, 1), new Vector2(1, 2) };
-
-        List<(int, Vector3)> marksInSight =
-            new List<(int, Vector3)> {
-                (0, new Vector3(2.01f, 9.0f, 2.02f)),
-                (1, new Vector3(3.01f, 9.0f, 2.03f)),
-                (2, new Vector3(2.00f, 9.0f, 3.00f)) };
-        EstimateWorldPosition(marksInSight);
-
-        Debug.Log(GetPointPosition_World2D(Vector2.zero) + " assert (1,1)");
-        Debug.Log(GetPointPosition_World3D(Vector2.zero) + " assert (1,9,1)");
-        Debug.Log(GetPointPosition_World3D(Vector2.one) + " assert (2,9,2)");
+        return new Vector3(v2.x, height, v2.y);
     }
 
-    private void Start()
+    private void Awake()
     {
-        Test();
+        boardMarks = new Dictionary<string, Vector2>();
+        for (int i = 0; i < boardMarkPositions.Count; i++)
+        {
+            boardMarks[vuMarkHandler.availableIds[i]] = boardMarkPositions[i];
+        }
     }
 
     private void Update()
     {
-        //List<(int, Vector3)> marksInSight = ReadMarksPositions();
-        //if (marksInSight.Count >= 3)
-        //{
-        //    EstimateWorldPosition(marksInSight);
-        //}
+        if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
+        {
+            string id = vuMarkHandler.CurrentTrackedObjects[0];
+            if(id!=referenceMarkerId)
+            {
+                referenceMarkerId = id;
+                GameObject marker = vuMarkHandler.FindModelById(id);
+                if (marker != null)
+                {
+                    referenceTransform = marker.transform;
+                }
+            }
+        }
+
+        BottomLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.zero));
+        BottomRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.right * boardSize));
+        UpperLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.up * boardSize));
+        UpperRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.one * boardSize));
     }
 }

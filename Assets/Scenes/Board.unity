@@ -428,6 +428,147 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5af5fcfe2fa4bad4aaf50fb331e33962, type: 3}
   m_PrefabInstance: {fileID: 287698122}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &388168962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 388168963}
+  - component: {fileID: 388168965}
+  - component: {fileID: 388168964}
+  - component: {fileID: 388168966}
+  m_Layer: 0
+  m_Name: BoardVuMarks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &388168963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388168962}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1945908670}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &388168964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388168962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a49e9606d9f954e9db4b764480fabd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatusFilter: 2
+  UsePoseSmoothing: 0
+  AnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 3.3333333
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 3.3333333
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
+  availableIds:
+  - 0000
+  - 0001
+  - 0002
+  models:
+  - {fileID: 2563491281505667129, guid: cd446e80fb9ae5c40ae06e309dd9a075, type: 3}
+  - {fileID: 6058884272865506626, guid: 5a2e98bb6059f4a4293f7db364e3c720, type: 3}
+  - {fileID: 6819448296582315674, guid: 2d914a7db87b5df4fbec41f4c7228c46, type: 3}
+--- !u!114 &388168965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388168962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1881939161, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviewVisible: 1
+  RuntimeOcclusion: 0
+  RuntimeCollider: 0
+  mTrackableName: MortonTuxedos
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Characters_Vumarks.xml
+  mMotionHint: 1
+  mTrackingOptimization: 0
+  mTrackingOptimizationNeedsUpgrade: 0
+  mAspectRatio: 1.1250029
+  mWidth: 1
+  mHeight: 1.1250029
+  mPreviewImage: Assets/Editor/Vuforia/Characters_Vumarks/c696af8c04d8411e83b2d19373503914_preview.png
+  mIdType: 1
+  mIdLength: 4
+  mOrigin: {x: 66.672, y: 36.276}
+  mBoundingBox:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 133.333
+    height: 150
+  mTrackingFromRuntimeAppearance: 0
+  mPreview: {fileID: 388168966}
+--- !u!114 &388168966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388168962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -665415404, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 388168965}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: MortonTuxedos
+  mDatasetName: Vuforia/Characters_Vumarks.xml
+  mCastedBehaviour: {fileID: 388168965}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &716530143 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f607c7938e5e19542833c581e63c5d1d, type: 3}
@@ -1249,6 +1390,7 @@ MonoBehaviour:
   - {x: 1, y: 1}
   - {x: 2, y: 1}
   - {x: 1, y: 2}
+  marks: []
 --- !u!4 &1386780478
 Transform:
   m_ObjectHideFlags: 0
@@ -1859,6 +2001,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1048569880}
+  - {fileID: 388168963}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
