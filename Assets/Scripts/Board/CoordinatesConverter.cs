@@ -8,8 +8,7 @@ public class CoordinatesConverter : MonoBehaviour
     [SerializeField] private List<Vector2> boardMarks;
 
     private float scale;
-    private Vector2 boardDirX;
-    private Vector2 boardDirY;
+    private float rotation;
     private Vector2 boardOrigin;
     private float originHeight;
 
@@ -36,57 +35,22 @@ public class CoordinatesConverter : MonoBehaviour
         {
             markers.Add((boardMarks[v.i], new Vector2(v.pos.x, v.pos.z)));
         }
-
-        // A_world + scale * ( xdir * (B_board_x - A_board_x) + ydir * (B_board_y - A_board_y)) = B_world
-        //  A_world_x + scale * ( xdir_x * (B_board_x - A_board_x) + ydir_x * (B_board_y - A_board_y)) = B_world_x
-        //  A_world_y + scale * ( xdir_y * (B_board_x - A_board_x) + ydir_y * (B_board_y - A_board_y)) = B_world_y
-        // A_world + scale * ( xdir * (C_board_x - A_board_x) + ydir * (C_board_y - A_board_y)) = C_world
-        //  A_world_x + scale * ( xdir_x * (C_board_x - A_board_x) + ydir_x * (C_board_y - A_board_y)) = C_world_x
-        //  A_world_y + scale * ( xdir_y * (C_board_x - A_board_x) + ydir_y * (C_board_y - A_board_y)) = C_world_y
-
-        // xdir_x * (B_board_x - A_board_x) + ydir_x * (B_board_y - A_board_y) = (B_world_x - A_world_x) / scale
-        // xdir_y * (B_board_x - A_board_x) + ydir_y * (B_board_y - A_board_y) = (B_world_y - A_world_x) / scale
-        // xdir_x * (C_board_x - A_board_x) + ydir_x * (C_board_y - A_board_y) = (C_world_x - A_world_x) / scale
-        // xdir_y * (C_board_x - A_board_x) + ydir_y * (C_board_y - A_board_y) = (C_world_y - A_world_x) / scale
-
-        // xdir_x = ((B_world_x - A_world_x) / scale - ydir_x * (B_board_y - A_board_y)) / (B_board_x - A_board_x)
-        // xdir_y = ((B_world_y - A_world_x) / scale - ydir_y * (B_board_y - A_board_y)) / (B_board_x - A_board_x)
-        // ydir_x = ((C_world_x - A_world_x) / scale - xdir_x * (C_board_x - A_board_x)) / (C_board_y - A_board_y)
-        // ydir_y = ((C_world_y - A_world_x) / scale - xdir_y * (C_board_x - A_board_x)) / (C_board_y - A_board_y)
-
-        // xdir_x = ((B_world_x - A_world_x) / scale - ydir_x * (B_board_y - A_board_y)) / (B_board_x - A_board_x)
-        // ydir_x = ((C_world_x - A_world_x) / scale - ((B_world_x - A_world_x) / scale - ydir_x * (B_board_y - A_board_y)) / (B_board_x - A_board_x) * (C_board_x - A_board_x)) / (C_board_y - A_board_y)
-
-        // xdir_y = ((B_world_y - A_world_x) / scale - ydir_y * (B_board_y - A_board_y)) / (B_board_x - A_board_x)
-        // ydir_y = ((C_world_y - A_world_x) / scale - ((B_world_y - A_world_x) / scale - ydir_y * (B_board_y - A_board_y)) / (B_board_x - A_board_x) * (C_board_x - A_board_x)) / (C_board_y - A_board_y)
-
-        // ydir_x = ((C_world_x - A_world_x) / scale - ((B_world_x - A_world_x) / scale - ydir_x * (B_board_y - A_board_y)) / (B_board_x - A_board_x) * (C_board_x - A_board_x)) / (C_board_y - A_board_y)
-        // ... some transformations written in paper
-        // E = (B_board_x - A_board_x) * (C_board_x - A_board_x)
-        // ydir_x = (E * (C_world_x - A_world_x) - B_world_x + A_world_x) / (E * (C_board_y - A_board_y) - B_board_y + A_board_y)
-        // and by analogy:
-        // ydir_y = (E * (C_world_y - A_world_x) - B_world_y + A_world_x) / (E * (C_board_y - A_board_y) - B_board_y + A_board_y)
-
         (Vector2 board, Vector2 world) a = markers[0];
         (Vector2 board, Vector2 world) b = markers[1];
-        (Vector2 board, Vector2 world) c = markers[2];
 
-        // czy wolimy na odwrót @OnistDerFalke?
-        Debug.Log($"bw {b.world}, aw {a.world}, bb {b.board}, ab {a.board}");
         scale = Vector2.Distance(b.world, a.world) / Vector2.Distance(b.board, a.board);
-        Debug.Log($"scale = {scale}");
-        float e = (b.board.x - a.board.x) * (c.board.x - a.board.x); // zeruje się
-        float denominator = e * (c.board.y - a.board.y) - b.board.y + a.board.y;
-        float ydir_x = (e * (c.world.x - a.world.x) - b.world.x + a.world.x) / denominator; // should be 0
-        float ydir_y = (e * (c.world.y - a.world.x) - b.world.y + a.world.x) / denominator; // should be 1
-        float f = (b.world.x - a.world.x) / scale;
-        float dx = b.board.x - a.board.x;
-        float dy = b.board.y - a.board.y;
-        float xdir_x = (f - ydir_x * dy) / dx;
-        float xdir_y = (f - ydir_y * dy) / dx;
-        boardDirX = new Vector2(xdir_x, xdir_y).normalized;
-        boardDirY = new Vector2(ydir_x, ydir_y).normalized;
-        boardOrigin = a.world - a.board.x * scale * boardDirX - a.board.y * scale * boardDirY;
+
+
+        Vector2 ab_dir_board = (b.board - a.board).normalized;
+        Vector2 ab_dir_world = (b.world - a.world).normalized;
+
+        float board_angle = Mathf.Atan2(ab_dir_board.y, ab_dir_board.x);
+        float world_angle = Mathf.Atan2(ab_dir_world.y, ab_dir_world.x);
+
+        rotation = world_angle - board_angle;
+
+        float a_board_point_angle = Mathf.Atan2(a.board.y, a.board.x);
+        boardOrigin = a.world - RotatePoint(a.board, Mathf.PI + a_board_point_angle + rotation) * scale;
     }
 
     public Vector2 GetFieldPosition_World2D(Field field)
@@ -99,22 +63,23 @@ public class CoordinatesConverter : MonoBehaviour
         return GetPointPosition_World3D(field.Position2D);
     }
 
+    private Vector2 RotatePoint(Vector2 point, float rotation)
+    {
+        // x' = x*cos(a) - y*sin(a)
+        // y' = y*cos(a) + x*sin(a)
+        float x1_rotated = point.x * Mathf.Cos(rotation) - point.y * Mathf.Sin(rotation);
+        float y1_rotated = point.y * Mathf.Cos(rotation) + point.x * Mathf.Sin(rotation);
+        return new Vector2(x1_rotated, y1_rotated);
+    }
+
     public Vector2 GetPointPosition_World2D(Vector2 point)
     {
-        Debug.Log($"origin: {BoardOrigin2D}");
-        Debug.Log($"directions: {boardDirX}, {boardDirY}");
-        return BoardOrigin2D + point.x * scale * boardDirX + boardDirY * point.y;
+        return BoardOrigin2D + RotatePoint(point, rotation) * scale;
     }
 
     public Vector3 GetPointPosition_World3D(Vector2 point)
     {
-        return BoardOrigin3D + point.x * scale * FromV2(boardDirX) + FromV2(boardDirY) * point.y;
-    }
-
-    private void Awake()
-    {
-        boardDirX = Vector2.right;
-        boardDirY = Vector2.up;
+        return BoardOrigin3D + FromV2(RotatePoint(point, rotation) * scale);
     }
 
     private void Test()
