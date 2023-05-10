@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public interface IFigure
+namespace Assets.Scripts.Board
 {
-    Vector2 Position { get; }
+    public interface IFigure
+    {
+        Vector2 CenterPosition { get; }
+    }
 }
