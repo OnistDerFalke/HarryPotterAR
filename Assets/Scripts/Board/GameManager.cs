@@ -1,11 +1,10 @@
 ﻿namespace Assets.Scripts.Board
 {
-    //TODO: ta klasa powinna być chyba statyczna
-    class GameManager
+    public static class GameManager
     {
-        //public BoardManager boardManager
-        public int CurrentDiceThrownNumber;
-        public int PlayerNumber;
+        public static BoardManager BoardManager = new();
+        public static int CurrentDiceThrownNumber;
+        public static int PlayerNumber;
         //public List<Player> Players;
         //public Player MyPlayer;
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Board
 {
-    class BoardManager
+    public class BoardManager
     {
         [SerializeField] 
         private List<Board> boards = new List<Board>() {
