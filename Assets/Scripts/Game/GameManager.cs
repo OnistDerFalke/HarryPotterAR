@@ -1,11 +1,13 @@
-﻿namespace Assets.Scripts.Board
+﻿using System.Collections.Generic;
+
+namespace Assets.Scripts
 {
     public static class GameManager
     {
         public static BoardManager BoardManager = new();
         public static int CurrentDiceThrownNumber;
         public static int PlayerNumber;
-        //public List<Player> Players;
-        //public Player MyPlayer;
+        public static List<Player> Players = new List<Player>();
+        public static Player MyPlayer;
     }
 }
