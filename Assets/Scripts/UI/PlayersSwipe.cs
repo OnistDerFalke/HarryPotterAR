@@ -51,9 +51,7 @@ namespace UI
                     if (optionsBox.transform.localPosition.x < -(optionsTransforms.Length - 1) * optionsOffset)
                         optionsBox.transform.localPosition = new Vector3(
                             -(optionsTransforms.Length - 1) * optionsOffset, optionsBox.transform.localPosition.y, optionsBox.transform.localPosition.z);
-                    
-                    Debug.Log($"{optionsBox.transform.localPosition.x} > {-(optionsTransforms.Length - 1) * optionsOffset}");
-                    
+
                     if (optionsBox.transform.localPosition.x <= 0 && optionsBox.transform.localPosition.x >=
                         -(optionsTransforms.Length - 1) * optionsOffset)
                     {
@@ -68,10 +66,7 @@ namespace UI
                     snapLock = false;
                     fingerUp = touch.position;
                     var currentPos = optionsBox.transform.localPosition.x;
-                    Debug.Log(currentPos + " " + currentPos / optionsOffset );
-                    int id = (int)Math.Abs(Math.Round(currentPos / optionsOffset));
-                    Debug.Log("id: " +id);
-
+                    var id = (int)Math.Abs(Math.Round(currentPos / optionsOffset));
                     StartCoroutine(SnapToPosition(id));
                     break;
                 }
@@ -91,8 +86,7 @@ namespace UI
                 yield return null;
             }
             
-            if(!snapLock)
-                currentOptionID = id;
+            currentOptionID = id;
         }
 
         void SetValues()
