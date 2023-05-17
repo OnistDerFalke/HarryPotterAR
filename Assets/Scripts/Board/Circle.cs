@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Board
+namespace Assets.Scripts
 {
     public class Circle : IFigure
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Board
+namespace Assets.Scripts
 {
     public class CoordinatesConverter : MonoBehaviour
     {
