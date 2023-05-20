@@ -62,6 +62,10 @@ namespace UI
         {
             nextPlayerButton.interactable = chosenCharacterIndex != 0;
             previousPlayerButton.interactable = chosenCharacterIndex != 0;
+            if (chosenPlayerIndex == 0) 
+                previousPlayerButton.interactable = false;
+            nextPlayerButton.GetComponentInChildren<Text>().text = 
+                chosenPlayerIndex == playersNumber - 1 ? "Podsumowanie" : "Nastepny";
         }
         
         private void SwitchCharacter(SwitchDirection direction)
