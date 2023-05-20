@@ -10,13 +10,16 @@ namespace UI
     public class MenuUIController : MonoBehaviour
     {
         [SerializeField] private GameObject[] menuContext = new GameObject[3];
+        [SerializeField] private Text[] summaryCharactersNames = new Text[8];
+        [SerializeField] private GameObject characterBox;
+        [SerializeField] private GameObject summaryBox;
         [SerializeField] private PlayersSwipe playerSwipe;
         [SerializeField] private Button nextPlayerButton;
         [SerializeField] private Button previousPlayerButton;
         [SerializeField] private Button startGameButton;
+        [SerializeField] private Button editCharactersButton;
         [SerializeField] private Button nextCharacterButton;
         [SerializeField] private Button previousCharacterButton;
-        
         [SerializeField] private Sprite[] vuMarksSprites = new Sprite[9];
         [SerializeField] private Text playerName;
         [SerializeField] private Text characterName;
@@ -98,6 +101,26 @@ namespace UI
             menuContext[(int)context].SetActive(true);
         }
 
+        private void ChangeCharacterBoxContext(bool allChosen)
+        {
+            if (allChosen)
+            {
+                for (var i = 0; i < 8; i++)
+                {
+                    summaryCharactersNames[i].text = i < chosenCharacters.Length ? 
+                        chosenCharacters[i].ToString() : "(Nieaktywny)";
+                }
+            }
+            nextPlayerButton.gameObject.SetActive(!allChosen);
+            previousPlayerButton.gameObject.SetActive(!allChosen);
+            startGameButton.gameObject.SetActive(allChosen);
+            editCharactersButton.gameObject.SetActive(allChosen);
+            characterBox.SetActive(!allChosen);
+            summaryBox.SetActive(allChosen);
+            nextCharacterButton.gameObject.SetActive(!allChosen);
+            previousCharacterButton.gameObject.SetActive(!allChosen);
+        }
+
         public void OnStartContextPlayButtonClick()
         {
             ChangeContext(Contexts.PlayersContext);
@@ -113,6 +136,7 @@ namespace UI
             nextPlayerButton.gameObject.SetActive(true);
             previousPlayerButton.gameObject.SetActive(true);
             startGameButton.gameObject.SetActive(false);
+            ChangeCharacterBoxContext(false);
             UpdateCharactersContext();
         }
 
@@ -137,11 +161,7 @@ namespace UI
             takenCharacters[chosenCharacterIndex] = true;
             if (chosenPlayerIndex == playersNumber - 1 && IfAllCharactersChosen())
             {
-                nextPlayerButton.gameObject.SetActive(false);
-                previousPlayerButton.gameObject.SetActive(false);
-                startGameButton.gameObject.SetActive(true);
-                nextCharacterButton.gameObject.SetActive(false);
-                previousCharacterButton.gameObject.SetActive(false);
+                ChangeCharacterBoxContext(true);
             }
             else
             {
@@ -158,6 +178,11 @@ namespace UI
             chosenPlayerIndex = chosenPlayerIndex == 0 ? playersNumber-1 : chosenPlayerIndex-1;
             chosenCharacterIndex = (int)chosenCharacters[chosenPlayerIndex];
             UpdateCharactersContext();
+        }
+
+        public void OnEditCharactersButtonClick()
+        {
+            ChangeCharacterBoxContext(false);
         }
     }
 }
