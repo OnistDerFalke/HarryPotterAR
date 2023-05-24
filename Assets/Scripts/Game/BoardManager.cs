@@ -7,28 +7,40 @@ namespace Assets.Scripts
 {
     public class BoardManager
     {
-        [SerializeField] 
-        private List<Board> boards = new List<Board>() {
-            new Board(0, 50.0f, 50.0f),
-            new Board(1, 25.0f, 25.0f),
-            new Board(2, 25.0f, 25.0f)
-        };
+        [SerializeField] private List<Board> boards;
         [SerializeField] private List<Field> allFields = new();
 
         public List<Board> Boards { get => boards; }
         public List<Field> AllFields { get => allFields; }
 
-        public BoardManager()
+        public void Setup()
         {
-            BoardInitializator.InitBoard();
-            this.allFields.AddRange(boards[0].Fields);
-            this.allFields.AddRange(boards[1].Fields);
-            this.allFields.AddRange(boards[2].Fields);
+            this.boards = new List<Board>() {
+                new Board(0, 50.0f, 50.0f),
+                new Board(1, 25.0f, 25.0f),
+                new Board(2, 25.0f, 25.0f)
+            };
+            BoardInitializator.InitBoard();            
         }
 
-        public Field GetField(int id)
+        public void AddFields(List<Field> fields)
         {
-            return allFields.Where(field => field.Index == id).FirstOrDefault();
+            this.allFields.AddRange(fields);
+        }
+
+        public Field GetFieldById(int id)
+        {
+            return this.allFields.Where(field => field.Index == id).FirstOrDefault();
+        }
+
+        public List<Field> GetTowerFields()
+        {
+            return allFields.Where(field => field.IsTower).ToList();
+        }
+
+        public List<Field> GetFieldsByIds(List<int> indexes)
+        {
+            return this.allFields.Where(field => indexes.Contains(field.Index)).ToList();
         }
 
         /// <summary>
@@ -41,7 +53,7 @@ namespace Assets.Scripts
         /// <returns></returns>
         public void ShowPossibleMoves()
         {
-            Field myField = this.allFields.Where(field => field.Index == GameManager.MyPlayer.LastFieldId).FirstOrDefault();
+            Field myField = this.allFields.Where(field => field.Index == GameManager.GetMyPlayer().LastFieldId).FirstOrDefault();
 
             myField.Neighbors.ForEach(delegate (Field neighbor)
             {
@@ -103,9 +115,12 @@ namespace Assets.Scripts
                         path.Remove(neighbor);
                     }
                 });
+            }
 
-                // teleport by portalField to portalField
-                if (currentField.PortalField != null)
+            // teleport by portalField to portalField
+            if (currentField.PortalField != null)
+            {
+                if (!path.Contains(currentField.PortalField))
                 {
                     path.Add(currentField.PortalField);
                     FindFieldsToHighlightRecursive(path, steps);

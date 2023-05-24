@@ -11,6 +11,10 @@ namespace Assets.Scripts
             InitSecondBoard();
             InitThirdBoard();
 
+            GameManager.BoardManager.AddFields(GameManager.BoardManager.Boards[0].Fields);
+            GameManager.BoardManager.AddFields(GameManager.BoardManager.Boards[1].Fields);
+            GameManager.BoardManager.AddFields(GameManager.BoardManager.Boards[2].Fields);
+
             AddNeighborsToFieldOnFirstBoard();
             AddNeighborsToFieldOnSecondBoard();
             AddNeighborsToFieldOnThirdBoard();
@@ -387,168 +391,156 @@ namespace Assets.Scripts
 
         private static void AddNeighborsToFieldOnFirstBoard()
         {
-            int boardId = 0;
-
-            GameManager.BoardManager.Boards[boardId].GetFieldById(0).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 1 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(1).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 0, 2, 102 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(2).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 1, 3 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(3).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 2, 4, 6, 21 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(4).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 3, 5 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(5).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 4 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(6).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 3, 7 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(7).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 6, 8 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(8).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 7, 9 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(9).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 8, 10 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(10).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 9, 11, 78 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(11).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 10, 12 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(12).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 11, 13 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(13).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 12, 14 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(14).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 13, 15 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(15).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 14, 16, 17, 22 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(16).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 15 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(17).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 15, 18 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(18).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 17, 19 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(19).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 18, 20 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(20).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 19, 21 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(21).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 3, 20 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(22).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 15, 23 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(23).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 22, 24, 36 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(24).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 23, 25 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(25).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 24, 26 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(26).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 25, 27 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(27).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 26, 28, 38 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(28).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 27, 29 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(29).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 28, 30 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(30).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 29, 31 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(31).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 30, 32 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(32).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 31, 33 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(33).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 32, 34 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(34).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 33, 35 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(35).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 34, 36 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(36).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 35, 23 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(38).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 27, 39 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(39).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 38, 40, 52 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(40).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 39, 41 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(41).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 40, 42 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(42).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 41, 43 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(43).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 42, 44 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(44).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 43, 45 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(45).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 44, 46, 55 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(46).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 45, 47 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(47).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 46, 48 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(48).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 47, 49 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(49).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 48, 50, 54 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(50).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 49, 51 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(51).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 50, 52 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(52).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 39, 51 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(54).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 11, 49 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(55).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 45, 56 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(56).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 55, 57, 73 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(57).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 56, 58 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(58).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 57, 59 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(59).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 58, 60 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(60).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 59, 61 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(61).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 60, 62 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(62).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 61, 63, 67 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(63).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 62, 64 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(64).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 63, 65 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(65).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 64, 66 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(66).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 65 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(67).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 62, 68 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(68).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 67, 69, 70, 91 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(69).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 68 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(70).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 68, 71, 85 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(71).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 70, 72 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(72).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 71, 73, 74 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(73).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 72, 56 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(74).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 72, 75 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(75).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 74, 76 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(76).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 75, 77 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(77).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 76, 78, 79 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(78).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 10, 77 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(79).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 77, 80, 81, 82 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(80).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 79 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(81).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 79 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(82).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 79, 83, 86 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(83).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 82, 84 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(84).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 83, 85 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(85).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 84, 70 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(86).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 82, 87, 92 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(87).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 86, 88, 89 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(88).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 87 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(89).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 87, 90 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(90).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 89, 91 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(91).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 68, 90 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(92).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 86, 93, 94 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(93).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 92 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(94).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 92, 95, 96, 97 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(95).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 94, 96 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(96).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 95, 94 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(97).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 94, 98, 99 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(98).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 97 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(99).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 97, 100 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(100).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 99, 101, 118 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(101).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 100 }));
+            GameManager.BoardManager.GetFieldById(0).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 1 }));
+            GameManager.BoardManager.GetFieldById(1).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 0, 2, 102 }));
+            GameManager.BoardManager.GetFieldById(2).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 1, 3 }));
+            GameManager.BoardManager.GetFieldById(3).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 2, 4, 6, 21 }));
+            GameManager.BoardManager.GetFieldById(4).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 3, 5 }));
+            GameManager.BoardManager.GetFieldById(5).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 4 }));
+            GameManager.BoardManager.GetFieldById(6).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 3, 7 }));
+            GameManager.BoardManager.GetFieldById(7).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 6, 8 }));
+            GameManager.BoardManager.GetFieldById(8).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 7, 9 }));
+            GameManager.BoardManager.GetFieldById(9).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 8, 10 }));
+            GameManager.BoardManager.GetFieldById(10).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 9, 11, 78 }));
+            GameManager.BoardManager.GetFieldById(11).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 10, 12 }));
+            GameManager.BoardManager.GetFieldById(12).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 11, 13 }));
+            GameManager.BoardManager.GetFieldById(13).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 12, 14 }));
+            GameManager.BoardManager.GetFieldById(14).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 13, 15 }));
+            GameManager.BoardManager.GetFieldById(15).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 14, 16, 17, 22 }));
+            GameManager.BoardManager.GetFieldById(16).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 15 }));
+            GameManager.BoardManager.GetFieldById(17).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 15, 18 }));
+            GameManager.BoardManager.GetFieldById(18).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 17, 19 }));
+            GameManager.BoardManager.GetFieldById(19).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 18, 20 }));
+            GameManager.BoardManager.GetFieldById(20).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 19, 21 }));
+            GameManager.BoardManager.GetFieldById(21).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 3, 20 }));
+            GameManager.BoardManager.GetFieldById(22).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 15, 23 }));
+            GameManager.BoardManager.GetFieldById(23).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 22, 24, 36 }));
+            GameManager.BoardManager.GetFieldById(24).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 23, 25 }));
+            GameManager.BoardManager.GetFieldById(25).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 24, 26 }));
+            GameManager.BoardManager.GetFieldById(26).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 25, 27 }));
+            GameManager.BoardManager.GetFieldById(27).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 26, 28, 38 }));
+            GameManager.BoardManager.GetFieldById(28).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 27, 29 }));
+            GameManager.BoardManager.GetFieldById(29).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 28, 30 }));
+            GameManager.BoardManager.GetFieldById(30).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 29, 31 }));
+            GameManager.BoardManager.GetFieldById(31).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 30, 32 }));
+            GameManager.BoardManager.GetFieldById(32).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 31, 33 }));
+            GameManager.BoardManager.GetFieldById(33).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 32, 34 }));
+            GameManager.BoardManager.GetFieldById(34).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 33, 35 }));
+            GameManager.BoardManager.GetFieldById(35).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 34, 36 }));
+            GameManager.BoardManager.GetFieldById(36).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 35, 23 }));
+            GameManager.BoardManager.GetFieldById(38).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 27, 39 }));
+            GameManager.BoardManager.GetFieldById(39).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 38, 40, 52 }));
+            GameManager.BoardManager.GetFieldById(40).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 39, 41 }));
+            GameManager.BoardManager.GetFieldById(41).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 40, 42 }));
+            GameManager.BoardManager.GetFieldById(42).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 41, 43 }));
+            GameManager.BoardManager.GetFieldById(43).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 42, 44 }));
+            GameManager.BoardManager.GetFieldById(44).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 43, 45 }));
+            GameManager.BoardManager.GetFieldById(45).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 44, 46, 55 }));
+            GameManager.BoardManager.GetFieldById(46).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 45, 47 }));
+            GameManager.BoardManager.GetFieldById(47).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 46, 48 }));
+            GameManager.BoardManager.GetFieldById(48).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 47, 49 }));
+            GameManager.BoardManager.GetFieldById(49).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 48, 50, 54 }));
+            GameManager.BoardManager.GetFieldById(50).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 49, 51 }));
+            GameManager.BoardManager.GetFieldById(51).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 50, 52 }));
+            GameManager.BoardManager.GetFieldById(52).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 39, 51 }));
+            GameManager.BoardManager.GetFieldById(54).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 11, 49 }));
+            GameManager.BoardManager.GetFieldById(55).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 45, 56 }));
+            GameManager.BoardManager.GetFieldById(56).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 55, 57, 73 }));
+            GameManager.BoardManager.GetFieldById(57).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 56, 58 }));
+            GameManager.BoardManager.GetFieldById(58).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 57, 59 }));
+            GameManager.BoardManager.GetFieldById(59).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 58, 60 }));
+            GameManager.BoardManager.GetFieldById(60).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 59, 61 }));
+            GameManager.BoardManager.GetFieldById(61).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 60, 62 }));
+            GameManager.BoardManager.GetFieldById(62).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 61, 63, 67 }));
+            GameManager.BoardManager.GetFieldById(63).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 62, 64 }));
+            GameManager.BoardManager.GetFieldById(64).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 63, 65 }));
+            GameManager.BoardManager.GetFieldById(65).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 64, 66 }));
+            GameManager.BoardManager.GetFieldById(66).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 65 }));
+            GameManager.BoardManager.GetFieldById(67).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 62, 68 }));
+            GameManager.BoardManager.GetFieldById(68).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 67, 69, 70, 91 }));
+            GameManager.BoardManager.GetFieldById(69).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 68 }));
+            GameManager.BoardManager.GetFieldById(70).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 68, 71, 85 }));
+            GameManager.BoardManager.GetFieldById(71).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 70, 72 }));
+            GameManager.BoardManager.GetFieldById(72).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 71, 73, 74 }));
+            GameManager.BoardManager.GetFieldById(73).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 72, 56 }));
+            GameManager.BoardManager.GetFieldById(74).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 72, 75 }));
+            GameManager.BoardManager.GetFieldById(75).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 74, 76 }));
+            GameManager.BoardManager.GetFieldById(76).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 75, 77 }));
+            GameManager.BoardManager.GetFieldById(77).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 76, 78, 79 }));
+            GameManager.BoardManager.GetFieldById(78).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 10, 77 }));
+            GameManager.BoardManager.GetFieldById(79).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 77, 80, 81, 82 }));
+            GameManager.BoardManager.GetFieldById(80).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 79 }));
+            GameManager.BoardManager.GetFieldById(81).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 79 }));
+            GameManager.BoardManager.GetFieldById(82).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 79, 83, 86 }));
+            GameManager.BoardManager.GetFieldById(83).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 82, 84 }));
+            GameManager.BoardManager.GetFieldById(84).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 83, 85 }));
+            GameManager.BoardManager.GetFieldById(85).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 84, 70 }));
+            GameManager.BoardManager.GetFieldById(86).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 82, 87, 92 }));
+            GameManager.BoardManager.GetFieldById(87).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 86, 88, 89 }));
+            GameManager.BoardManager.GetFieldById(88).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 87 }));
+            GameManager.BoardManager.GetFieldById(89).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 87, 90 }));
+            GameManager.BoardManager.GetFieldById(90).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 89, 91 }));
+            GameManager.BoardManager.GetFieldById(91).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 68, 90 }));
+            GameManager.BoardManager.GetFieldById(92).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 86, 93, 94 }));
+            GameManager.BoardManager.GetFieldById(93).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 92 }));
+            GameManager.BoardManager.GetFieldById(94).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 92, 95, 96, 97 }));
+            GameManager.BoardManager.GetFieldById(95).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 94, 96 }));
+            GameManager.BoardManager.GetFieldById(96).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 95, 94 }));
+            GameManager.BoardManager.GetFieldById(97).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 94, 98, 99 }));
+            GameManager.BoardManager.GetFieldById(98).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 97 }));
+            GameManager.BoardManager.GetFieldById(99).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 97, 100 }));
+            GameManager.BoardManager.GetFieldById(100).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 99, 101, 118 }));
+            GameManager.BoardManager.GetFieldById(101).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 100 }));
         }
 
         private static void AddNeighborsToFieldOnSecondBoard()
         {
-            int boardId = 1;
-
-            GameManager.BoardManager.Boards[boardId].GetFieldById(102).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 1, 103 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(103).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 102, 104 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(104).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 103, 105 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(105).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 104, 106 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(106).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 105, 107, 112, 113, 114 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(107).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 106, 108, 109, 112, 113, 114 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(108).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 107 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(109).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 107, 110 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(110).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 109, 111 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(111).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 110 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(112).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 106, 107, 113, 114 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(113).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 106, 107, 112, 114 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(114).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 106, 107, 112, 113, 115 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(115).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 114, 116 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(116).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 115, 117 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(117).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 116 }));
+            GameManager.BoardManager.GetFieldById(102).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 1, 103 }));
+            GameManager.BoardManager.GetFieldById(103).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 102, 104 }));
+            GameManager.BoardManager.GetFieldById(104).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 103, 105 }));
+            GameManager.BoardManager.GetFieldById(105).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 104, 106 }));
+            GameManager.BoardManager.GetFieldById(106).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 105, 107, 112, 113, 114 }));
+            GameManager.BoardManager.GetFieldById(107).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 106, 108, 109, 112, 113, 114 }));
+            GameManager.BoardManager.GetFieldById(108).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 107 }));
+            GameManager.BoardManager.GetFieldById(109).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 107, 110 }));
+            GameManager.BoardManager.GetFieldById(110).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 109, 111 }));
+            GameManager.BoardManager.GetFieldById(111).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 110 }));
+            GameManager.BoardManager.GetFieldById(112).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 106, 107, 113, 114 }));
+            GameManager.BoardManager.GetFieldById(113).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 106, 107, 112, 114 }));
+            GameManager.BoardManager.GetFieldById(114).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 106, 107, 112, 113, 115 }));
+            GameManager.BoardManager.GetFieldById(115).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 114, 116 }));
+            GameManager.BoardManager.GetFieldById(116).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 115, 117 }));
+            GameManager.BoardManager.GetFieldById(117).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 116 }));
         }
 
         private static void AddNeighborsToFieldOnThirdBoard()
         {
-            int boardId = 2;
-
-            GameManager.BoardManager.Boards[boardId].GetFieldById(118).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 100, 119, 120, 121 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(119).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 118, 120, 121 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(120).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 118, 119, 121 }));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(121).AddNeighbors(GameManager.BoardManager.Boards[boardId].GetFieldsByIds(new List<int>() { 118, 119, 120 }));
+            GameManager.BoardManager.GetFieldById(118).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 100, 119, 120, 121 }));
+            GameManager.BoardManager.GetFieldById(119).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 118, 120, 121 }));
+            GameManager.BoardManager.GetFieldById(120).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 118, 119, 121 }));
+            GameManager.BoardManager.GetFieldById(121).AddNeighbors(GameManager.BoardManager.GetFieldsByIds(new List<int>() { 118, 119, 120 }));
         }
 
         private static void AddPortalFieldsToFieldOnFirstBoard()
         {
-            int boardId = 0;
-
-            GameManager.BoardManager.Boards[boardId].GetFieldById(5).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(118));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(69).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(120));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(81).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(121));
+            GameManager.BoardManager.GetFieldById(5).SetPortalField(GameManager.BoardManager.GetFieldById(118));
+            GameManager.BoardManager.GetFieldById(69).SetPortalField(GameManager.BoardManager.GetFieldById(120));
+            GameManager.BoardManager.GetFieldById(81).SetPortalField(GameManager.BoardManager.GetFieldById(121));
         }
 
         private static void AddPortalFieldsToFieldOnSecondBoard()
         {
-            int boardId = 1;
-
-            GameManager.BoardManager.Boards[boardId].GetFieldById(106).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(122));
+            GameManager.BoardManager.GetFieldById(106).SetPortalField(GameManager.BoardManager.GetFieldById(122));
         }
 
         private static void AddPortalFieldsToFieldOnThirdBoard()
         {
-            int boardId = 2;
-
-            GameManager.BoardManager.Boards[boardId].GetFieldById(118).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(5));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(120).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(69));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(121).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(81));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(122).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(106));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(123).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(126));
-            GameManager.BoardManager.Boards[boardId].GetFieldById(126).SetPortalField(GameManager.BoardManager.Boards[boardId].GetFieldById(123));
+            GameManager.BoardManager.GetFieldById(118).SetPortalField(GameManager.BoardManager.GetFieldById(5));
+            GameManager.BoardManager.GetFieldById(120).SetPortalField(GameManager.BoardManager.GetFieldById(69));
+            GameManager.BoardManager.GetFieldById(121).SetPortalField(GameManager.BoardManager.GetFieldById(81));
+            GameManager.BoardManager.GetFieldById(122).SetPortalField(GameManager.BoardManager.GetFieldById(106));
+            GameManager.BoardManager.GetFieldById(123).SetPortalField(GameManager.BoardManager.GetFieldById(126));
+            GameManager.BoardManager.GetFieldById(126).SetPortalField(GameManager.BoardManager.GetFieldById(123));
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -24,31 +23,6 @@ namespace Assets.Scripts
             this.id = id;
             this.width = width;
             this.height = height;
-        }
-
-        public void AddField(Field field)
-        {
-            fields.Add(field);
-        }
-
-        public Field GetFieldById(int id)
-        {
-            return fields.Where(field => field.Index == id).FirstOrDefault();
-        }
-
-        public List<Field> GetFieldsByIds(List<int> ids)
-        {
-            return fields.Where(field => ids.Contains(field.Index)).ToList();
-        }
-
-        public List<Field> GetTowerFields()
-        {
-            return fields.Where(field => field.IsTower).ToList();
-        }
-
-        public Field GetQuidditchPitch()
-        {
-            return fields.Where(field => field.IsQuidditchPitch).FirstOrDefault();
         }
     }
 }

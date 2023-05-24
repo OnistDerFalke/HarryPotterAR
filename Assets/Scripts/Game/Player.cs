@@ -19,22 +19,28 @@ namespace Assets.Scripts
         public int LastFieldId { get => lastFieldId; }
         public Vector2 LastPosition { get => lastPosition; }
 
-        public Player(int index, Character character)
+        public Player(int index)
         {
             this.index = index;
             if (this.index == 0) 
                 this.myPlayer = true;
             else 
                 this.myPlayer = false;
-            this.character = character;
+            this.character = Character.None;
             this.isDuringMove = false;
             this.lastFieldId = 0;
-            this.lastPosition = GameManager.BoardManager.GetField(0).Position2D;
+            this.lastPosition = GameManager.BoardManager.GetFieldById(0).Position2D;
         }
 
         public void SetCharacter(Character character)
         {
             this.character = character;
+        }
+
+        // TODO: delete function
+        public void ChangeField(int fieldId)
+        {
+            lastFieldId = fieldId;
         }
     }
 }
