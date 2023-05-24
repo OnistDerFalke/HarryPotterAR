@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public GameObject BottomRight;
         public GameObject UpperRight;
         public float boardSize = 25f;
+        public float heightOffset = 3f;
 
 
         // marks that identify the position and orientation of a board, sticked to the board
@@ -20,66 +21,11 @@ namespace Assets.Scripts
         private Transform referenceTransform;
         private string referenceMarkerId;
 
-
-        //private float scale;
-        //private float boardRotationZ;
-        //private Vector2 boardOrigin;
-
-
-        //public void EstimateWorldPosition()
-        //{
-        //    if(vuMarkHandler.CurrentTrackedObjects.Count >= 2)
-        //    {
-        //        string id1 = vuMarkHandler.CurrentTrackedObjects[0];
-        //        string id2 = vuMarkHandler.CurrentTrackedObjects[1];
-        //        GameObject g1 = vuMarkHandler.FindModelById(id1);
-        //        GameObject g2 = vuMarkHandler.FindModelById(id2);
-
-        //        if(g1 != null && g2 != null)
-        //        {
-        //            float worldDist = Vector2.Distance(V3toV2(g2.transform.position), V3toV2(g1.transform.position));
-        //            float boardDist = Vector2.Distance(boardMarks[id1], boardMarks[id2]);
-        //            scale =  worldDist / boardDist;
-        //        }
-        //    }
-
-        //    if(vuMarkHandler.CurrentTrackedObjects.Count > 0)
-        //    {
-        //        string id = vuMarkHandler.CurrentTrackedObjects[0];
-        //        GameObject marker = vuMarkHandler.FindModelById(id);
-        //        if(marker != null)
-        //        {
-        //            Transform t = marker.transform;
-        //            boardRotationZ = t.rotation.eulerAngles.y;
-
-        //        }
-        //    }
-        //}
-
-        //public Vector2 GetFieldPosition_World2D(Field field)
-        //{
-        //    return GetPointPosition_World2D(field.Position2D);
-        //}
-
-        //private Vector2 RotatePoint(Vector2 point, float rotation)
-        //{
-        //    // x' = x*cos(a) - y*sin(a)
-        //    // y' = y*cos(a) + x*sin(a)
-        //    float x1_rotated = point.x * Mathf.Cos(rotation) - point.y * Mathf.Sin(rotation);
-        //    float y1_rotated = point.y * Mathf.Cos(rotation) + point.x * Mathf.Sin(rotation);
-        //    return new Vector2(x1_rotated, y1_rotated);
-        //}
-
-        //public Vector2 GetPointPosition_World2D(Vector2 point)
-        //{
-        //    return boardOrigin + RotatePoint(point, boardRotationZ) * scale;
-        //}
-
         public Vector2 GetPointPosition_World2D(Vector2 point)
         {
             return V3toV2(referenceTransform.position) +
                 (point.x - boardMarks[referenceMarkerId].x) * V3toV2(referenceTransform.right) +
-                (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.up);
+                (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.forward);
         }
 
         public Vector2 V3toV2(Vector3 v3)
@@ -105,6 +51,7 @@ namespace Assets.Scripts
         {
             if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
             {
+                Debug.Log("tracking something!");
                 string id = vuMarkHandler.CurrentTrackedObjects[0];
                 if (id != referenceMarkerId)
                 {
@@ -117,10 +64,13 @@ namespace Assets.Scripts
                 }
             }
 
-            BottomLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.zero));
-            BottomRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.right * boardSize));
-            UpperLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.up * boardSize));
-            UpperRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.one * boardSize));
+            if(referenceTransform!=null)
+            {
+                BottomLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.zero), heightOffset);
+                BottomRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.right * boardSize), heightOffset);
+                UpperLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.up * boardSize), heightOffset);
+                UpperRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.one * boardSize), heightOffset);
+            }
         }
     }
 }
