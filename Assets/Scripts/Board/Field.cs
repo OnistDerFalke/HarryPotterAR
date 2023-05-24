@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Field : MonoBehaviour
+    public class Field
     {
         [SerializeField] private int boardId;
         [SerializeField] private IFigure figure;
@@ -17,6 +17,9 @@ namespace Assets.Scripts
         [SerializeField] private Field portalField;
         [SerializeField] private GameObject highlight;
 
+        // TODO: delete variable
+        [SerializeField] private bool isHighlighted = false;
+
         public int BoardId { get => boardId; }
         public IFigure Figure { get => figure; }
         public int Index { get => index; }
@@ -27,8 +30,10 @@ namespace Assets.Scripts
         public List<Field> Neighbors { get => neighbors; }
         public Field PortalField { get => portalField; }
         public Vector2 Position2D { get => figure.CenterPosition; }
+        public bool IsHighlighted { get => isHighlighted; }
 
-        public Field(int boardId, IFigure figure, int index, bool isTower = false, bool isMissionField = false, bool isFiuuField=false, bool isPortkeyField=false, bool isQuidditchPitch = false)
+        public Field(int boardId, IFigure figure, int index, 
+            bool isTower=false, bool isMissionField=false, bool isFiuuField=false, bool isPortkeyField=false, bool isQuidditchPitch=false)
         {
             this.boardId = boardId;
             this.figure = figure;
@@ -37,7 +42,7 @@ namespace Assets.Scripts
             this.isMissionField = isMissionField;
             this.isFiuuField = isFiuuField;
             this.isPortkeyField = isPortkeyField;
-            this.isTower = isQuidditchPitch;
+            this.isQuidditchPitch = isQuidditchPitch;
             this.portalField = null;
             this.neighbors = new List<Field>();
         }
@@ -57,17 +62,14 @@ namespace Assets.Scripts
         // czyli warunkowe - mo¿esz siê zatrzymaæ, jeœli masz misjê w danym miejscu i chcesz j¹ wykonaæ
         public void Highlight(bool missionLight=false)
         {
-            highlight.SetActive(true);
+            //highlight.SetActive(true);
+            isHighlighted = true;
         }
 
         public void Unhighlight()
         {
-            highlight.SetActive(false);
-        }
-
-        public void ToggleHighlights()
-        {
-            highlight.SetActive(!highlight.activeInHierarchy);
+            //highlight.SetActive(false);
+            isHighlighted = false;
         }
     }
 }

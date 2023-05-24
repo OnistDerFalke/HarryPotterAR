@@ -2,6 +2,7 @@
 {
     public enum Character
     {
+        None,
         Harry,
         Hermiona,
         Ron,
