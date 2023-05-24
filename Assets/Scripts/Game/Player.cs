@@ -7,6 +7,7 @@ namespace Assets.Scripts
         [SerializeField] private int index;
         [SerializeField] private Character character;
         [SerializeField] private bool isDuringMove;
+        [SerializeField] private bool myPlayer;
         [SerializeField] private int lastFieldId;
         [SerializeField] private Vector2 lastPosition;
         //[SerializeField] private GameObject characterObject;
@@ -14,13 +15,21 @@ namespace Assets.Scripts
         public int Index { get => index; }
         public Character Character { get => character; }
         public bool IsDuringMove { get => isDuringMove; }
+        public bool IsMyPlayer { get => myPlayer; }
         public int LastFieldId { get => lastFieldId; }
         public Vector2 LastPosition { get => lastPosition; }
 
-        public Player(int index, bool isDuringMove=false)
+        public Player(int index, Character character)
         {
             this.index = index;
-            this.isDuringMove = isDuringMove;
+            if (this.index == 0) 
+                this.myPlayer = true;
+            else 
+                this.myPlayer = false;
+            this.character = character;
+            this.isDuringMove = false;
+            this.lastFieldId = 0;
+            this.lastPosition = GameManager.BoardManager.GetField(0).Position2D;
         }
 
         public void SetCharacter(Character character)

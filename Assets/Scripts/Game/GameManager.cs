@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Scripts
 {
@@ -8,6 +9,10 @@ namespace Assets.Scripts
         public static int CurrentDiceThrownNumber;
         public static int PlayerNumber;
         public static List<Player> Players = new List<Player>();
-        public static Player MyPlayer;
+
+        public static Player GetMyPlayer()
+        {
+            return Players.Where(player => player.IsMyPlayer).FirstOrDefault();
+        }
     }
 }

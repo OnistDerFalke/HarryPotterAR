@@ -26,6 +26,11 @@ namespace Assets.Scripts
             this.allFields.AddRange(boards[2].Fields);
         }
 
+        public Field GetField(int id)
+        {
+            return allFields.Where(field => field.Index == id).FirstOrDefault();
+        }
+
         /// <summary>
         /// Player can end his move on fields:
         /// - that are towers (he can go to the board id = 2)
