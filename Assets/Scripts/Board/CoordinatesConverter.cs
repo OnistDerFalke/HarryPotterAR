@@ -5,13 +5,8 @@ namespace Assets.Scripts
 {
     public class CoordinatesConverter : MonoBehaviour
     {
-        public GameObject BottomLeft;
-        public GameObject UpperLeft;
-        public GameObject BottomRight;
-        public GameObject UpperRight;
-        public Vector2 boardSize;
         public float scale;
-        public float heightOffset = 3f;
+        public float heightOffset;
 
 
         // marks that identify the position and orientation of a board, sticked to the board
@@ -22,19 +17,45 @@ namespace Assets.Scripts
         private Transform referenceTransform;
         private string referenceMarkerId;
 
-        public Vector2 GetPointPosition_World2D(Vector2 point)
+        /// <summary>
+        /// Use this method to make sure that the result of converting coordinates is valid
+        /// </summary>
+        /// <returns>true if at least one board marker is tracked, false otherwise</returns>
+        public bool IsTrackingBoard()
+        {
+            return referenceTransform != null;
+        }
+
+        /// <summary>
+        /// Use this method to obtain scene coordinates of a point on the board plane
+        /// </summary>
+        /// <param name="boardCoordinates">the point to map to world space</param>
+        /// <returns>scene coordinates of a given point or (0,0,0) if the board is not tracked</returns>
+        public Vector3 ConvertCoordinates(Vector2 boardCoordinates)
+        {
+            if (IsTrackingBoard())
+            {
+                return V2toV3(GetPointPosition_World2D(boardCoordinates) * scale, heightOffset);
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
+
+        private Vector2 GetPointPosition_World2D(Vector2 point)
         {
             return V3toV2(referenceTransform.position) +
                 (point.x - boardMarks[referenceMarkerId].x) * V3toV2(referenceTransform.right) +
                 (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.forward);
         }
 
-        public Vector2 V3toV2(Vector3 v3)
+        private Vector2 V3toV2(Vector3 v3)
         {
             return new Vector2(v3.x, v3.z);
         }
 
-        public Vector3 V2toV3(Vector2 v2, float height = 0f)
+        private Vector3 V2toV3(Vector2 v2, float height = 0f)
         {
             return new Vector3(v2.x, height, v2.y);
         }
@@ -52,7 +73,6 @@ namespace Assets.Scripts
         {
             if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
             {
-                Debug.Log("tracking something!");
                 string id = vuMarkHandler.CurrentTrackedObjects[0];
                 if (id != referenceMarkerId)
                 {
@@ -63,18 +83,6 @@ namespace Assets.Scripts
                         referenceTransform = marker.transform;
                     }
                 }
-            }
-            else
-            {
-                Debug.Log("targets lost");
-            }
-
-            if(referenceTransform!=null)
-            {
-                BottomLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.zero) * scale, heightOffset);
-                BottomRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.right * boardSize) * scale, heightOffset);
-                UpperLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.up * boardSize) * scale, heightOffset);
-                UpperRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.one * boardSize) * scale, heightOffset);
             }
         }
     }

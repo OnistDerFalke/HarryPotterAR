@@ -6,23 +6,23 @@ namespace Assets.Scripts
     public class Board : MonoBehaviour
     {
         [SerializeField] private int id;
-        [SerializeField] private float width;
-        [SerializeField] private float height;
+        [SerializeField] private Vector2 size;
         [SerializeField] private List<Field> fields = new List<Field>();
         [SerializeField] private CoordinatesConverter coordinatesConverter;
-        //TODO: dodaæ info o znacznikach
+        [SerializeField] private MultiVuMarkHandler vuMarkHandler;
+        [SerializeField] private BoardVisulalizer visualizer;
 
         public int Id { get => id; }
-        public float Width { get => width; }
-        public float Heigth { get => height; }
+        public float Width { get => size.x; }
+        public float Heigth { get => size.y; }
+        public Vector2 Size { get => size; }
         public List<Field> Fields { get => fields; }
         public CoordinatesConverter CoordinatesConverter { get => coordinatesConverter; }
 
         public Board(int id, float width, float height)
         {
             this.id = id;
-            this.width = width;
-            this.height = height;
+            size = new Vector2(width, height);
         }
     }
 }
