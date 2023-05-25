@@ -9,7 +9,8 @@ namespace Assets.Scripts
         public GameObject UpperLeft;
         public GameObject BottomRight;
         public GameObject UpperRight;
-        public float boardSize = 25f;
+        public Vector2 boardSize;
+        public float scale;
         public float heightOffset = 3f;
 
 
@@ -63,13 +64,17 @@ namespace Assets.Scripts
                     }
                 }
             }
+            else
+            {
+                Debug.Log("targets lost");
+            }
 
             if(referenceTransform!=null)
             {
-                BottomLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.zero), heightOffset);
-                BottomRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.right * boardSize), heightOffset);
-                UpperLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.up * boardSize), heightOffset);
-                UpperRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.one * boardSize), heightOffset);
+                BottomLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.zero) * scale, heightOffset);
+                BottomRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.right * boardSize) * scale, heightOffset);
+                UpperLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.up * boardSize) * scale, heightOffset);
+                UpperRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.one * boardSize) * scale, heightOffset);
             }
         }
     }
