@@ -130,6 +130,7 @@ namespace UI
 
         private void LoadDataToGameManager()
         {
+            GameManager.Setup();
             GameManager.PlayerNumber = playersNumber;
             for(var i=0; i<playersNumber; i++)
                 GameManager.Players.Add(new Player(i, chosenCharacters[i]));

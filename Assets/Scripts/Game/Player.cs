@@ -28,12 +28,7 @@ namespace Game
             isDuringMove = false;
             lastFieldId = 0;
             
-            /*
-             * null reference when I create new player in menu scene so I add condition over
-             * just look if it is ok for you
-             */
-            if(GameManager.BoardManager.GetFieldById(0) != null)
-                lastPosition = GameManager.BoardManager.GetFieldById(0).Position2D;
+            lastPosition = GameManager.BoardManager.GetFieldById(0).Position2D;
         }
 
         /*
