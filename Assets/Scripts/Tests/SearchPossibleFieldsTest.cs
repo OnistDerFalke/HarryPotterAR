@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Game;
 using UnityEngine;
 
 namespace Assets.Scripts.Tests
@@ -20,8 +21,8 @@ namespace Assets.Scripts.Tests
             GameManager.Setup();
 
             GameManager.PlayerNumber = 2;
-            GameManager.Players.Add(new Player(0));
-            GameManager.Players.Add(new Player(1));
+            GameManager.Players.Add(new Player(0, Character.None));
+            GameManager.Players.Add(new Player(1, Character.None));
 
             for (int i = 2; i <= 12; i++)
             {

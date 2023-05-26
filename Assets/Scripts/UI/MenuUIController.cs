@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using Assets.Scripts;
+using Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -41,7 +43,7 @@ namespace UI
 
         private int playersNumber, charactersNumber = 9;
         private int chosenPlayerIndex = 0, chosenCharacterIndex;
-        private Characters[] chosenCharacters;
+        private Character[] chosenCharacters;
         private bool[] takenCharacters;
 
         private void Start()
@@ -56,7 +58,7 @@ namespace UI
 
         private bool IfAllCharactersChosen()
         {
-            return chosenCharacters.All(character => character != Characters.None);
+            return chosenCharacters.All(character => character != Character.None);
         }
         
         private void CheckButtonsActivity()
@@ -95,7 +97,7 @@ namespace UI
         {
             playerName.text = chosenPlayerIndex == 0 ? "Ja" : $"Gracz{chosenPlayerIndex + 1}";
             characterName.text = chosenCharacterIndex == 0 ? 
-                "Nie wybrano" : ((Characters)Enum.ToObject(typeof(Characters), chosenCharacterIndex)).ToString();
+                "Nie wybrano" : ((Character)Enum.ToObject(typeof(Character), chosenCharacterIndex)).ToString();
             if (chosenCharacterIndex < charactersNumber)
                 vuMarkImage.sprite = chosenCharacterIndex == 0 
                     ? vuMarksSpriteNotSet : vuMarksSprites[chosenCharacterIndex - 1];
@@ -128,6 +130,13 @@ namespace UI
             previousCharacterButton.gameObject.SetActive(!allChosen);
         }
 
+        private void LoadDataToGameManager()
+        {
+            GameManager.PlayerNumber = playersNumber;
+            for(var i=0; i<playersNumber; i++)
+                GameManager.Players.Add(new Player(i, chosenCharacters[i]));
+        }
+
         public void OnStartContextPlayButtonClick()
         {
             ChangeContext(Contexts.PlayersContext);
@@ -137,7 +146,7 @@ namespace UI
         {
             playersNumber = playerSwipe.currentOptionID+1;
             ChangeContext(Contexts.CharactersContext);
-            chosenCharacters = new Characters[playersNumber];
+            chosenCharacters = new Character[playersNumber];
             takenCharacters = new bool[charactersNumber+1];
             chosenCharacterIndex = 0;
             nextPlayerButton.gameObject.SetActive(true);
@@ -149,6 +158,7 @@ namespace UI
 
         public void OnCharactersContextNextButtonClick()
         {
+            LoadDataToGameManager();
             SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
         }
 
@@ -164,7 +174,7 @@ namespace UI
 
         public void OnNextPlayerButtonClick()
         {
-            chosenCharacters[chosenPlayerIndex] = (Characters)Enum.ToObject(typeof(Characters), chosenCharacterIndex);
+            chosenCharacters[chosenPlayerIndex] = (Character)Enum.ToObject(typeof(Character), chosenCharacterIndex);
             takenCharacters[chosenCharacterIndex] = true;
             if (chosenPlayerIndex == playersNumber - 1 && IfAllCharactersChosen())
             {
@@ -180,7 +190,7 @@ namespace UI
 
         public void OnPreviousPlayerButtonClick()
         {
-            chosenCharacters[chosenPlayerIndex] = (Characters)Enum.ToObject(typeof(Characters), chosenCharacterIndex);
+            chosenCharacters[chosenPlayerIndex] = (Character)Enum.ToObject(typeof(Character), chosenCharacterIndex);
             takenCharacters[(int)chosenCharacters[chosenPlayerIndex]] = false;
             chosenPlayerIndex = chosenPlayerIndex == 0 ? playersNumber-1 : chosenPlayerIndex-1;
             chosenCharacterIndex = (int)chosenCharacters[chosenPlayerIndex];

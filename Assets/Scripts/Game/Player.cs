@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 
-namespace Assets.Scripts
+namespace Game
 {  
     public class Player
     {
-        [SerializeField] private int index;
-        [SerializeField] private Character character;
-        [SerializeField] private bool isDuringMove;
-        [SerializeField] private bool myPlayer;
-        [SerializeField] private int lastFieldId;
-        [SerializeField] private Vector2 lastPosition;
+        private int index;
+        private Character character;
+        private bool isDuringMove;
+        private bool myPlayer;
+        private int lastFieldId;
+        private Vector2 lastPosition;
         //[SerializeField] private GameObject characterObject;
 
         public int Index { get => index; }
@@ -19,19 +20,25 @@ namespace Assets.Scripts
         public int LastFieldId { get => lastFieldId; }
         public Vector2 LastPosition { get => lastPosition; }
 
-        public Player(int index)
+        public Player(int index, Character character)
         {
             this.index = index;
-            if (this.index == 0) 
-                this.myPlayer = true;
-            else 
-                this.myPlayer = false;
-            this.character = Character.None;
-            this.isDuringMove = false;
-            this.lastFieldId = 0;
-            this.lastPosition = GameManager.BoardManager.GetFieldById(0).Position2D;
+            this.character = character;
+            myPlayer = this.index == 0;
+            isDuringMove = false;
+            lastFieldId = 0;
+            
+            /*
+             * null reference when I create new player in menu scene so I add condition over
+             * just look if it is ok for you
+             */
+            if(GameManager.BoardManager.GetFieldById(0) != null)
+                lastPosition = GameManager.BoardManager.GetFieldById(0).Position2D;
         }
 
+        /*
+         * imo we won't need this, we pass character by constructor
+         */
         public void SetCharacter(Character character)
         {
             this.character = character;
