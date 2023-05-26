@@ -21,6 +21,7 @@ namespace UI
         [SerializeField] private Button nextCharacterButton;
         [SerializeField] private Button previousCharacterButton;
         [SerializeField] private Sprite[] vuMarksSprites = new Sprite[9];
+        [SerializeField] private Sprite vuMarksSpriteNotSet;
         [SerializeField] private Text playerName;
         [SerializeField] private Text characterName;
         [SerializeField] private Image vuMarkImage;
@@ -61,9 +62,10 @@ namespace UI
         private void CheckButtonsActivity()
         {
             nextPlayerButton.interactable = chosenCharacterIndex != 0;
-            previousPlayerButton.interactable = chosenCharacterIndex != 0;
-            if (chosenPlayerIndex == 0) 
+            if (chosenPlayerIndex == 0)
                 previousPlayerButton.interactable = false;
+            else previousPlayerButton.interactable = chosenCharacterIndex != 0;
+
             nextPlayerButton.GetComponentInChildren<Text>().text = 
                 chosenPlayerIndex == playersNumber - 1 ? "Podsumowanie" : "Nastepny";
         }
@@ -91,11 +93,12 @@ namespace UI
 
         private void UpdateCharactersContext()
         {
-            playerName.text = $"Gracz{chosenPlayerIndex + 1}";
+            playerName.text = chosenPlayerIndex == 0 ? "Ja" : $"Gracz{chosenPlayerIndex + 1}";
             characterName.text = chosenCharacterIndex == 0 ? 
                 "Nie wybrano" : ((Characters)Enum.ToObject(typeof(Characters), chosenCharacterIndex)).ToString();
-            if(chosenCharacterIndex < charactersNumber)
-                vuMarkImage.sprite = vuMarksSprites[chosenCharacterIndex];
+            if (chosenCharacterIndex < charactersNumber)
+                vuMarkImage.sprite = chosenCharacterIndex == 0 
+                    ? vuMarksSpriteNotSet : vuMarksSprites[chosenCharacterIndex - 1];
         }
 
         private void ChangeContext(Contexts context)

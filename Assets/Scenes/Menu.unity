@@ -5997,6 +5997,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5ce08b7b6bbd9ad419a0ad1ffa62b72c, type: 3}
   - {fileID: 21300000, guid: f30eefab66364824bbaa6b725f89ea0c, type: 3}
   - {fileID: 21300000, guid: 86c0cb3b95bb460448fc50e091d73da2, type: 3}
+  vuMarksSpriteNotSet: {fileID: 21300000, guid: c826966bb68d4d2498937e7c1abdcd16, type: 3}
   playerName: {fileID: 1911480412}
   characterName: {fileID: 150686090}
   vuMarkImage: {fileID: 2146386343}
