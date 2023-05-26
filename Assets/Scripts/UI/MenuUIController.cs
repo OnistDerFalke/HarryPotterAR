@@ -64,9 +64,7 @@ namespace UI
         private void CheckButtonsActivity()
         {
             nextPlayerButton.interactable = chosenCharacterIndex != 0;
-            if (chosenPlayerIndex == 0)
-                previousPlayerButton.interactable = false;
-            else previousPlayerButton.interactable = chosenCharacterIndex != 0;
+            previousPlayerButton.interactable = chosenPlayerIndex != 0;
 
             nextPlayerButton.GetComponentInChildren<Text>().text = 
                 chosenPlayerIndex == playersNumber - 1 ? "Podsumowanie" : "Nastepny";
