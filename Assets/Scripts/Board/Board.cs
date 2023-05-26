@@ -3,21 +3,17 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Board : MonoBehaviour
+    public class Board
     {
-        [SerializeField] private int id;
-        [SerializeField] private Vector2 size;
-        [SerializeField] private List<Field> fields = new List<Field>();
-        [SerializeField] private CoordinatesConverter coordinatesConverter;
-        [SerializeField] private MultiVuMarkHandler vuMarkHandler;
-        [SerializeField] private BoardVisulalizer visualizer;
+        private int id;
+        private Vector2 size;
+        private List<Field> fields = new();
 
         public int Id { get => id; }
         public float Width { get => size.x; }
         public float Heigth { get => size.y; }
         public Vector2 Size { get => size; }
         public List<Field> Fields { get => fields; }
-        public CoordinatesConverter CoordinatesConverter { get => coordinatesConverter; }
 
         public Board(int id, float width, float height)
         {

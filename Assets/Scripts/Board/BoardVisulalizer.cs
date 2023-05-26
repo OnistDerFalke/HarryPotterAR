@@ -27,7 +27,7 @@ namespace Assets.Scripts
         {
             if (converter.IsTrackingBoard())
             {
-                Debug.Log("there are corners somewhere");
+                Debug.Log("TRACKING");
                 TrackCorners();
             }
         }

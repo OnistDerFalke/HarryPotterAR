@@ -22,6 +22,8 @@ namespace Assets.Scripts
             AddPortalFieldsToFieldOnFirstBoard();
             AddPortalFieldsToFieldOnSecondBoard();
             AddPortalFieldsToFieldOnThirdBoard();
+
+            RequestBroker.requests.Add(new BoardInitializedRequest());
         }
 
         private static void InitFirstBoard()

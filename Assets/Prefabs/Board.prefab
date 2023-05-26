@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3409178125460515817}
-  - component: {fileID: 8063478219132170510}
+  - component: {fileID: 7234432481258716694}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -253,7 +253,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8063478219132170510
+--- !u!114 &7234432481258716694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,14 +262,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3409178125460515818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49f8dab54e1e9024fb454dcf0d4675d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 19ce0866bfb9df340933906886943b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  size: {x: 0, y: 0}
-  coordinatesConverter: {fileID: 3409178124638362950}
-  vuMarkHandler: {fileID: 3409178125108309563}
-  visualizer: {fileID: 6678606780180920898}
 --- !u!1 &4852995515365985848
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +316,7 @@ MonoBehaviour:
   - {fileID: 7776520005393808187}
   - {fileID: 7359202294625245569}
   converter: {fileID: 3409178124638362950}
-  board: {fileID: 8063478219132170510}
+  board: {fileID: 0}
 --- !u!1001 &1538994432656929955
 PrefabInstance:
   m_ObjectHideFlags: 0
