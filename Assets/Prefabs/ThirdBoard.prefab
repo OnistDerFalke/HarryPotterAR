@@ -36,21 +36,17 @@ PrefabInstance:
       value: 8.9
       objectReference: {fileID: 0}
     - target: {fileID: 3409178125108309563, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
-      propertyPath: availableIds.Array.size
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: models.Array.data[0]
+      value: 
+      objectReference: {fileID: 7197859462392327951}
     - target: {fileID: 3409178125108309563, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
-      propertyPath: availableIds.Array.data[0]
-      value: 0000
-      objectReference: {fileID: 0}
+      propertyPath: models.Array.data[1]
+      value: 
+      objectReference: {fileID: 2967353422194694153}
     - target: {fileID: 3409178125108309563, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
-      propertyPath: availableIds.Array.data[1]
-      value: 0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3409178125108309563, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
-      propertyPath: availableIds.Array.data[2]
-      value: 0002
-      objectReference: {fileID: 0}
+      propertyPath: models.Array.data[2]
+      value: 
+      objectReference: {fileID: 2926743026585375363}
     - target: {fileID: 3409178125108309564, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
       propertyPath: mHiddenRoot
       value: 
@@ -129,3 +125,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
+--- !u!1 &2926743026585375363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4656811102720540806, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
+  m_PrefabInstance: {fileID: 7511353546134639109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2967353422194694153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4689259277771966988, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
+  m_PrefabInstance: {fileID: 7511353546134639109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7197859462392327951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 855225756394847498, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
+  m_PrefabInstance: {fileID: 7511353546134639109}
+  m_PrefabAsset: {fileID: 0}

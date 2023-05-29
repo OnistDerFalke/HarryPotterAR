@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class BoardMono : MonoBehaviour
 {
-    [SerializeField] private int id;
-    private Board board;
+    [SerializeField] private CoordinatesConverter coordinatesConverter;
+    [SerializeField] private BoardVisulalizer boardVisualiser;
+
+    public Board Board { get;  set; }
 
     void Awake()
     {
@@ -15,10 +17,6 @@ public class BoardMono : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            board = GameManager.BoardManager.Boards[id];
-            Debug.Log($"{board.Fields.Count} fields");
-        }
+        
     }
 }

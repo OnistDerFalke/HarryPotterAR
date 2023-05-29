@@ -8,14 +8,15 @@ namespace Assets.Scripts
     {
         [SerializeField] private GameObject[] corners;
         [SerializeField] private CoordinatesConverter converter;
-        [SerializeField] private Board board;
+        [SerializeField] private BoardMono boardMono;
 
         private void TrackCorners()
         {
+
             corners[0].transform.position = converter.ConvertCoordinates(Vector2.zero);
-            corners[1].transform.position = converter.ConvertCoordinates(Vector2.right * board.Width);
-            corners[2].transform.position = converter.ConvertCoordinates(Vector2.up * board.Heigth);
-            corners[3].transform.position = converter.ConvertCoordinates(Vector2.one * board.Size);
+            corners[1].transform.position = converter.ConvertCoordinates(Vector2.right * boardMono.Board.Width);
+            corners[2].transform.position = converter.ConvertCoordinates(Vector2.up * boardMono.Board.Heigth);
+            corners[3].transform.position = converter.ConvertCoordinates(Vector2.one * boardMono.Board.Size);
         }
 
         private void Awake()
@@ -25,10 +26,12 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if (converter.IsTrackingBoard())
+            if (boardMono.Board != null)
             {
-                Debug.Log("TRACKING");
-                TrackCorners();
+                if (converter.IsTrackingBoard())
+                {
+                    TrackCorners();
+                }
             }
         }
     }
