@@ -15,7 +15,7 @@ namespace Game
 
         public int Index { get => index; }
         public Character Character { get => character; }
-        public bool IsDuringMove { get => isDuringMove; }
+        public bool IsDuringMove { get => isDuringMove;  set => isDuringMove = value;}
         public bool IsMyPlayer { get => myPlayer; }
         public int LastFieldId { get => lastFieldId; }
         public Vector2 LastPosition { get => lastPosition; }
