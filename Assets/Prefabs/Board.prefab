@@ -328,6 +328,7 @@ MonoBehaviour:
   - {fileID: 7359202294625245569}
   converter: {fileID: 3409178124638362950}
   boardMono: {fileID: 7234432481258716694}
+  highlightPrefab: {fileID: 6058884272865506626, guid: 5a2e98bb6059f4a4293f7db364e3c720, type: 3}
 --- !u!1001 &1538994432656929955
 PrefabInstance:
   m_ObjectHideFlags: 0

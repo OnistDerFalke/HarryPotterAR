@@ -5,18 +5,27 @@ using UnityEngine;
 
 public class RequestReader : MonoBehaviour
 {
-    [SerializeField] private BoardMono firstBoard;
-    [SerializeField] private BoardMono secondBoard;
-    [SerializeField] private BoardMono thirdBoard;
+    [SerializeField] private List<BoardMono> boards;
 
     private void ConsumeRequest(Request request)
     {
-        if(request is BoardInitializedRequest)
+        if(request is HighlightFieldRequest)
         {
-            firstBoard.Board = GameManager.BoardManager.Boards[0];
-            secondBoard.Board = GameManager.BoardManager.Boards[1];
-            thirdBoard.Board = GameManager.BoardManager.Boards[2];
-            Debug.Log($"third board size: {thirdBoard.Board.Size}");
+            HighlightFieldRequest highlightRequest = request as HighlightFieldRequest;
+            boards[highlightRequest.field.BoardId].boardVisualiser.HighlightField(highlightRequest.field);
+        }
+        else if(request is UnhighlightFieldRequest)
+        {
+            UnhighlightFieldRequest unhighlightRequest = request as UnhighlightFieldRequest;
+            boards[unhighlightRequest.field.BoardId].boardVisualiser.UnhighlightField(unhighlightRequest.field);
+        }
+        else if(request is BoardInitializedRequest)
+        {
+            for(int i = 0; i < boards.Count; i++)
+            {
+                boards[i].Board = GameManager.BoardManager.Boards[i];
+            }
+            GameManager.BoardManager.HighlightAllFields(); // testing
         }
     }
 

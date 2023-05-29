@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BoardMono : MonoBehaviour
 {
-    [SerializeField] private CoordinatesConverter coordinatesConverter;
-    [SerializeField] private BoardVisulalizer boardVisualiser;
+    public CoordinatesConverter coordinatesConverter;
+    public BoardVisulalizer boardVisualiser;
 
     public Board Board { get;  set; }
 
