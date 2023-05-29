@@ -9,7 +9,7 @@ namespace Assets.Scripts
         [SerializeField] private Vector2 rightBottom;
         [SerializeField] private Vector2 leftBottom;
 
-        public Vector2 CenterPosition { get => (leftUpper + rightUpper + rightBottom + leftBottom) / 2; }
+        public Vector2 CenterPosition { get => (leftUpper + rightUpper + rightBottom + leftBottom) / 4; }
 
         public Quadrangle(Vector2 leftUpper, Vector2 rightUpper, Vector2 rightBottom, Vector2 leftBottom)
         {
