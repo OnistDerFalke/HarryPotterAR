@@ -5,11 +5,8 @@ namespace Assets.Scripts
 {
     public class CoordinatesConverter : MonoBehaviour
     {
-        public GameObject BottomLeft;
-        public GameObject UpperLeft;
-        public GameObject BottomRight;
-        public GameObject UpperRight;
-        public float boardSize = 25f;
+        public float scale;
+        public float heightOffset;
 
 
         // marks that identify the position and orientation of a board, sticked to the board
@@ -20,74 +17,45 @@ namespace Assets.Scripts
         private Transform referenceTransform;
         private string referenceMarkerId;
 
+        /// <summary>
+        /// Use this method to make sure that the result of converting coordinates is valid
+        /// </summary>
+        /// <returns>true if at least one board marker is tracked, false otherwise</returns>
+        public bool IsTrackingBoard()
+        {
+            return referenceTransform != null;
+        }
 
-        //private float scale;
-        //private float boardRotationZ;
-        //private Vector2 boardOrigin;
+        /// <summary>
+        /// Use this method to obtain scene coordinates of a point on the board plane
+        /// </summary>
+        /// <param name="boardCoordinates">the point to map to world space</param>
+        /// <returns>scene coordinates of a given point or (0,0,0) if the board is not tracked</returns>
+        public Vector3 ConvertCoordinates(Vector2 boardCoordinates)
+        {
+            if (IsTrackingBoard())
+            {
+                return V2toV3(GetPointPosition_World2D(boardCoordinates) * scale, heightOffset);
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
 
-
-        //public void EstimateWorldPosition()
-        //{
-        //    if(vuMarkHandler.CurrentTrackedObjects.Count >= 2)
-        //    {
-        //        string id1 = vuMarkHandler.CurrentTrackedObjects[0];
-        //        string id2 = vuMarkHandler.CurrentTrackedObjects[1];
-        //        GameObject g1 = vuMarkHandler.FindModelById(id1);
-        //        GameObject g2 = vuMarkHandler.FindModelById(id2);
-
-        //        if(g1 != null && g2 != null)
-        //        {
-        //            float worldDist = Vector2.Distance(V3toV2(g2.transform.position), V3toV2(g1.transform.position));
-        //            float boardDist = Vector2.Distance(boardMarks[id1], boardMarks[id2]);
-        //            scale =  worldDist / boardDist;
-        //        }
-        //    }
-
-        //    if(vuMarkHandler.CurrentTrackedObjects.Count > 0)
-        //    {
-        //        string id = vuMarkHandler.CurrentTrackedObjects[0];
-        //        GameObject marker = vuMarkHandler.FindModelById(id);
-        //        if(marker != null)
-        //        {
-        //            Transform t = marker.transform;
-        //            boardRotationZ = t.rotation.eulerAngles.y;
-
-        //        }
-        //    }
-        //}
-
-        //public Vector2 GetFieldPosition_World2D(Field field)
-        //{
-        //    return GetPointPosition_World2D(field.Position2D);
-        //}
-
-        //private Vector2 RotatePoint(Vector2 point, float rotation)
-        //{
-        //    // x' = x*cos(a) - y*sin(a)
-        //    // y' = y*cos(a) + x*sin(a)
-        //    float x1_rotated = point.x * Mathf.Cos(rotation) - point.y * Mathf.Sin(rotation);
-        //    float y1_rotated = point.y * Mathf.Cos(rotation) + point.x * Mathf.Sin(rotation);
-        //    return new Vector2(x1_rotated, y1_rotated);
-        //}
-
-        //public Vector2 GetPointPosition_World2D(Vector2 point)
-        //{
-        //    return boardOrigin + RotatePoint(point, boardRotationZ) * scale;
-        //}
-
-        public Vector2 GetPointPosition_World2D(Vector2 point)
+        private Vector2 GetPointPosition_World2D(Vector2 point)
         {
             return V3toV2(referenceTransform.position) +
                 (point.x - boardMarks[referenceMarkerId].x) * V3toV2(referenceTransform.right) +
-                (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.up);
+                (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.forward);
         }
 
-        public Vector2 V3toV2(Vector3 v3)
+        private Vector2 V3toV2(Vector3 v3)
         {
             return new Vector2(v3.x, v3.z);
         }
 
-        public Vector3 V2toV3(Vector2 v2, float height = 0f)
+        private Vector3 V2toV3(Vector2 v2, float height = 0f)
         {
             return new Vector3(v2.x, height, v2.y);
         }
@@ -117,11 +85,6 @@ namespace Assets.Scripts
                     }
                 }
             }
-
-            BottomLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.zero));
-            BottomRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.right * boardSize));
-            UpperLeft.transform.position = V2toV3(GetPointPosition_World2D(Vector2.up * boardSize));
-            UpperRight.transform.position = V2toV3(GetPointPosition_World2D(Vector2.one * boardSize));
         }
     }
 }

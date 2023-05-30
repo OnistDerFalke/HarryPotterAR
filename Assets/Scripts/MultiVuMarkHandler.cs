@@ -15,7 +15,11 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         if (!availableIds.Contains(id)) return null;
 
         int index = availableIds.FindIndex((i) => i == id);
-        return models[index];
+        if(index < models.Count)
+        {
+            return models[index];
+        }
+        return null;
     }
 
     protected override void OnTrackingFound()
@@ -45,8 +49,14 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         foreach(var elem in currentTrackedObjects)
         {
             foreach (var model in models)
+            {
                 model.SetActive(false);
-            models[availableIds.IndexOf(elem)].SetActive(true);
+            }
+                
+            if(availableIds.IndexOf(elem)<models.Count)
+            {
+                models[availableIds.IndexOf(elem)].SetActive(true);
+            }
         }
     }
 }

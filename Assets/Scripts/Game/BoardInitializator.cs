@@ -22,6 +22,8 @@ namespace Assets.Scripts
             AddPortalFieldsToFieldOnFirstBoard();
             AddPortalFieldsToFieldOnSecondBoard();
             AddPortalFieldsToFieldOnThirdBoard();
+
+            RequestBroker.requests.Add(new BoardInitializedRequest());
         }
 
         private static void InitFirstBoard()
@@ -359,7 +361,7 @@ namespace Assets.Scripts
             // Sklep Zonka
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(3.8f, 18.7f), 1.3f), 119));
             // Wrzeszcząca Chata
-            GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(31.3f, 6.6f), 1.4f), 120));
+            GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(21.3f, 6.6f), 1.4f), 120));
             // Pod świńskim łbem
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(17.7f, 7.3f), 1.3f), 121));
 

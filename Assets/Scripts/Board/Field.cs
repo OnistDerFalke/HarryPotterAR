@@ -15,7 +15,6 @@ namespace Assets.Scripts
         [SerializeField] private bool isPortkeyField;
         [SerializeField] private List<Field> neighbors;
         [SerializeField] private Field portalField;
-        [SerializeField] private GameObject highlight;
 
         // TODO: delete variable
         [SerializeField] private bool isHighlighted = false;
@@ -62,13 +61,13 @@ namespace Assets.Scripts
         // czyli warunkowe - mo¿esz siê zatrzymaæ, jeœli masz misjê w danym miejscu i chcesz j¹ wykonaæ
         public void Highlight(bool missionLight=false)
         {
-            //highlight.SetActive(true);
+            RequestBroker.requests.Add(new HighlightFieldRequest(this));
             isHighlighted = true;
         }
 
         public void Unhighlight()
         {
-            //highlight.SetActive(false);
+            RequestBroker.requests.Add(new UnhighlightFieldRequest(this));
             isHighlighted = false;
         }
     }

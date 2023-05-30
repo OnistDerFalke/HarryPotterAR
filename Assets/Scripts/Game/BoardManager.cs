@@ -20,7 +20,7 @@ namespace Assets.Scripts
                 new Board(1, 25.0f, 25.0f),
                 new Board(2, 25.0f, 25.0f)
             };
-            BoardInitializator.InitBoard();            
+            BoardInitializator.InitBoard();
         }
 
         public void AddFields(List<Field> fields)
@@ -59,7 +59,23 @@ namespace Assets.Scripts
             {
                 FindFieldsToHighlightRecursive(new List<Field>() { myField, neighbor }, 1);
             });
-        } 
+        }
+
+        public void HighlightAllFields()
+        {
+            boards[0].Fields.ForEach(delegate (Field field)
+            {
+                field.Highlight();
+            });
+            boards[1].Fields.ForEach(delegate (Field field)
+            {
+                field.Highlight();
+            });
+            boards[2].Fields.ForEach(delegate (Field field)
+            {
+                field.Highlight();
+            });
+        }
 
         public void UnhighlightAllFields()
         {
