@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3409178124638362950, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
+      propertyPath: scale
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409178124638362950, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
       propertyPath: boardMarkPositions.Array.size
       value: 3
       objectReference: {fileID: 0}

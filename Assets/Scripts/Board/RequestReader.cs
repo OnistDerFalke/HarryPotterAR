@@ -25,7 +25,6 @@ public class RequestReader : MonoBehaviour
             {
                 boards[i].Board = GameManager.BoardManager.Boards[i];
             }
-            GameManager.BoardManager.HighlightAllFields(); // testing
         }
     }
 

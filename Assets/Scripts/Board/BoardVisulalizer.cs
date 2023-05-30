@@ -109,6 +109,7 @@ namespace Assets.Scripts
                 Circle c = field.Figure as Circle;
                 MakeCircle(meshFilter, 20, c, field.Figure.CenterPosition);
             }
+            AdjustParticleEffectSize(field, highlight.GetComponent<ParticleSystem>());
         }
 
         public void HighlightField(Field f)

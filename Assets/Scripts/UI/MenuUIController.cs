@@ -158,7 +158,7 @@ namespace UI
         public void OnCharactersContextNextButtonClick()
         {
             LoadDataToGameManager();
-            SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+            SceneManager.LoadScene("Scenes/Beta", LoadSceneMode.Single);
         }
 
         public void OnNextCharacterButtonClick()

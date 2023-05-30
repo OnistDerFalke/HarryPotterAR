@@ -71,7 +71,6 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            return;
             if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
             {
                 string id = vuMarkHandler.CurrentTrackedObjects[0];
@@ -84,6 +83,10 @@ namespace Assets.Scripts
                         referenceTransform = marker.transform;
                     }
                 }
+            }
+            else
+            {
+                referenceTransform = null;
             }
         }
     }
