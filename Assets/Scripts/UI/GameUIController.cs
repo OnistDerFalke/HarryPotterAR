@@ -44,6 +44,7 @@ namespace UI
             dicesGraphics[0].sprite = dicesGraphicsOptions[leftDiceResult - 1];
             dicesGraphics[1].sprite = dicesGraphicsOptions[rightDiceResult - 1];
             diceResult = leftDiceResult + rightDiceResult;
+            GameManager.CurrentDiceThrownNumber = diceResult;
             
             //calcutating simulation factors
             float currentScale = 0;
@@ -72,11 +73,13 @@ namespace UI
             {
                 GameManager.GetMyPlayer().IsDuringMove = false;
                 UpdateContent();
+                GameManager.BoardManager.UnhighlightAllFields();
             }
             else
             {
                 StartCoroutine(DiceThrowSimulation(simulationTime, simulationSmooth));
                 GameManager.GetMyPlayer().IsDuringMove = true;
+                GameManager.BoardManager.ShowPossibleMoves();
             }
         }
     }
