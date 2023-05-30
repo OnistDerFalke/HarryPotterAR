@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThirdBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 6678606780180920898, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
+      propertyPath: highlightPrefab
+      value: 
+      objectReference: {fileID: 2130003449761862625, guid: f6add496441afcf46bb299fc68ee4686, type: 3}
     - target: {fileID: 7234432481258716694, guid: 5d446900d6a16bb44bf69258e5301888, type: 3}
       propertyPath: id
       value: 2

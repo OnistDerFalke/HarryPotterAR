@@ -8,6 +8,7 @@ namespace Assets.Scripts
         [SerializeField] private float radius;
 
         public Vector2 CenterPosition { get => center; }
+        public float Radius { get => radius; }
 
         public Circle(Vector2 center, float radius)
         {

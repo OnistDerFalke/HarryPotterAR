@@ -4,10 +4,10 @@ namespace Assets.Scripts
 {
     public class Quadrangle : IFigure
     {
-        [SerializeField] private Vector2 leftUpper;
-        [SerializeField] private Vector2 rightUpper;
-        [SerializeField] private Vector2 rightBottom;
-        [SerializeField] private Vector2 leftBottom;
+        public Vector2 leftUpper;
+        public Vector2 rightUpper;
+        public Vector2 rightBottom;
+        public Vector2 leftBottom;
 
         public Vector2 CenterPosition { get => (leftUpper + rightUpper + rightBottom + leftBottom) / 4; }
 
