@@ -34,7 +34,7 @@ namespace Assets.Scripts
         {
             if (IsTrackingBoard())
             {
-                return V2toV3(GetPointPosition_World2D(boardCoordinates) * scale, heightOffset);
+                return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
             }
             else
             {
@@ -42,7 +42,14 @@ namespace Assets.Scripts
             }
         }
 
-        private Vector2 GetPointPosition_World2D(Vector2 point)
+        public Vector3 ConvertCoordinates(Vector2 boardCoordinates, string referenceMarkerId)
+        {
+            GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
+            (string, Transform) referenceMarker = (referenceMarkerId, marker.transform);
+            return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
+        }
+
+        private Vector2 GetPointPosition_World2D(Vector2 point, (string id, Transform transform) referenceMarker)
         {
             return V3toV2(referenceMarker.transform.position) +
                 (point.x - boardMarks[referenceMarker.id].x) * V3toV2(referenceMarker.transform.right) +
@@ -59,9 +66,44 @@ namespace Assets.Scripts
             return new Vector3(v2.x, height, v2.y);
         }
 
-        private void ChooseReferenceMarker()
+        private float CalculateErrorRate(string markerId)
         {
+            float err = 0f;
+            foreach(string otherId in vuMarkHandler.CurrentTrackedObjects)
+            {
+                if(otherId == markerId)
+                {
+                    continue;
+                }
+                Vector3 expectedPosition = ConvertCoordinates(boardMarks[otherId], markerId);
+                Vector3 actualPosition = vuMarkHandler.FindModelById(otherId).transform.position;
+                err += Vector3.SqrMagnitude(expectedPosition - actualPosition);
+            }
+            return err;
+        }
 
+        private string ChooseReferenceMarker()
+        {
+            if (vuMarkHandler.CurrentTrackedObjects.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                string bestId = null;
+                float minErrorRate = float.MaxValue;
+
+                foreach(string markerId in vuMarkHandler.CurrentTrackedObjects)
+                {
+                    float err = CalculateErrorRate(markerId);
+                    if(err < minErrorRate)
+                    {
+                        minErrorRate = err;
+                        bestId = markerId;
+                    }
+                }
+                return bestId;
+            }
         }
 
         private void Awake()
@@ -77,7 +119,7 @@ namespace Assets.Scripts
         {
             if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
             {
-                string id = vuMarkHandler.CurrentTrackedObjects[0];
+                string id = ChooseReferenceMarker();
                 if (id != referenceMarker.id)
                 {
                     referenceMarker.id = id;
