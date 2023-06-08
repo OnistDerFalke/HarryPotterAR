@@ -14,8 +14,7 @@ namespace Assets.Scripts
         [SerializeField] private MultiVuMarkHandler vuMarkHandler;
 
         private Dictionary<string, Vector2> boardMarks;
-        private Transform referenceTransform;
-        private string referenceMarkerId;
+        private (string id, Transform transform) referenceMarker;
 
         /// <summary>
         /// Use this method to make sure that the result of converting coordinates is valid
@@ -23,7 +22,7 @@ namespace Assets.Scripts
         /// <returns>true if at least one board marker is tracked, false otherwise</returns>
         public bool IsTrackingBoard()
         {
-            return referenceTransform != null;
+            return referenceMarker.transform != null;
         }
 
         /// <summary>
@@ -45,9 +44,9 @@ namespace Assets.Scripts
 
         private Vector2 GetPointPosition_World2D(Vector2 point)
         {
-            return V3toV2(referenceTransform.position) +
-                (point.x - boardMarks[referenceMarkerId].x) * V3toV2(referenceTransform.right) +
-                (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.forward);
+            return V3toV2(referenceMarker.transform.position) +
+                (point.x - boardMarks[referenceMarker.id].x) * V3toV2(referenceMarker.transform.right) +
+                (point.y - boardMarks[referenceMarker.id].y) * V3toV2(referenceMarker.transform.forward);
         }
 
         private Vector2 V3toV2(Vector3 v3)
@@ -58,6 +57,11 @@ namespace Assets.Scripts
         private Vector3 V2toV3(Vector2 v2, float height = 0f)
         {
             return new Vector3(v2.x, height, v2.y);
+        }
+
+        private void ChooseReferenceMarker()
+        {
+
         }
 
         private void Awake()
@@ -74,19 +78,19 @@ namespace Assets.Scripts
             if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
             {
                 string id = vuMarkHandler.CurrentTrackedObjects[0];
-                if (id != referenceMarkerId)
+                if (id != referenceMarker.id)
                 {
-                    referenceMarkerId = id;
+                    referenceMarker.id = id;
                     GameObject marker = vuMarkHandler.FindModelById(id);
                     if (marker != null)
                     {
-                        referenceTransform = marker.transform;
+                        referenceMarker.transform = marker.transform;
                     }
                 }
             }
             else
             {
-                referenceTransform = null;
+                referenceMarker = (null, null);
             }
         }
     }
