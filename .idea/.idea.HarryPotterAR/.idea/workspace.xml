@@ -8,7 +8,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/GameUIController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ScaleTextWithButton.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -73,7 +74,12 @@
       <workItem from="1683647790562" duration="6147000" />
       <workItem from="1684212762021" duration="4550000" />
       <workItem from="1684235783683" duration="5306000" />
-      <workItem from="1684562895422" duration="1839000" />
+      <workItem from="1684562895422" duration="2885000" />
+      <workItem from="1685080280275" duration="3710000" />
+      <workItem from="1685112467971" duration="2787000" />
+      <workItem from="1685122526792" duration="673000" />
+      <workItem from="1685339704628" duration="7371000" />
+      <workItem from="1685525170600" duration="975000" />
     </task>
     <servers />
   </component>
