@@ -15,5 +15,10 @@ namespace Assets.Scripts
             this.center = center;
             this.radius = radius;
         }
+
+        public bool ContainsPosition(Vector2 pos)
+        {
+            return Vector2.Distance(center, pos) <= radius;
+        }
     }
 }

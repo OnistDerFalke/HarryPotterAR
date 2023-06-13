@@ -44,5 +44,32 @@ namespace Game
         {
             lastFieldId = fieldId;
         }
+
+        public static Character CharacterFromString(string s)
+        {
+            switch (s)
+            {
+                case "harr":
+                    return Character.Harry;
+                case "herm":
+                    return Character.Hermiona;
+                case "luna":
+                    return Character.Luna;
+                case "pete":
+                    return Character.Peter;
+                case "drac":
+                    return Character.Draco;
+                case "rono":
+                    return Character.Ron;
+                case "cedr":
+                    return Character.Cedrik;
+                case "nevi":
+                    return Character.Neville;
+                case "ginn":
+                    return Character.Ginny;
+                default:
+                    return Character.None;
+            }
+        }
     }
 }

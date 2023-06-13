@@ -14,8 +14,7 @@ namespace Assets.Scripts
         [SerializeField] private MultiVuMarkHandler vuMarkHandler;
 
         private Dictionary<string, Vector2> boardMarks;
-        private Transform referenceTransform;
-        private string referenceMarkerId;
+        private (string id, GameObject marker) referenceMarker;
 
         /// <summary>
         /// Use this method to make sure that the result of converting coordinates is valid
@@ -23,7 +22,7 @@ namespace Assets.Scripts
         /// <returns>true if at least one board marker is tracked, false otherwise</returns>
         public bool IsTrackingBoard()
         {
-            return referenceTransform != null;
+            return referenceMarker.marker.transform != null;
         }
 
         /// <summary>
@@ -35,7 +34,7 @@ namespace Assets.Scripts
         {
             if (IsTrackingBoard())
             {
-                return V2toV3(GetPointPosition_World2D(boardCoordinates) * scale, heightOffset);
+                return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
             }
             else
             {
@@ -43,11 +42,40 @@ namespace Assets.Scripts
             }
         }
 
-        private Vector2 GetPointPosition_World2D(Vector2 point)
+        public Vector3 ConvertCoordinates(Vector2 boardCoordinates, string referenceMarkerId)
         {
-            return V3toV2(referenceTransform.position) +
-                (point.x - boardMarks[referenceMarkerId].x) * V3toV2(referenceTransform.right) +
-                (point.y - boardMarks[referenceMarkerId].y) * V3toV2(referenceTransform.forward);
+            GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
+            (string, GameObject) referenceMarker = (referenceMarkerId, marker);
+            return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
+        }
+
+        public Vector2 WorldToBoard(Vector3 worldPos)
+        {
+            if(referenceMarker.marker == null)
+            {
+                return Vector2.one * -1;
+            }
+
+            Vector3 normalizedDirection = -1 * referenceMarker.marker.transform.up.normalized;
+            Vector3 lineToBoard = referenceMarker.marker.transform.position - worldPos;
+            float projection = Vector3.Dot(lineToBoard, normalizedDirection);
+            Vector3 intersection = worldPos + projection * normalizedDirection;
+
+            Vector3 offset = intersection - referenceMarker.marker.transform.position;
+            float y_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.forward);
+            float x_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.right);
+            Vector2 boardPos = boardMarks[referenceMarker.id] 
+                - Vector2.right * x_dist_board * scale 
+                - Vector2.up * y_dist_board * scale;
+
+            return boardPos;
+        }
+
+        private Vector2 GetPointPosition_World2D(Vector2 point, (string id, GameObject o) referenceMarker)
+        {
+            return V3toV2(referenceMarker.o.transform.position) +
+                (point.x - boardMarks[referenceMarker.id].x) * V3toV2(referenceMarker.o.transform.right) +
+                (point.y - boardMarks[referenceMarker.id].y) * V3toV2(referenceMarker.o.transform.forward);
         }
 
         private Vector2 V3toV2(Vector3 v3)
@@ -58,6 +86,46 @@ namespace Assets.Scripts
         private Vector3 V2toV3(Vector2 v2, float height = 0f)
         {
             return new Vector3(v2.x, height, v2.y);
+        }
+
+        private float CalculateErrorRate(string markerId)
+        {
+            float err = 0f;
+            foreach(string otherId in vuMarkHandler.CurrentTrackedObjects)
+            {
+                if(otherId == markerId)
+                {
+                    continue;
+                }
+                Vector3 expectedPosition = ConvertCoordinates(boardMarks[otherId], markerId);
+                Vector3 actualPosition = vuMarkHandler.FindModelById(otherId).transform.position;
+                err += Vector3.SqrMagnitude(expectedPosition - actualPosition);
+            }
+            return err;
+        }
+
+        private string ChooseReferenceMarker()
+        {
+            if (vuMarkHandler.CurrentTrackedObjects.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                string bestId = null;
+                float minErrorRate = float.MaxValue;
+
+                foreach(string markerId in vuMarkHandler.CurrentTrackedObjects)
+                {
+                    float err = CalculateErrorRate(markerId);
+                    if(err < minErrorRate)
+                    {
+                        minErrorRate = err;
+                        bestId = markerId;
+                    }
+                }
+                return bestId;
+            }
         }
 
         private void Awake()
@@ -73,20 +141,20 @@ namespace Assets.Scripts
         {
             if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
             {
-                string id = vuMarkHandler.CurrentTrackedObjects[0];
-                if (id != referenceMarkerId)
+                string id = ChooseReferenceMarker();
+                if (id != referenceMarker.id)
                 {
-                    referenceMarkerId = id;
+                    referenceMarker.id = id;
                     GameObject marker = vuMarkHandler.FindModelById(id);
                     if (marker != null)
                     {
-                        referenceTransform = marker.transform;
+                        referenceMarker.marker = marker;
                     }
                 }
             }
             else
             {
-                referenceTransform = null;
+                referenceMarker = (null, null);
             }
         }
     }
