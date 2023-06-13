@@ -18,5 +18,29 @@ namespace Assets.Scripts
             this.rightBottom = rightBottom;
             this.leftBottom = leftBottom;
         }
+
+        private int CalculateWindingNumber(Vector2 point, Vector2 cornerA, Vector2 cornerB)
+        {
+            float crossProduct = (cornerB.x - cornerA.x) * (point.y - cornerA.y) - (cornerB.y - cornerA.y) * (point.x - cornerA.x);
+
+            if (crossProduct > 0f)
+                return 1;
+            if (crossProduct < 0f)
+                return -1;
+
+            return 0;
+        }
+
+        public bool ContainsPosition(Vector2 pos)
+        {
+            int windingNumber = 0;
+
+            windingNumber += CalculateWindingNumber(pos, leftUpper, rightUpper);
+            windingNumber += CalculateWindingNumber(pos, rightUpper, rightBottom);
+            windingNumber += CalculateWindingNumber(pos, rightBottom, leftBottom);
+            windingNumber += CalculateWindingNumber(pos, leftBottom, leftUpper);
+
+            return windingNumber != 0;
+        }
     }
 }

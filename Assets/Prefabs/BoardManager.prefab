@@ -102,6 +102,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThirdBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 5148288589068844094, guid: 953f43ab12e0ec14db4d5d03be967eba, type: 3}
+      propertyPath: models.Array.data[0]
+      value: 
+      objectReference: {fileID: 2435847353343847079, guid: f4d9184cffc5e5343a23c990f4e8bf0f, type: 3}
+    - target: {fileID: 5148288589068844094, guid: 953f43ab12e0ec14db4d5d03be967eba, type: 3}
+      propertyPath: models.Array.data[1]
+      value: 
+      objectReference: {fileID: 2435847353343847079, guid: f4d9184cffc5e5343a23c990f4e8bf0f, type: 3}
+    - target: {fileID: 5148288589068844094, guid: 953f43ab12e0ec14db4d5d03be967eba, type: 3}
+      propertyPath: models.Array.data[2]
+      value: 
+      objectReference: {fileID: 2435847353343847079, guid: f4d9184cffc5e5343a23c990f4e8bf0f, type: 3}
     m_RemovedComponents:
     - {fileID: 5148288589068844089, guid: 953f43ab12e0ec14db4d5d03be967eba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 953f43ab12e0ec14db4d5d03be967eba, type: 3}
@@ -168,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 6601581510898496384, guid: 9541ec9c7bafda941863f572713ac9b4, type: 3}
       propertyPath: mPreview
       value: 
-      objectReference: {fileID: 6601581510898496390, guid: 9541ec9c7bafda941863f572713ac9b4, type: 3}
+      objectReference: {fileID: 8085390573250351284}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9541ec9c7bafda941863f572713ac9b4, type: 3}
 --- !u!4 &6242176045755159695 stripped
@@ -176,6 +188,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6601581510277723731, guid: 9541ec9c7bafda941863f572713ac9b4, type: 3}
   m_PrefabInstance: {fileID: 953968597742625500}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6242176047550796120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6601581510898496388, guid: 9541ec9c7bafda941863f572713ac9b4, type: 3}
+  m_PrefabInstance: {fileID: 953968597742625500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1858069200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242176047550796120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -665415404, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 6242176047550796124}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: MortonTuxedos
+  mDatasetName: Vuforia/Characters_Vumarks.xml
+  mCastedBehaviour: {fileID: 6242176047550796124}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
+--- !u!114 &8085390573250351284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242176047550796120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -665415404, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 6242176047550796124}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: MortonTuxedos
+  mDatasetName: Vuforia/Characters_Vumarks.xml
+  mCastedBehaviour: {fileID: 6242176047550796124}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
+--- !u!114 &6242176047550796124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6601581510898496384, guid: 9541ec9c7bafda941863f572713ac9b4, type: 3}
+  m_PrefabInstance: {fileID: 953968597742625500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242176047550796120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1881939161, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6573313967148099254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,9 +301,67 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 980008128995457500, guid: 197104c5b89da824590525fc8a2134eb, type: 3}
+      propertyPath: mPreview
+      value: 
+      objectReference: {fileID: 4667604038185427312}
     m_RemovedComponents:
     - {fileID: 980008128995457498, guid: 197104c5b89da824590525fc8a2134eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 197104c5b89da824590525fc8a2134eb, type: 3}
+--- !u!114 &6242176046099930986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 980008128995457500, guid: 197104c5b89da824590525fc8a2134eb, type: 3}
+  m_PrefabInstance: {fileID: 6573313967148099254}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242176046099930990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1881939161, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6242176046099930990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 980008128995457496, guid: 197104c5b89da824590525fc8a2134eb, type: 3}
+  m_PrefabInstance: {fileID: 6573313967148099254}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1404398801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242176046099930990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -665415404, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 6242176046099930986}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: MortonTuxedos
+  mDatasetName: Vuforia/Characters_Vumarks.xml
+  mCastedBehaviour: {fileID: 6242176046099930986}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
+--- !u!114 &4667604038185427312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242176046099930990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -665415404, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 6242176046099930986}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: MortonTuxedos
+  mDatasetName: Vuforia/Characters_Vumarks.xml
+  mCastedBehaviour: {fileID: 6242176046099930986}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!4 &6242176047324519097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 980008127267290127, guid: 197104c5b89da824590525fc8a2134eb, type: 3}

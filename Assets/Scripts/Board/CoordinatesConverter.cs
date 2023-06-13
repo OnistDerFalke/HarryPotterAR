@@ -14,7 +14,7 @@ namespace Assets.Scripts
         [SerializeField] private MultiVuMarkHandler vuMarkHandler;
 
         private Dictionary<string, Vector2> boardMarks;
-        private (string id, Transform transform) referenceMarker;
+        private (string id, GameObject marker) referenceMarker;
 
         /// <summary>
         /// Use this method to make sure that the result of converting coordinates is valid
@@ -22,7 +22,7 @@ namespace Assets.Scripts
         /// <returns>true if at least one board marker is tracked, false otherwise</returns>
         public bool IsTrackingBoard()
         {
-            return referenceMarker.transform != null;
+            return referenceMarker.marker.transform != null;
         }
 
         /// <summary>
@@ -45,15 +45,37 @@ namespace Assets.Scripts
         public Vector3 ConvertCoordinates(Vector2 boardCoordinates, string referenceMarkerId)
         {
             GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
-            (string, Transform) referenceMarker = (referenceMarkerId, marker.transform);
+            (string, GameObject) referenceMarker = (referenceMarkerId, marker);
             return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
         }
 
-        private Vector2 GetPointPosition_World2D(Vector2 point, (string id, Transform transform) referenceMarker)
+        public Vector2 WorldToBoard(Vector3 worldPos)
         {
-            return V3toV2(referenceMarker.transform.position) +
-                (point.x - boardMarks[referenceMarker.id].x) * V3toV2(referenceMarker.transform.right) +
-                (point.y - boardMarks[referenceMarker.id].y) * V3toV2(referenceMarker.transform.forward);
+            if(referenceMarker.marker == null)
+            {
+                return Vector2.one * -1;
+            }
+
+            Vector3 normalizedDirection = -1 * referenceMarker.marker.transform.up.normalized;
+            Vector3 lineToBoard = referenceMarker.marker.transform.position - worldPos;
+            float projection = Vector3.Dot(lineToBoard, normalizedDirection);
+            Vector3 intersection = worldPos + projection * normalizedDirection;
+
+            Vector3 offset = intersection - referenceMarker.marker.transform.position;
+            float y_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.forward);
+            float x_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.right);
+            Vector2 boardPos = boardMarks[referenceMarker.id] 
+                - Vector2.right * x_dist_board * scale 
+                - Vector2.up * y_dist_board * scale;
+
+            return boardPos;
+        }
+
+        private Vector2 GetPointPosition_World2D(Vector2 point, (string id, GameObject o) referenceMarker)
+        {
+            return V3toV2(referenceMarker.o.transform.position) +
+                (point.x - boardMarks[referenceMarker.id].x) * V3toV2(referenceMarker.o.transform.right) +
+                (point.y - boardMarks[referenceMarker.id].y) * V3toV2(referenceMarker.o.transform.forward);
         }
 
         private Vector2 V3toV2(Vector3 v3)
@@ -126,7 +148,7 @@ namespace Assets.Scripts
                     GameObject marker = vuMarkHandler.FindModelById(id);
                     if (marker != null)
                     {
-                        referenceMarker.transform = marker.transform;
+                        referenceMarker.marker = marker;
                     }
                 }
             }
