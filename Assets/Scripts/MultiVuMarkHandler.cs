@@ -24,6 +24,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
 
     protected override void OnTrackingFound()
     {
+        Debug.Log(gameObject.name);
         base.OnTrackingFound();
         var id = GetComponent<VuMarkBehaviour>().InstanceId.StringValue;
         if (!currentTrackedObjects.Contains(id))
@@ -35,6 +36,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
 
     protected override void OnTrackingLost()
     {
+        Debug.Log(gameObject.name);
         base.OnTrackingLost();
         var vmb = GetComponent<VuMarkBehaviour>();
         if (vmb.InstanceId != null)
@@ -52,10 +54,10 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
             {
                 model.SetActive(false);
             }
-                
-            if(availableIds.IndexOf(elem)<models.Count)
+            int index = availableIds.IndexOf(elem);
+            if (index >=0 && index<models.Count)
             {
-                models[availableIds.IndexOf(elem)].SetActive(true);
+                models[index].SetActive(true);
             }
         }
     }
