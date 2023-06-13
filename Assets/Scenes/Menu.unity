@@ -5990,13 +5990,13 @@ MonoBehaviour:
   vuMarksSprites:
   - {fileID: 21300000, guid: 369937efdd8ea884cb4e49c3e14c47ce, type: 3}
   - {fileID: 21300000, guid: dacdd196ac6392a48974464f57f732a3, type: 3}
-  - {fileID: 21300000, guid: 9f8d998189242b54b97672de2f3d3d99, type: 3}
-  - {fileID: 21300000, guid: 062629bf153ff13439036d233c1a3113, type: 3}
-  - {fileID: 21300000, guid: b438e778d5ac5de49b225980b952e8c2, type: 3}
   - {fileID: 21300000, guid: 63825ef7348f0924e92e3bc51f9c1c7d, type: 3}
-  - {fileID: 21300000, guid: 5ce08b7b6bbd9ad419a0ad1ffa62b72c, type: 3}
-  - {fileID: 21300000, guid: f30eefab66364824bbaa6b725f89ea0c, type: 3}
+  - {fileID: 21300000, guid: b438e778d5ac5de49b225980b952e8c2, type: 3}
+  - {fileID: 21300000, guid: 9f8d998189242b54b97672de2f3d3d99, type: 3}
   - {fileID: 21300000, guid: 86c0cb3b95bb460448fc50e091d73da2, type: 3}
+  - {fileID: 21300000, guid: f30eefab66364824bbaa6b725f89ea0c, type: 3}
+  - {fileID: 21300000, guid: 5ce08b7b6bbd9ad419a0ad1ffa62b72c, type: 3}
+  - {fileID: 21300000, guid: 062629bf153ff13439036d233c1a3113, type: 3}
   vuMarksSpriteNotSet: {fileID: 21300000, guid: c826966bb68d4d2498937e7c1abdcd16, type: 3}
   playerName: {fileID: 1911480412}
   characterName: {fileID: 150686090}
