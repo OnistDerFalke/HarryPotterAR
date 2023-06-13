@@ -22,7 +22,7 @@ namespace Assets.Scripts
         /// <returns>true if at least one board marker is tracked, false otherwise</returns>
         public bool IsTrackingBoard()
         {
-            return referenceMarker.marker.transform != null;
+            return referenceMarker.marker != null;
         }
 
         /// <summary>
