@@ -36,12 +36,18 @@ public class BoardMono : MonoBehaviour
         foreach(string character in charactersHandler.CurrentTrackedObjects)
         {
             int index = charactersHandler.availableIds.IndexOf(character);
-            Vector3 characterPos = charactersHandler.models[index].transform.position;
-            Field f = GetOccupiedField(characterPos);
-            Game.Player player = GameManager.Players.Find((e) => e.Character == Game.Player.CharacterFromString(character));
-            if (f != null && player.LastFieldId != f.Index)
+            if(index != -1)
             {
-                player.ChangeField(f.Index);
+                Vector3 characterPos = charactersHandler.models[index].transform.position;
+                Field f = GetOccupiedField(characterPos);
+                Game.Player player = GameManager.Players.Find((e) => e.Character == Game.Player.CharacterFromString(character));
+                if (f != null && player != null)
+                {
+                    if (player.LastFieldId != f.Index)
+                    {
+                        player.ChangeField(f.Index);
+                    }
+                }
             }
         }
     }

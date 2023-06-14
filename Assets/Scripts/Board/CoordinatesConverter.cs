@@ -11,10 +11,13 @@ namespace Assets.Scripts
 
         // marks that identify the position and orientation of a board, sticked to the board
         [SerializeField] private List<Vector2> boardMarkPositions;
+        [SerializeField] private List<string> boardMarkIds;
         [SerializeField] private MultiVuMarkHandler vuMarkHandler;
 
         private Dictionary<string, Vector2> boardMarks;
         private (string id, GameObject marker) referenceMarker;
+
+        private List<string> currentTrackedBoardMarks;
 
         /// <summary>
         /// Use this method to make sure that the result of converting coordinates is valid
@@ -46,7 +49,8 @@ namespace Assets.Scripts
         {
             GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
             (string, GameObject) referenceMarker = (referenceMarkerId, marker);
-            return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
+            Vector3 converted = V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
+            return converted;
         }
 
         public Vector2 WorldToBoard(Vector3 worldPos)
@@ -106,7 +110,7 @@ namespace Assets.Scripts
 
         private string ChooseReferenceMarker()
         {
-            if (vuMarkHandler.CurrentTrackedObjects.Count == 0)
+            if (currentTrackedBoardMarks.Count == 0)
             {
                 return null;
             }
@@ -115,10 +119,11 @@ namespace Assets.Scripts
                 string bestId = null;
                 float minErrorRate = float.MaxValue;
 
-                foreach(string markerId in vuMarkHandler.CurrentTrackedObjects)
+                foreach(string markerId in currentTrackedBoardMarks)
                 {
                     float err = CalculateErrorRate(markerId);
-                    if(err < minErrorRate)
+                    Debug.Log($"for {markerId} err{err}");
+                    if (err < minErrorRate)
                     {
                         minErrorRate = err;
                         bestId = markerId;
@@ -131,24 +136,25 @@ namespace Assets.Scripts
         private void Awake()
         {
             boardMarks = new Dictionary<string, Vector2>();
+            currentTrackedBoardMarks = new List<string>();
             for (int i = 0; i < boardMarkPositions.Count; i++)
             {
-                boardMarks[vuMarkHandler.availableIds[i]] = boardMarkPositions[i];
+                boardMarks[boardMarkIds[i]] = boardMarkPositions[i];
             }
         }
 
         private void Update()
         {
-            if (vuMarkHandler.CurrentTrackedObjects.Count > 0)
+            currentTrackedBoardMarks = vuMarkHandler.CurrentTrackedObjects.FindAll((e) => boardMarkIds.Contains(e));
+            if (currentTrackedBoardMarks.Count > 0)
             {
                 string id = ChooseReferenceMarker();
                 if (id != referenceMarker.id)
                 {
-                    referenceMarker.id = id;
                     GameObject marker = vuMarkHandler.FindModelById(id);
                     if (marker != null)
                     {
-                        referenceMarker.marker = marker;
+                        referenceMarker = (id, marker);
                     }
                 }
             }
