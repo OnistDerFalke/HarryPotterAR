@@ -49,7 +49,8 @@ namespace Assets.Scripts
         {
             GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
             (string, GameObject) referenceMarker = (referenceMarkerId, marker);
-            return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
+            Vector3 converted = V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
+            return converted;
         }
 
         public Vector2 WorldToBoard(Vector3 worldPos)

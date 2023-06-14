@@ -12,6 +12,9 @@ namespace Assets.Scripts
         [SerializeField] private Material fieldMaterial;
         [SerializeField] private float particleRadiusFactor;
 
+        public float scale;
+        public float heightOffset;
+
         public GameObject highlightPrefab;
 
         private List<(Field, GameObject)> fieldHighlights = new();
