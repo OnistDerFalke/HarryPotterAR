@@ -96,7 +96,7 @@ namespace UI
             playerName.text = chosenPlayerIndex == 0 ? "Ja" : $"Gracz{chosenPlayerIndex + 1}";
             characterName.text = chosenCharacterIndex == 0 ? 
                 "Nie wybrano" : ((Character)Enum.ToObject(typeof(Character), chosenCharacterIndex)).ToString();
-            if (chosenCharacterIndex < charactersNumber)
+            if (chosenCharacterIndex <= charactersNumber)
                 vuMarkImage.sprite = chosenCharacterIndex == 0 
                     ? vuMarksSpriteNotSet : vuMarksSprites[chosenCharacterIndex - 1];
         }
