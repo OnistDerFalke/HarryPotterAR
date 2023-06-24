@@ -5,10 +5,6 @@ namespace Assets.Scripts
 {
     public class CoordinatesConverter : MonoBehaviour
     {
-        public float scale;
-        public float heightOffset;
-
-
         // marks that identify the position and orientation of a board, sticked to the board
         [SerializeField] private List<Vector2> boardMarkPositions;
         [SerializeField] private List<string> boardMarkIds;
@@ -37,7 +33,9 @@ namespace Assets.Scripts
         {
             if (IsTrackingBoard())
             {
-                return V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
+                 return  referenceMarker.marker.transform.position +
+                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized +
+                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized;
             }
             else
             {
@@ -48,9 +46,22 @@ namespace Assets.Scripts
         public Vector3 ConvertCoordinates(Vector2 boardCoordinates, string referenceMarkerId)
         {
             GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
-            (string, GameObject) referenceMarker = (referenceMarkerId, marker);
-            Vector3 converted = V2toV3(GetPointPosition_World2D(boardCoordinates, referenceMarker) * scale, heightOffset);
-            return converted;
+            (string id, GameObject marker) referenceMarker = (referenceMarkerId, marker);
+            return referenceMarker.marker.transform.position +
+                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized +
+                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized;
+        }
+
+        public Quaternion ReferenceRotation()
+        {
+            if(IsTrackingBoard())
+            {
+                return referenceMarker.marker.transform.rotation;
+            }
+            else
+            {
+                return Quaternion.identity;
+            }
         }
 
         public Vector2 WorldToBoard(Vector3 worldPos)
@@ -69,27 +80,10 @@ namespace Assets.Scripts
             float y_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.forward);
             float x_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.right);
             Vector2 boardPos = boardMarks[referenceMarker.id] 
-                - Vector2.right * x_dist_board * scale 
-                - Vector2.up * y_dist_board * scale;
+                - Vector2.right * x_dist_board
+                - Vector2.up * y_dist_board;
 
             return boardPos;
-        }
-
-        private Vector2 GetPointPosition_World2D(Vector2 point, (string id, GameObject o) referenceMarker)
-        {
-            return V3toV2(referenceMarker.o.transform.position) +
-                (point.x - boardMarks[referenceMarker.id].x) * V3toV2(referenceMarker.o.transform.right) +
-                (point.y - boardMarks[referenceMarker.id].y) * V3toV2(referenceMarker.o.transform.forward);
-        }
-
-        private Vector2 V3toV2(Vector3 v3)
-        {
-            return new Vector2(v3.x, v3.z);
-        }
-
-        private Vector3 V2toV3(Vector2 v2, float height = 0f)
-        {
-            return new Vector3(v2.x, height, v2.y);
         }
 
         private float CalculateErrorRate(string markerId)
@@ -122,7 +116,6 @@ namespace Assets.Scripts
                 foreach(string markerId in currentTrackedBoardMarks)
                 {
                     float err = CalculateErrorRate(markerId);
-                    Debug.Log($"for {markerId} err{err}");
                     if (err < minErrorRate)
                     {
                         minErrorRate = err;

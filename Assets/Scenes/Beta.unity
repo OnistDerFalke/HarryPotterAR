@@ -4362,15 +4362,15 @@ PrefabInstance:
       objectReference: {fileID: 1048569886}
     - target: {fileID: 2684235540409713956, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: scale
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2684235540409713956, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: heightOffset
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5354578003535920386, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: scale
@@ -4418,7 +4418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: heightOffset
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: vuMarkHandler
@@ -4530,7 +4530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047324519098, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047550796125, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: models.Array.size
