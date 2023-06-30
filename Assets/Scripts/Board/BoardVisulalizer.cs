@@ -57,7 +57,7 @@ namespace Assets.Scripts
 
         private void AdjustParticleEffectSize(Field field, ParticleSystem ps)
         {
-            var shape = ps.shape;
+            //var shape = ps.shape;
             if (field.Figure is Quadrangle)
             {
                 Quadrangle q = field.Figure as Quadrangle;
@@ -66,12 +66,12 @@ namespace Assets.Scripts
                 Vector2.Distance(q.leftUpper, q.rightUpper),
                 Vector2.Distance(q.rightUpper, q.rightBottom),
                 Vector2.Distance(q.leftBottom, q.rightBottom));
-                shape.radius = shortestSide * particleRadiusFactor;
+                //shape.radius = shortestSide * particleRadiusFactor;
             }
             else if (field.Figure is Circle)
             {
                 Circle c = field.Figure as Circle;
-                shape.radius = c.Radius * particleRadiusFactor;
+                //shape.radius = c.Radius * particleRadiusFactor;
             }
         }
 
@@ -121,6 +121,7 @@ namespace Assets.Scripts
 
         public void HighlightField(Field f)
         {
+            Debug.Log($"highlighting {f.Index}");
             GameObject highlight = Instantiate(highlightPrefab, transform);
             AssignFieldMesh(highlight, f);
             fieldHighlights.Add((f, highlight));

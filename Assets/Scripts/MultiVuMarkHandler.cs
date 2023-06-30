@@ -29,8 +29,12 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         var id = GetComponent<VuMarkBehaviour>().InstanceId.StringValue;
         if (!currentTrackedObjects.Contains(id))
         {
+            Debug.Log($"ID: {id}");
+            int modelIndex = availableIds.IndexOf(id);
+            models[modelIndex].SetActive(true);
             currentTrackedObjects.Add(id);
             Debug.Log($"Detected a character: {id}");
+            EventBroadcaster.InvokeOnMarkDetected(id);
         }
     }
 
@@ -41,24 +45,12 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         var vmb = GetComponent<VuMarkBehaviour>();
         if (vmb.InstanceId != null)
         {
-            currentTrackedObjects.Remove(vmb.InstanceId.StringValue);
-            Debug.Log($"Lost tracking on character: {vmb.InstanceId.StringValue}");
-        }
-    }
-
-    void Update()
-    {
-        foreach(var elem in currentTrackedObjects)
-        {
-            foreach (var model in models)
-            {
-                model.SetActive(false);
-            }
-            int index = availableIds.IndexOf(elem);
-            if (index >=0 && index<models.Count)
-            {
-                models[index].SetActive(true);
-            }
+            string id = vmb.InstanceId.StringValue;
+            int modelIndex = availableIds.IndexOf(id);
+            models[modelIndex].SetActive(false);
+            currentTrackedObjects.Remove(id);
+            Debug.Log($"Lost tracking on marker: {id}");
+            EventBroadcaster.InvokeOnMarkLost(id);
         }
     }
 }
