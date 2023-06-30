@@ -3920,6 +3920,10 @@ PrefabInstance:
       propertyPath: charactersHandler
       value: 
       objectReference: {fileID: 1048569886}
+    - target: {fileID: 225670764322049897, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 953968598117254248, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: m_Name
       value: BoardManager
@@ -3968,6 +3972,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1074990991494917587, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298374547348032107, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298374549202273373, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2128691313788899142, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: charactersHandler
       value: 
@@ -3976,12 +3992,32 @@ PrefabInstance:
       propertyPath: charactersHandler
       value: 
       objectReference: {fileID: 1048569886}
+    - target: {fileID: 2291870435433867473, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291870436013369063, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2684235540409713956, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: scale
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2684235540409713956, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684235540409713956, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: heightOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684235542045068050, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156734877683231914, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5354578003535920386, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
@@ -3997,9 +4033,33 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: vuMarkHandler
       value: 
       objectReference: {fileID: 1048569886}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[0]
+      value: b200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[1]
+      value: b201
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[2]
+      value: b202
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[3]
+      value: b203
+      objectReference: {fileID: 0}
     - target: {fileID: 5354578005264382163, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: models.Array.size
       value: 3
@@ -4020,9 +4080,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: VuMarks
       objectReference: {fileID: 0}
+    - target: {fileID: 5354578005309111244, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504336550800935490, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504336552571618420, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804214919098328012, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6242176045755159692, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176045882776692, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: vuMarkHandler
@@ -4039,6 +4123,10 @@ PrefabInstance:
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: scale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: heightOffset
@@ -4491,6 +4579,10 @@ PrefabInstance:
     - target: {fileID: 6242176047550796125, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: availableIds.Array.data[7]
       value: b001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047735968322, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4667604038185427312, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}

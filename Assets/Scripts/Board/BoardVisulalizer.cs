@@ -137,6 +137,28 @@ namespace Assets.Scripts
             }
         }
 
+        public void HideVisuals()
+        {
+            foreach(var highlight in fieldHighlights)
+            {
+                Destroy(highlight.Item2);
+                fieldHighlights.Remove(highlight);
+            }
+            for(int i = 0; i< 4; i++)
+            {
+                corners[i].SetActive(false);
+            }
+        }
+
+        public void ShowVisuals()
+        {
+            Debug.Log("showing visuals!");
+            for (int i = 0; i < 4; i++)
+            {
+                corners[i].SetActive(true);
+            }
+        }
+
         private void Awake()
         {
            
@@ -144,15 +166,9 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if (boardMono.Board != null)
-            {
-                if (converter.IsTrackingBoard())
-                {
-                    referenceRotation = converter.ReferenceRotation();
-                    TrackCorners();
-                    TrackHighlights();
-                }
-            }
+            referenceRotation = converter.ReferenceRotation();
+            TrackCorners();
+            TrackHighlights();
         }
     }
 }

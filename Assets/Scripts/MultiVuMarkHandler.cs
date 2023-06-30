@@ -26,34 +26,22 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     {
         if(currentTrackedObjects.Contains(id))
         {
+            Debug.Log($"deactinvating {id}");
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(false);
             currentTrackedObjects.Remove(id);
-            EventBroadcaster.InvokeOnMarkLost(id);
+            EventBroadcaster.InvokeOnMarkerLost(id);
         }
     }
 
-    protected override void OnTrackingFound()
+    private void TrackModel(string id)
     {
-        base.OnTrackingFound();
-        var id = GetComponent<VuMarkBehaviour>().InstanceId.StringValue;
         if (!currentTrackedObjects.Contains(id))
         {
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(true);
             currentTrackedObjects.Add(id);
-            EventBroadcaster.InvokeOnMarkDetected(id);
-        }
-    }
-
-    protected override void OnTrackingLost()
-    {
-        base.OnTrackingLost();
-        var vmb = GetComponent<VuMarkBehaviour>();
-        if (vmb.InstanceId != null)
-        {
-            string id = vmb.InstanceId.StringValue;
-            UntrackModel(id);
+            EventBroadcaster.InvokeOnMarkerDetected(id);
         }
     }
 
@@ -61,14 +49,28 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     {
         base.HandleTargetStatusChanged(previousStatus, newStatus);
 
-        if(newStatus == Status.EXTENDED_TRACKED)
+        var vmb = GetComponent<VuMarkBehaviour>();
+        if (vmb.InstanceId == null)
         {
-            var vmb = GetComponent<VuMarkBehaviour>();
-            if (vmb.InstanceId != null)
-            {
-                string id = vmb.InstanceId.StringValue;
+            Debug.LogWarning("For some reason there is no vu mark behaviour on target status change");
+            return;
+        }
+        string id = vmb.InstanceId.StringValue;
+
+        switch (newStatus)
+        {
+            case Status.NO_POSE:
                 UntrackModel(id);
-            }
+                break;
+            case Status.LIMITED:
+                UntrackModel(id);
+                break;
+            case Status.TRACKED:
+                TrackModel(id);
+                break;
+            case Status.EXTENDED_TRACKED:
+                UntrackModel(id);
+                break;
         }
     }
 }

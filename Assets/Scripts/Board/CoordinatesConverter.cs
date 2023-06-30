@@ -10,10 +10,11 @@ namespace Assets.Scripts
         [SerializeField] private List<string> boardMarkIds;
         [SerializeField] private MultiVuMarkHandler vuMarkHandler;
 
+        public List<string> BoardMarkIds => boardMarkIds;
+
         private Dictionary<string, Vector2> boardMarks;
         private (string id, GameObject marker) referenceMarker;
-
-        private List<string> currentTrackedBoardMarks;
+        private BoardMono board;
 
         /// <summary>
         /// Use this method to make sure that the result of converting coordinates is valid
@@ -104,78 +105,41 @@ namespace Assets.Scripts
 
         private string ChooseReferenceMarker()
         {
-            if (currentTrackedBoardMarks.Count == 0)
-            {
-                return null;
-            }
-            else
-            {
-                string bestId = null;
-                float minErrorRate = float.MaxValue;
+            string bestId = null;
+            float minErrorRate = float.MaxValue;
 
-                foreach(string markerId in currentTrackedBoardMarks)
+            foreach (string markerId in board.CurrentTrackedBoardMarks)
+            {
+                float err = CalculateErrorRate(markerId);
+                if (err < minErrorRate)
                 {
-                    float err = CalculateErrorRate(markerId);
-                    if (err < minErrorRate)
-                    {
-                        minErrorRate = err;
-                        bestId = markerId;
-                    }
+                    minErrorRate = err;
+                    bestId = markerId;
                 }
-                return bestId;
             }
+            return bestId;
         }
 
         private void Awake()
         {
             boardMarks = new Dictionary<string, Vector2>();
-            currentTrackedBoardMarks = new List<string>();
             for (int i = 0; i < boardMarkPositions.Count; i++)
             {
                 boardMarks[boardMarkIds[i]] = boardMarkPositions[i];
             }
-        }
-
-        private void OnMarkerDetected(string id)
-        {
-            Debug.Log($"converter: {name} marker {id} detected");
-        }
-
-        private void OnMarkerLost(string id)
-        {
-            Debug.Log($"converter {name}: marker {id} lost");
-        }
-
-        private void OnEnable()
-        {
-            EventBroadcaster.OnMarkDetected += OnMarkerDetected;
-            EventBroadcaster.OnMarkLost += OnMarkerLost;
-        }
-
-        private void OnDisable()
-        {
-            EventBroadcaster.OnMarkDetected -= OnMarkerDetected;
-            EventBroadcaster.OnMarkLost -= OnMarkerLost;
+            board = GetComponentInParent<BoardMono>();
         }
 
         private void Update()
         {
-            currentTrackedBoardMarks = vuMarkHandler.CurrentTrackedObjects.FindAll((e) => boardMarkIds.Contains(e));
-            if (currentTrackedBoardMarks.Count > 0)
+            string id = ChooseReferenceMarker();
+            if (id != referenceMarker.id)
             {
-                string id = ChooseReferenceMarker();
-                if (id != referenceMarker.id)
+                GameObject marker = vuMarkHandler.FindModelById(id);
+                if (marker != null)
                 {
-                    GameObject marker = vuMarkHandler.FindModelById(id);
-                    if (marker != null)
-                    {
-                        referenceMarker = (id, marker);
-                    }
+                    referenceMarker = (id, marker);
                 }
-            }
-            else
-            {
-                referenceMarker = (null, null);
             }
         }
     }

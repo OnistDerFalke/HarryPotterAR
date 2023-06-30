@@ -18,13 +18,13 @@ public static class EventBroadcaster
     }
 
     public static event Action<string> OnMarkDetected;
-    public static void InvokeOnMarkDetected(string id)
+    public static void InvokeOnMarkerDetected(string id)
     {
         OnMarkDetected?.Invoke(id);
     }
 
     public static event Action<string> OnMarkLost;
-    public static void InvokeOnMarkLost(string id)
+    public static void InvokeOnMarkerLost(string id)
     {
         OnMarkLost?.Invoke(id);
     }
