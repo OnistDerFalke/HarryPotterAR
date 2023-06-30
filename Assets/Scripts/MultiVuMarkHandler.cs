@@ -22,35 +22,53 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         return null;
     }
 
+    private void UntrackModel(string id)
+    {
+        if(currentTrackedObjects.Contains(id))
+        {
+            int modelIndex = availableIds.IndexOf(id);
+            models[modelIndex].SetActive(false);
+            currentTrackedObjects.Remove(id);
+            EventBroadcaster.InvokeOnMarkLost(id);
+        }
+    }
+
     protected override void OnTrackingFound()
     {
-        Debug.Log(gameObject.name);
         base.OnTrackingFound();
         var id = GetComponent<VuMarkBehaviour>().InstanceId.StringValue;
         if (!currentTrackedObjects.Contains(id))
         {
-            Debug.Log($"ID: {id}");
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(true);
             currentTrackedObjects.Add(id);
-            Debug.Log($"Detected a character: {id}");
             EventBroadcaster.InvokeOnMarkDetected(id);
         }
     }
 
     protected override void OnTrackingLost()
     {
-        Debug.Log(gameObject.name);
         base.OnTrackingLost();
         var vmb = GetComponent<VuMarkBehaviour>();
         if (vmb.InstanceId != null)
         {
             string id = vmb.InstanceId.StringValue;
-            int modelIndex = availableIds.IndexOf(id);
-            models[modelIndex].SetActive(false);
-            currentTrackedObjects.Remove(id);
-            Debug.Log($"Lost tracking on marker: {id}");
-            EventBroadcaster.InvokeOnMarkLost(id);
+            UntrackModel(id);
+        }
+    }
+
+    protected override void HandleTargetStatusChanged(Status previousStatus, Status newStatus)
+    {
+        base.HandleTargetStatusChanged(previousStatus, newStatus);
+
+        if(newStatus == Status.EXTENDED_TRACKED)
+        {
+            var vmb = GetComponent<VuMarkBehaviour>();
+            if (vmb.InstanceId != null)
+            {
+                string id = vmb.InstanceId.StringValue;
+                UntrackModel(id);
+            }
         }
     }
 }

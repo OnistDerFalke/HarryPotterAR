@@ -136,6 +136,28 @@ namespace Assets.Scripts
             }
         }
 
+        private void OnMarkerDetected(string id)
+        {
+            Debug.Log($"converter: {name} marker {id} detected");
+        }
+
+        private void OnMarkerLost(string id)
+        {
+            Debug.Log($"converter {name}: marker {id} lost");
+        }
+
+        private void OnEnable()
+        {
+            EventBroadcaster.OnMarkDetected += OnMarkerDetected;
+            EventBroadcaster.OnMarkLost += OnMarkerLost;
+        }
+
+        private void OnDisable()
+        {
+            EventBroadcaster.OnMarkDetected -= OnMarkerDetected;
+            EventBroadcaster.OnMarkLost -= OnMarkerLost;
+        }
+
         private void Update()
         {
             currentTrackedBoardMarks = vuMarkHandler.CurrentTrackedObjects.FindAll((e) => boardMarkIds.Contains(e));
