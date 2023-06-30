@@ -4210,27 +4210,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[4].x
-      value: 32.9
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[4].y
-      value: 48.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[5].x
-      value: 40.4
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[5].y
-      value: 48.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[6].x
-      value: 48.7
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[6].y
-      value: 48.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[7].x

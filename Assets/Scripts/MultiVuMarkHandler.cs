@@ -26,7 +26,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     {
         if(currentTrackedObjects.Contains(id))
         {
-            Debug.Log($"deactinvating {id}");
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(false);
             currentTrackedObjects.Remove(id);

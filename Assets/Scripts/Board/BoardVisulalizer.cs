@@ -152,7 +152,6 @@ namespace Assets.Scripts
 
         public void ShowVisuals()
         {
-            Debug.Log("showing visuals!");
             for (int i = 0; i < 4; i++)
             {
                 corners[i].SetActive(true);

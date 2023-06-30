@@ -11,7 +11,7 @@ public class BoardMono : MonoBehaviour
 
     public Board Board { get;  set; }
     public bool IsTracked => isTracked;
-    public List<string> CurrentTrackedBoardMarks;
+    public List<string> CurrentTrackedBoardMarks => currentTrackedBoardMarks;
 
     public bool isTracked = false;
     private List<string> currentTrackedBoardMarks;
@@ -102,23 +102,23 @@ public class BoardMono : MonoBehaviour
     {
         if(isTracked)
         {
-            //foreach (string character in charactersHandler.CurrentTrackedObjects)
-            //{
-            //    int index = charactersHandler.availableIds.IndexOf(character);
-            //    if (index != -1)
-            //    {
-            //        Vector3 characterPos = charactersHandler.models[index].transform.position;
-            //        Field f = GetOccupiedField(characterPos);
-            //        Game.Player player = GameManager.Players.Find((e) => e.Character == Game.Player.CharacterFromString(character));
-            //        if (f != null && player != null)
-            //        {
-            //            if (player.LastFieldId != f.Index)
-            //            {
-            //                player.ChangeField(f.Index);
-            //            }
-            //        }
-            //    }
-            //}
+            foreach (string character in charactersHandler.CurrentTrackedObjects)
+            {
+                int index = charactersHandler.availableIds.IndexOf(character);
+                if (index != -1)
+                {
+                    Vector3 characterPos = charactersHandler.models[index].transform.position;
+                    Field f = GetOccupiedField(characterPos);
+                    Game.Player player = GameManager.Players.Find((e) => e.Character == Game.Player.CharacterFromString(character));
+                    if (f != null && player != null)
+                    {
+                        if (player.LastFieldId != f.Index)
+                        {
+                            player.ChangeField(f.Index);
+                        }
+                    }
+                }
+            }
         }
     }
 }
