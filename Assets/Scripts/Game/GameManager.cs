@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public static int CurrentDiceThrownNumber;
         public static int PlayerNumber;
         public static List<Player> Players = new List<Player>();
+        public static List<string> DebugLogs = new();
 
         public static void Setup()
         {
@@ -19,6 +20,11 @@ namespace Assets.Scripts
         public static Player GetMyPlayer()
         {
             return Players.Where(player => player.IsMyPlayer).FirstOrDefault();
+        }
+
+        public static void DebugLog(string log)
+        {
+            DebugLogs.Add(log);
         }
     }
 }
