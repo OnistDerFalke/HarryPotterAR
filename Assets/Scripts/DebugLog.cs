@@ -15,6 +15,12 @@ public class DebugLog : MonoBehaviour
     [SerializeField] private int logsVisible = 35;
     private bool logsSeen = true;
     private int offset = 0;
+    private void Start()
+    {
+        hideLogsButton.onClick.AddListener(OnLogsButton);
+        upButton.onClick.AddListener(OnUpButton);
+        downButton.onClick.AddListener(OnDownButton);
+    }
 
     void Update()
     {
