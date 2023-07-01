@@ -100,25 +100,25 @@ public class BoardMono : MonoBehaviour
 
     void Update()
     {
-        if(isTracked)
-        {
-            foreach (string character in charactersHandler.CurrentTrackedObjects)
-            {
-                int index = charactersHandler.availableIds.IndexOf(character);
-                if (index != -1)
-                {
-                    Vector3 characterPos = charactersHandler.models[index].transform.position;
-                    Field f = GetOccupiedField(characterPos);
-                    Game.Player player = GameManager.Players.Find((e) => e.Character == Game.Player.CharacterFromString(character));
-                    if (f != null && player != null)
-                    {
-                        if (player.LastFieldId != f.Index)
-                        {
-                            player.ChangeField(f.Index);
-                        }
-                    }
-                }
-            }
-        }
+        //if(isTracked)
+        //{
+        //    foreach (string character in charactersHandler.CurrentTrackedObjects)
+        //    {
+        //        int index = charactersHandler.availableIds.IndexOf(character);
+        //        if (index != -1)
+        //        {
+        //            Vector3 characterPos = charactersHandler.models[index].transform.position;
+        //            Field f = GetOccupiedField(characterPos);
+        //            Game.Player player = GameManager.Players.Find((e) => e.Character == Game.Player.CharacterFromString(character));
+        //            if (f != null && player != null)
+        //            {
+        //                if (player.LastFieldId != f.Index)
+        //                {
+        //                    player.ChangeField(f.Index);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
