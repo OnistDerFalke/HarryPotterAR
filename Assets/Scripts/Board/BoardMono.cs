@@ -17,19 +17,19 @@ public class BoardMono : MonoBehaviour
     private List<string> currentTrackedBoardMarks;
 
 
-    public Field GetOccupiedField(Vector3 pos)
-    {
-        Vector2 boardSpacePos = coordinatesConverter.WorldToBoard(pos);
-        foreach(Field f in Board.Fields)
-        {
-            if(f.Figure.ContainsPosition(boardSpacePos))
-            {
-                // assuming that fields don't overlap
-                return f;
-            }
-        }
-        return null;
-    }
+    //public Field GetOccupiedField(Vector3 pos)
+    //{
+    //    Vector2 boardSpacePos = coordinatesConverter.WorldToBoard(pos);
+    //    foreach(Field f in Board.Fields)
+    //    {
+    //        if(f.Figure.ContainsPosition(boardSpacePos))
+    //        {
+    //            // assuming that fields don't overlap
+    //            return f;
+    //        }
+    //    }
+    //    return null;
+    //}
 
     private void OnMarkerDetected(string id)
     {

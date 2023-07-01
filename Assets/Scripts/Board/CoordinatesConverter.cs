@@ -10,6 +10,8 @@ namespace Assets.Scripts
         [SerializeField] private List<string> boardMarkIds;
         [SerializeField] private MultiVuMarkHandler vuMarkHandler;
 
+        [SerializeField] private float scale = 1/1.75f;
+
         public List<string> BoardMarkIds => boardMarkIds;
 
         private Dictionary<string, Vector2> boardMarks;
@@ -34,9 +36,10 @@ namespace Assets.Scripts
         {
             if (IsTrackingBoard())
             {
+                //Debug.Log($"converting based on {referenceMarker.id}, {referenceMarker.marker}, pos: {referenceMarker.marker.transform.position}");
                  return  referenceMarker.marker.transform.position +
-                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized +
-                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized;
+                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +
+                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized * scale;
             }
             else
             {
@@ -49,8 +52,8 @@ namespace Assets.Scripts
             GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
             (string id, GameObject marker) referenceMarker = (referenceMarkerId, marker);
             return referenceMarker.marker.transform.position +
-                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized +
-                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized;
+                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +
+                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized * scale;
         }
 
         public Quaternion ReferenceRotation()
@@ -71,7 +74,7 @@ namespace Assets.Scripts
             {
                 return Vector2.one * -1;
             }
-
+            // TODO: scale
             Vector3 normalizedDirection = -1 * referenceMarker.marker.transform.up.normalized;
             Vector3 lineToBoard = referenceMarker.marker.transform.position - worldPos;
             float projection = Vector3.Dot(lineToBoard, normalizedDirection);
@@ -138,7 +141,9 @@ namespace Assets.Scripts
                 GameObject marker = vuMarkHandler.FindModelById(id);
                 if (marker != null)
                 {
+                    Debug.Log($"przed przypisaniem: pozycja {marker.transform.position}");
                     referenceMarker = (id, marker);
+                    Debug.Log($"nowy reference marker: {referenceMarker.id} na pozycji {referenceMarker.marker.transform.position}");
                 }
             }
         }

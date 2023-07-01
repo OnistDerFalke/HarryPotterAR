@@ -17,6 +17,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         int index = availableIds.FindIndex((i) => i == id);
         if(index < models.Count)
         {
+            Debug.Log($"w find model by id: { models[index].transform.position}");
             return models[index];
         }
         return null;
