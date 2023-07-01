@@ -93,7 +93,7 @@ namespace Assets.Scripts
         private float CalculateErrorRate(string markerId)
         {
             float err = 0f;
-            foreach(string otherId in vuMarkHandler.CurrentTrackedObjects)
+            foreach(string otherId in board.CurrentTrackedBoardMarks)
             {
                 if(otherId == markerId)
                 {
