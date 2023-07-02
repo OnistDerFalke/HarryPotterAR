@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a125d4ad93b5b144a380db605c89e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 0.5
-  heightOffset: -6
   boardMarkPositions: []
+  boardMarkIds: []
   vuMarkHandler: {fileID: 0}
+  scale: 0.5
 --- !u!1 &3409178125460515818
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   coordinatesConverter: {fileID: 3409178124638362950}
   boardVisualiser: {fileID: 6678606780180920898}
   charactersHandler: {fileID: 0}
+  isTracked: 0
 --- !u!1 &4852995515365985848
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MonoBehaviour:
   converter: {fileID: 3409178124638362950}
   boardMono: {fileID: 7234432481258716694}
   fieldMaterial: {fileID: 2100000, guid: a3cd3b06ec2c5904d814525982d5d4f0, type: 2}
-  particleRadiusFactor: 0.8
+  particleRadiusFactor: 0.1
   highlightPrefab: {fileID: 6058884272865506626, guid: 5a2e98bb6059f4a4293f7db364e3c720, type: 3}
 --- !u!1001 &1538994432656929955
 PrefabInstance:

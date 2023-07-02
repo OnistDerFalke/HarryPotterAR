@@ -55,9 +55,8 @@ namespace Assets.Scripts
             mesh.RecalculateNormals();
         }
 
-        private void AdjustParticleEffectSize(Field field, ParticleSystem ps)
+        private void AdjustParticleEffectSize(Field field, Transform ps)
         {
-            //var shape = ps.shape;
             if (field.Figure is Quadrangle)
             {
                 Quadrangle q = field.Figure as Quadrangle;
@@ -66,12 +65,12 @@ namespace Assets.Scripts
                 Vector2.Distance(q.leftUpper, q.rightUpper),
                 Vector2.Distance(q.rightUpper, q.rightBottom),
                 Vector2.Distance(q.leftBottom, q.rightBottom));
-                //shape.radius = shortestSide * particleRadiusFactor;
+                ps.localScale = Vector3.one * shortestSide * particleRadiusFactor;
             }
             else if (field.Figure is Circle)
             {
                 Circle c = field.Figure as Circle;
-                //shape.radius = c.Radius * particleRadiusFactor;
+                ps.localScale = Vector3.one * c.Radius * 2 * particleRadiusFactor;
             }
         }
 
@@ -116,7 +115,7 @@ namespace Assets.Scripts
                 Circle c = field.Figure as Circle;
                 MakeCircle(meshFilter, 20, c, field.Figure.CenterPosition);
             }
-            AdjustParticleEffectSize(field, highlight.GetComponent<ParticleSystem>());
+            AdjustParticleEffectSize(field, highlight.transform.GetChild(0).GetComponent<Transform>());
         }
 
         public void HighlightField(Field f)
