@@ -143,7 +143,6 @@ namespace Assets.Scripts
             List<(Field, GameObject)> highlights = fieldHighlights.FindAll((e) => e.Item1 == f);
             foreach (var h in highlights)
             {
-                Debug.Log($"unhighlighting {f.Index}");
                 Destroy(h.Item2);
                 fieldHighlights.Remove(h);
             }
@@ -151,7 +150,6 @@ namespace Assets.Scripts
 
         public void HideVisuals()
         {
-            Debug.Log("HIDE VISUALS!");
             foreach (var highlight in fieldHighlights)
             {
                 highlight.Item2.SetActive(false);
@@ -164,7 +162,6 @@ namespace Assets.Scripts
 
         public void ShowVisuals()
         {
-            Debug.Log("SHOW VISUALS!");
             foreach (var highlight in fieldHighlights)
             {
                 highlight.Item2.SetActive(true);
@@ -173,11 +170,6 @@ namespace Assets.Scripts
             {
                 corners[i].SetActive(true);
             }
-        }
-
-        private void Awake()
-        {
-
         }
 
         private void Update()

@@ -61,6 +61,7 @@ namespace Assets.Scripts
         // czyli warunkowe - mo¿esz siê zatrzymaæ, jeœli masz misjê w danym miejscu i chcesz j¹ wykonaæ
         public void Highlight(bool missionLight=false)
         {
+            Debug.Log($"field {index} with hash {this.GetHashCode()}, board {boardId}");
             if(!isHighlighted)
             {
                 RequestBroker.requests.Add(new HighlightFieldRequest(this));
@@ -70,11 +71,8 @@ namespace Assets.Scripts
 
         public void Unhighlight()
         {
-            if(isHighlighted)
-            {
-                RequestBroker.requests.Add(new UnhighlightFieldRequest(this));
-                isHighlighted = false;
-            }
+            RequestBroker.requests.Add(new UnhighlightFieldRequest(this));
+            isHighlighted = false;
         }
     }
 }
