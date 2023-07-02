@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4750,7 +4750,7 @@ PrefabInstance:
       objectReference: {fileID: 1048569886}
     - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkIds.Array.size
-      value: 4
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkIds.Array.data[0]
@@ -4767,6 +4767,186 @@ PrefabInstance:
     - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkIds.Array.data[3]
       value: b203
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[4]
+      value: b210
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[5]
+      value: b211
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[6]
+      value: b212
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[7]
+      value: b213
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[8]
+      value: b220
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[9]
+      value: b221
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[10]
+      value: b222
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[11]
+      value: b223
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[12]
+      value: b230
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[13]
+      value: b231
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[14]
+      value: b232
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[15]
+      value: b233
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[0].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[0].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[1].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[1].y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[2].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[2].y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[3].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[3].y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[4].x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[4].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[5].x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[5].y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[6].x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[6].y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[7].x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[7].y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[8].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[8].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[9].x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[9].y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[10].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[10].y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[11].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[11].y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[12].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[12].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[13].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[13].y
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[14].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[14].y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[15].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354578004660046766, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[15].y
+      value: 23.5
       objectReference: {fileID: 0}
     - target: {fileID: 5354578005264382163, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: models.Array.size
@@ -4824,6 +5004,206 @@ PrefabInstance:
       propertyPath: vuMarkHandler
       value: 
       objectReference: {fileID: 1048569886}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[0]
+      value: b100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[1]
+      value: b101
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[2]
+      value: b102
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[3]
+      value: b103
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[4]
+      value: b110
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[5]
+      value: b111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[6]
+      value: b112
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[7]
+      value: b113
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[8]
+      value: b120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[9]
+      value: b121
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[10]
+      value: b122
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[11]
+      value: b123
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[12]
+      value: b130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[13]
+      value: b131
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[14]
+      value: b132
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[15]
+      value: b133
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[0].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[0].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[1].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[1].y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[2].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[2].y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[3].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[3].y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[4].x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[4].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[5].x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[5].y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[6].x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[6].y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[7].x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[7].y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[8].x
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[8].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[9].x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[9].y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[10].x
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[10].y
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[11].x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[11].y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[12].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[12].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[13].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[13].y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[14].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[14].y
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[15].x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176046569614358, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[15].y
+      value: 23.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6242176046569614360, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: m_Name
       value: CoordinatesConverter1
@@ -4850,7 +5230,7 @@ PrefabInstance:
       objectReference: {fileID: 1048569886}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkIds.Array.size
-      value: 8
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkIds.Array.data[0]
@@ -4858,87 +5238,251 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkIds.Array.data[1]
-      value: b010
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
-      propertyPath: boardMarkIds.Array.data[2]
-      value: b020
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
-      propertyPath: boardMarkIds.Array.data[3]
-      value: b030
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
-      propertyPath: boardMarkIds.Array.data[4]
-      value: b040
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
-      propertyPath: boardMarkIds.Array.data[5]
-      value: b050
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
-      propertyPath: boardMarkIds.Array.data[6]
-      value: b060
-      objectReference: {fileID: 0}
-    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
-      propertyPath: boardMarkIds.Array.data[7]
       value: b001
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[2]
+      value: b002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[3]
+      value: b003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[4]
+      value: b004
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[5]
+      value: b005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[6]
+      value: b006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[7]
+      value: b010
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[8]
+      value: b011
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[9]
+      value: b012
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[10]
+      value: b013
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[11]
+      value: b014
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[12]
+      value: b015
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[13]
+      value: b016
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[14]
+      value: b020
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[15]
+      value: b021
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[16]
+      value: b022
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[17]
+      value: b023
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[18]
+      value: b024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[19]
+      value: b025
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[20]
+      value: b026
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[21]
+      value: b030
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[22]
+      value: b031
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[23]
+      value: b032
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[24]
+      value: b033
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[25]
+      value: b034
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[26]
+      value: b035
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[27]
+      value: b036
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[28]
+      value: b040
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[29]
+      value: b041
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[30]
+      value: b042
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[31]
+      value: b043
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[32]
+      value: b044
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[33]
+      value: b045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[34]
+      value: b046
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[35]
+      value: b050
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[36]
+      value: b051
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[37]
+      value: b052
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[38]
+      value: b053
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[39]
+      value: b054
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[40]
+      value: b055
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[41]
+      value: b056
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[42]
+      value: b060
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[43]
+      value: b061
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[44]
+      value: b062
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[45]
+      value: b063
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[46]
+      value: b064
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[47]
+      value: b065
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkIds.Array.data[48]
+      value: b066
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.size
-      value: 8
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[0].x
-      value: 1.1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[0].y
-      value: 48.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[1].x
-      value: 8.1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[1].y
-      value: 48.5
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[2].x
-      value: 16.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[2].y
-      value: 48.5
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[3].x
-      value: 24.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[3].y
-      value: 48.5
+      value: 25.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[4].x
-      value: 1.4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[4].y
-      value: 10
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[5].x
-      value: 7.4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[5].y
-      value: 10
+      value: 41.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[6].x
-      value: 48.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[6].y
@@ -4946,11 +5490,339 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[7].x
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[7].y
-      value: 1.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[8].x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[8].y
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[9].x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[9].y
+      value: 18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[10].x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[10].y
+      value: 25.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[11].x
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[11].y
+      value: 34.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[12].x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[12].y
+      value: 42.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[13].x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[13].y
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[14].x
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[14].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[15].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[15].y
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[16].x
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[16].y
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[17].x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[17].y
+      value: 23.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[18].x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[18].y
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[19].x
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[19].y
+      value: 41.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[20].x
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[20].y
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[21].x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[21].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[22].x
+      value: 26.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[22].y
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[23].x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[23].y
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[24].x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[24].y
+      value: 25.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[25].x
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[25].y
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[26].x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[26].y
+      value: 39.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[27].x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[27].y
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[28].x
+      value: 33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[28].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[29].x
+      value: 33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[29].y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[30].x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[30].y
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[31].x
+      value: 35.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[31].y
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[32].x
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[32].y
+      value: 33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[33].x
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[33].y
+      value: 38.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[34].x
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[34].y
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[35].x
+      value: 41.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[35].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[36].x
+      value: 41.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[36].y
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[37].x
+      value: 41.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[37].y
+      value: 16.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[38].x
+      value: 41.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[38].y
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[39].x
+      value: 40.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[39].y
+      value: 33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[40].x
+      value: 39.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[40].y
+      value: 39.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[41].x
+      value: 41.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[41].y
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[42].x
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[42].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[43].x
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[43].y
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[44].x
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[44].y
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[45].x
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[45].y
+      value: 25.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[46].x
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[46].y
+      value: 33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[47].x
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[47].y
+      value: 40.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[48].x
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
+      propertyPath: boardMarkPositions.Array.data[48].y
+      value: 48.5
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628782, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: m_Name
