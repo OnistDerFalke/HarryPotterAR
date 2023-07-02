@@ -89,7 +89,7 @@ namespace Assets.Scripts
             {
                 return Vector2.one * -1;
             }
-            // TODO: scale
+
             Vector3 normalizedDirection = -1 * referenceMarker.marker.transform.up.normalized;
             Vector3 lineToBoard = referenceMarker.marker.transform.position - worldPos;
             float projection = Vector3.Dot(lineToBoard, normalizedDirection);
@@ -98,9 +98,9 @@ namespace Assets.Scripts
             Vector3 offset = intersection - referenceMarker.marker.transform.position;
             float y_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.forward);
             float x_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.right);
-            Vector2 boardPos = boardMarks[referenceMarker.id] 
-                - Vector2.right * x_dist_board
-                - Vector2.up * y_dist_board;
+            Vector2 boardPos = boardMarks[referenceMarker.id]
+                - Vector2.right * x_dist_board / scale
+                - Vector2.up * y_dist_board / scale;
 
             return boardPos;
         }

@@ -23,6 +23,7 @@ public class BoardMono : MonoBehaviour
     public Field GetOccupiedField(Vector3 pos)
     {
         Vector2 boardSpacePos = coordinatesConverter.WorldToBoard(pos);
+        Debug.Log($"board space pos: {boardSpacePos}");
         foreach (Field f in Board.Fields)
         {
             if (f.Figure.ContainsPosition(boardSpacePos))
@@ -101,32 +102,37 @@ public class BoardMono : MonoBehaviour
         EventBroadcaster.OnBoardLost -= OnBoardLost;
     }
 
+    private void PlacePlayers()
+    {
+        managedCharacters.Clear();
+        foreach (var vumark in GameManager.CurrentTrackedObjects)
+        {
+            Character character = Player.CharacterFromString(vumark.Key);
+            if (character != Character.None && !managedCharacters.Contains(character))
+            {
+                managedCharacters.Add(character);
+                Vector3 characterPos = charactersHandler.models[charactersHandler.availableIds.IndexOf(vumark.Key)].transform.position;
+                Vector3 offset = charactersHandler.transform.position - vumark.Value.transform.position;
+                Field f = GetOccupiedField(characterPos + offset);
+                Player player = GameManager.Players.Find((e) => e.Character == character);
+                if (f != null && player != null)
+                {
+                    Debug.Log($"{character}: {f.Index}");
+                    if (player.LastFieldId != f.Index)
+                    {
+                        Debug.Log($"{character} on NEW field {f.Index}");
+                        player.ChangeField(f.Index);
+                    }
+                }
+            }
+        }
+    }
+
     void Update()
     {
         if (isTracked)
         {
-            managedCharacters.Clear();
-            foreach (var vumark in GameManager.CurrentTrackedObjects)
-            {
-                Character character = Player.CharacterFromString(vumark.Key);
-                if (character != Character.None && !managedCharacters.Contains(character))
-                {
-                    managedCharacters.Add(character);
-                    Vector3 characterPos = charactersHandler.models[charactersHandler.availableIds.IndexOf(vumark.Key)].transform.position;
-                    Vector3 offset = charactersHandler.transform.position - vumark.Value.transform.position;
-                    Field f = GetOccupiedField(characterPos + offset);
-                    Player player = GameManager.Players.Find((e) => e.Character == character);
-                    if (f != null && player != null)
-                    {
-                        Debug.Log($"{character}: {f.Index}");
-                        if (player.LastFieldId != f.Index)
-                        {
-                            Debug.Log($"{character} on NEW field {f.Index}");
-                            player.ChangeField(f.Index);
-                        }
-                    }
-                }
-            }
+            PlacePlayers();
         }
     }
 }
