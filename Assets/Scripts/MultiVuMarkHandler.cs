@@ -20,6 +20,29 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         return null;
     }
 
+    private void Awake()
+    {
+        VuMarkBehaviour myVuMarkBehaviour = GetComponent<VuMarkBehaviour>();
+
+        // turn off cloned objects
+        foreach (GameObject model in models)
+        {
+            if (model.activeInHierarchy)
+            {
+                string id = availableIds[models.IndexOf(model)];
+                if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
+                {
+                    continue;
+                }
+                VuMarkBehaviour trackingInstance = GameManager.CurrentTrackedObjects[id];
+                if (trackingInstance != myVuMarkBehaviour)
+                {
+                    model.SetActive(false);
+                }
+            }
+        }
+    }
+
     private void UntrackModel(string id)
     {
         if(GameManager.CurrentTrackedObjects.ContainsKey(id))
@@ -35,8 +58,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     {
         if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
         {
-            Debug.Log($"Element {id} has VuMarkBehaviour {vmb} on position {vmb.transform.position}");
-
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(true);
             GameManager.CurrentTrackedObjects.Add(id, vmb);
@@ -55,9 +76,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
             return;
         }
         string id = vmb.InstanceId.StringValue;
-
-        Debug.Log($"VuMarkBehaviour {vmb} position : {vmb.transform.position}");
-
         switch (newStatus)
         {
             case Status.NO_POSE:

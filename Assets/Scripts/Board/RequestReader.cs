@@ -21,6 +21,7 @@ public class RequestReader : MonoBehaviour
         }
         else if(request is BoardInitializedRequest)
         {
+            Debug.Log("BoardInitializedRequest");
             for(int i = 0; i < boards.Count; i++)
             {
                 boards[i].Board = GameManager.BoardManager.Boards[i];

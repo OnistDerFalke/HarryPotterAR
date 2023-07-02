@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,28 +9,30 @@ public class BoardMono : MonoBehaviour
     public CoordinatesConverter coordinatesConverter;
     public BoardVisulalizer boardVisualiser;
     public MultiVuMarkHandler charactersHandler;
+    public int id;
 
     public Board Board { get;  set; }
     public bool IsTracked => isTracked;
     public List<string> CurrentTrackedBoardMarks => currentTrackedBoardMarks;
 
     public bool isTracked = false;
-    private List<string> currentTrackedBoardMarks;
+    private List<string> currentTrackedBoardMarks = new();
+    private List<Character> managedCharacters = new();
 
 
-    //public Field GetOccupiedField(Vector3 pos)
-    //{
-    //    Vector2 boardSpacePos = coordinatesConverter.WorldToBoard(pos);
-    //    foreach(Field f in Board.Fields)
-    //    {
-    //        if(f.Figure.ContainsPosition(boardSpacePos))
-    //        {
-    //            // assuming that fields don't overlap
-    //            return f;
-    //        }
-    //    }
-    //    return null;
-    //}
+    public Field GetOccupiedField(Vector3 pos)
+    {
+        Vector2 boardSpacePos = coordinatesConverter.WorldToBoard(pos);
+        foreach (Field f in Board.Fields)
+        {
+            if (f.Figure.ContainsPosition(boardSpacePos))
+            {
+                // assuming that fields don't overlap
+                return f;
+            }
+        }
+        return null;
+    }
 
     private void OnMarkerDetected(string id)
     {
@@ -79,7 +82,7 @@ public class BoardMono : MonoBehaviour
 
     private void Awake()
     {
-        currentTrackedBoardMarks = new List<string>();
+        Board = GameManager.BoardManager.Boards[id];
     }
 
     private void OnEnable()
@@ -100,25 +103,30 @@ public class BoardMono : MonoBehaviour
 
     void Update()
     {
-        //if(isTracked)
-        //{
-        //    foreach (string character in charactersHandler.CurrentTrackedObjects)
-        //    {
-        //        int index = charactersHandler.availableIds.IndexOf(character);
-        //        if (index != -1)
-        //        {
-        //            Vector3 characterPos = charactersHandler.models[index].transform.position;
-        //            Field f = GetOccupiedField(characterPos);
-        //            Game.Player player = GameManager.Players.Find((e) => e.Character == Game.Player.CharacterFromString(character));
-        //            if (f != null && player != null)
-        //            {
-        //                if (player.LastFieldId != f.Index)
-        //                {
-        //                    player.ChangeField(f.Index);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        if (isTracked)
+        {
+            managedCharacters.Clear();
+            foreach (var vumark in GameManager.CurrentTrackedObjects)
+            {
+                Character character = Player.CharacterFromString(vumark.Key);
+                if (character != Character.None && !managedCharacters.Contains(character))
+                {
+                    managedCharacters.Add(character);
+                    Vector3 characterPos = charactersHandler.models[charactersHandler.availableIds.IndexOf(vumark.Key)].transform.position;
+                    Vector3 offset = charactersHandler.transform.position - vumark.Value.transform.position;
+                    Field f = GetOccupiedField(characterPos + offset);
+                    Player player = GameManager.Players.Find((e) => e.Character == character);
+                    if (f != null && player != null)
+                    {
+                        Debug.Log($"{character}: {f.Index}");
+                        if (player.LastFieldId != f.Index)
+                        {
+                            Debug.Log($"{character} on NEW field {f.Index}");
+                            player.ChangeField(f.Index);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

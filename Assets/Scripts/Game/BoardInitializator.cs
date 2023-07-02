@@ -22,7 +22,7 @@ namespace Assets.Scripts
             AddPortalFieldsToFieldOnFirstBoard();
             AddPortalFieldsToFieldOnSecondBoard();
             AddPortalFieldsToFieldOnThirdBoard();
-
+            Debug.Log("send event");
             RequestBroker.requests.Add(new BoardInitializedRequest());
         }
 
