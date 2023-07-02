@@ -7,7 +7,9 @@ public class BoardInitializer : MonoBehaviour
 {
     private void Awake()
     {
-        Debug.Log("Let it go");
-        GameManager.Setup();
+        if (!GameManager.setup)
+        {
+            GameManager.Setup();
+        }
     }
 }

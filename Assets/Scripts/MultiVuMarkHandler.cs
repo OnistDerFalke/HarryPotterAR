@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using Vuforia;
 using System.Collections.Generic;
+using Assets.Scripts;
 
 public class MultiVuMarkHandler : DefaultObserverEventHandler
 {
-    private List<string> currentTrackedObjects = new List<string>();
     [SerializeField] public List<string> availableIds = new List<string>();
     [SerializeField] public List<GameObject> models = new List<GameObject>();
-
-    public List<string> CurrentTrackedObjects { get => currentTrackedObjects; }
 
     public GameObject FindModelById(string id)
     {
@@ -22,43 +20,76 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         return null;
     }
 
-    protected override void OnTrackingFound()
+    private void Awake()
     {
-        Debug.Log(gameObject.name);
-        base.OnTrackingFound();
-        var id = GetComponent<VuMarkBehaviour>().InstanceId.StringValue;
-        if (!currentTrackedObjects.Contains(id))
+        VuMarkBehaviour myVuMarkBehaviour = GetComponent<VuMarkBehaviour>();
+
+        // turn off cloned objects
+        foreach (GameObject model in models)
         {
-            currentTrackedObjects.Add(id);
-            Debug.Log($"Detected a character: {id}");
+            if (model.activeInHierarchy)
+            {
+                string id = availableIds[models.IndexOf(model)];
+                if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
+                {
+                    continue;
+                }
+                VuMarkBehaviour trackingInstance = GameManager.CurrentTrackedObjects[id];
+                if (trackingInstance != myVuMarkBehaviour)
+                {
+                    model.SetActive(false);
+                }
+            }
         }
     }
 
-    protected override void OnTrackingLost()
+    private void UntrackModel(string id)
     {
-        Debug.Log(gameObject.name);
-        base.OnTrackingLost();
+        if(GameManager.CurrentTrackedObjects.ContainsKey(id))
+        {
+            int modelIndex = availableIds.IndexOf(id);
+            models[modelIndex].SetActive(false);
+            GameManager.CurrentTrackedObjects.Remove(id);
+            EventBroadcaster.InvokeOnMarkerLost(id);
+        }
+    }
+
+    private void TrackModel(string id, VuMarkBehaviour vmb)
+    {
+        if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
+        {
+            int modelIndex = availableIds.IndexOf(id);
+            models[modelIndex].SetActive(true);
+            GameManager.CurrentTrackedObjects.Add(id, vmb);
+            EventBroadcaster.InvokeOnMarkerDetected(id);
+        }
+    }
+
+    protected override void HandleTargetStatusChanged(Status previousStatus, Status newStatus)
+    {
+        base.HandleTargetStatusChanged(previousStatus, newStatus);
+
         var vmb = GetComponent<VuMarkBehaviour>();
-        if (vmb.InstanceId != null)
+        if (vmb.InstanceId == null)
         {
-            currentTrackedObjects.Remove(vmb.InstanceId.StringValue);
-            Debug.Log($"Lost tracking on character: {vmb.InstanceId.StringValue}");
+            Debug.LogWarning("For some reason there is no vu mark behaviour on target status change");
+            return;
         }
-    }
-
-    void Update()
-    {
-        foreach(var elem in currentTrackedObjects)
+        string id = vmb.InstanceId.StringValue;
+        switch (newStatus)
         {
-            foreach (var model in models)
-            {
-                model.SetActive(false);
-            }
-            int index = availableIds.IndexOf(elem);
-            if (index >=0 && index<models.Count)
-            {
-                models[index].SetActive(true);
-            }
+            case Status.NO_POSE:
+                UntrackModel(id);
+                break;
+            case Status.LIMITED:
+                UntrackModel(id);
+                break;
+            case Status.TRACKED:
+                TrackModel(id, vmb);
+                break;
+            case Status.EXTENDED_TRACKED:
+                UntrackModel(id);
+                break;
         }
     }
 }
