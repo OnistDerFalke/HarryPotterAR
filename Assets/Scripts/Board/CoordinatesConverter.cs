@@ -41,14 +41,14 @@ namespace Assets.Scripts
                 {
                     var vuMarkBehaviour = GameManager.CurrentTrackedObjects[referenceMarker.id];
                     vuMarkBehaviourPosiiton = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
-                    Debug.Log($"CC corner --- reference marker {referenceMarker.id} position: {referenceMarker.marker.transform.position} " +
-                        $"---  VuMarkBehaviour position: {vuMarkBehaviourPosiiton}");
+                    //Debug.Log($"CC corner --- reference marker {referenceMarker.id} position: {referenceMarker.marker.transform.position} " +
+                    //    $"---  VuMarkBehaviour position: {vuMarkBehaviourPosiiton}");
                 }
-                else
-                {
-                    Debug.Log($"ConvertCoordinates corner ({referenceMarker.id}) - VuMarkBehaviour not found in current tracked objects " +
-                        $"with length {GameManager.CurrentTrackedObjects.Count}");
-                }
+                //else
+                //{
+                //    Debug.Log($"ConvertCoordinates corner ({referenceMarker.id}) - VuMarkBehaviour not found in current tracked objects " +
+                //        $"with length {GameManager.CurrentTrackedObjects.Count}");
+                //}
 
                 return vuMarkBehaviourPosiiton + referenceMarker.marker.transform.position +
                     (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +

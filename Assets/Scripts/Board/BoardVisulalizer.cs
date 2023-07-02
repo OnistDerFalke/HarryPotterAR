@@ -121,9 +121,16 @@ namespace Assets.Scripts
 
         public void HighlightField(Field f)
         {
-            Debug.Log($"highlighting {f.Index}");
+            if(f.BoardId != boardMono.Board.Id)
+            {
+                return;
+            }
             GameObject highlight = Instantiate(highlightPrefab, transform);
             AssignFieldMesh(highlight, f);
+            if(!boardMono.isTracked)
+            {
+                highlight.SetActive(false);
+            }
             fieldHighlights.Add((f, highlight));
         }
 
