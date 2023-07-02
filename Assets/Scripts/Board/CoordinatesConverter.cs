@@ -13,6 +13,7 @@ namespace Assets.Scripts
         [SerializeField] private float scale = 1/1.75f;
 
         public List<string> BoardMarkIds => boardMarkIds;
+        public float Scale => scale;
 
         private Dictionary<string, Vector2> boardMarks;
         private (string id, GameObject marker) referenceMarker;

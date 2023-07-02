@@ -42,10 +42,10 @@ namespace Assets.Scripts
         private void MakeQuadrangle(MeshFilter meshFilter, Quadrangle q, Vector2 position)
         {
             Vector3[] vertices = new Vector3[4];
-            vertices[0] = new Vector3(q.leftBottom.x - position.x, 0f, q.leftBottom.y - position.y);
-            vertices[1] = new Vector3(q.leftUpper.x - position.x, 0f, q.leftUpper.y - position.y);
-            vertices[2] = new Vector3(q.rightUpper.x - position.x, 0f, q.rightUpper.y - position.y);
-            vertices[3] = new Vector3(q.rightBottom.x - position.x, 0f, q.rightBottom.y - position.y);
+            vertices[0] = new Vector3(q.leftBottom.x - position.x, 0f, q.leftBottom.y - position.y) * converter.Scale;
+            vertices[1] = new Vector3(q.leftUpper.x - position.x, 0f, q.leftUpper.y - position.y) * converter.Scale;
+            vertices[2] = new Vector3(q.rightUpper.x - position.x, 0f, q.rightUpper.y - position.y) * converter.Scale;
+            vertices[3] = new Vector3(q.rightBottom.x - position.x, 0f, q.rightBottom.y - position.y) * converter.Scale;
             int[] triangles = new int[6] { 0, 1, 2, 0, 2, 3 };
             Mesh mesh = new Mesh();
             meshFilter.mesh = mesh;
@@ -82,7 +82,7 @@ namespace Assets.Scripts
             List<int> triangleList = new List<int>();
             Quaternion quaternion = Quaternion.Euler(0.0f, angleStep, 0.0f);
             vertexList.Add(new Vector3(0.0f, 0.0f, 0.0f));
-            vertexList.Add(new Vector3(0.0f, 0.0f, c.Radius));
+            vertexList.Add(new Vector3(0.0f, 0.0f, c.Radius * converter.Scale));
             vertexList.Add(quaternion * vertexList[1]);
 
             triangleList.Add(0);
@@ -122,6 +122,10 @@ namespace Assets.Scripts
         public void HighlightField(Field f)
         {
             if(f.BoardId != boardMono.Board.Id)
+            {
+                return;
+            }
+            if (fieldHighlights.FindAll((e) => e.Item1.Index == f.Index).Count > 0)
             {
                 return;
             }
