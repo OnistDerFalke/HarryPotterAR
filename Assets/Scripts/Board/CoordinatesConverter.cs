@@ -90,12 +90,30 @@ namespace Assets.Scripts
                 return Vector2.one * -1;
             }
 
+            var vuMarkBehaviourPosiiton = new Vector3(0, 0, 0);
+            if (GameManager.CurrentTrackedObjects.ContainsKey(referenceMarker.id))
+            {
+                var vuMarkBehaviour = GameManager.CurrentTrackedObjects[referenceMarker.id];
+                vuMarkBehaviourPosiiton = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
+            }
+
+            Vector3 referencePosition = referenceMarker.marker.transform.position - vuMarkBehaviourPosiiton;
+
+            // direction down the pawn
             Vector3 normalizedDirection = -1 * referenceMarker.marker.transform.up.normalized;
-            Vector3 lineToBoard = referenceMarker.marker.transform.position - worldPos;
+
+            // line from given position to reference marker in 3d space
+            Vector3 lineToBoard = referencePosition - worldPos;
+
+            // distance of the pawn from the board
             float projection = Vector3.Dot(lineToBoard, normalizedDirection);
+            projection /= scale;
+
+            // pawn projected onto the board
             Vector3 intersection = worldPos + projection * normalizedDirection;
 
-            Vector3 offset = intersection - referenceMarker.marker.transform.position;
+            // offset from reference transform to projected pawn position
+            Vector3 offset = intersection - referencePosition;
             float y_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.forward);
             float x_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.right);
             Vector2 boardPos = boardMarks[referenceMarker.id]

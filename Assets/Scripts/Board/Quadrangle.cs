@@ -19,28 +19,27 @@ namespace Assets.Scripts
             this.leftBottom = leftBottom;
         }
 
-        private int CalculateWindingNumber(Vector2 point, Vector2 cornerA, Vector2 cornerB)
+        private float TriangleArea(Vector2 p1, Vector2 p2, Vector2 p3)
         {
-            float crossProduct = (cornerB.x - cornerA.x) * (point.y - cornerA.y) - (cornerB.y - cornerA.y) * (point.x - cornerA.x);
+            return Mathf.Abs((p1.x * (p2.y - p3.y) +
+                         p2.x * (p3.y - p1.y) +
+                         p3.x * (p1.y - p2.y)) / 2f);
+        }
 
-            if (crossProduct > 0f)
-                return 1;
-            if (crossProduct < 0f)
-                return -1;
+        private bool IsInsideTriangle(Vector2 p, Vector2 v1, Vector2 v2, Vector2 v3, float margin = 0.1f)
+        {
+            float triangleArea = TriangleArea(v1, v2, v3);
+            float a1 = TriangleArea(p, v2, v3);
+            float a2 = TriangleArea(p, v1, v3);
+            float a3 = TriangleArea(p, v1, v2);
 
-            return 0;
+            return Mathf.Abs(triangleArea - (a1 + a2 + a3)) <= margin;
         }
 
         public bool ContainsPosition(Vector2 pos)
         {
-            int windingNumber = 0;
-
-            windingNumber += CalculateWindingNumber(pos, leftUpper, rightUpper);
-            windingNumber += CalculateWindingNumber(pos, rightUpper, rightBottom);
-            windingNumber += CalculateWindingNumber(pos, rightBottom, leftBottom);
-            windingNumber += CalculateWindingNumber(pos, leftBottom, leftUpper);
-
-            return windingNumber != 0;
+            return (IsInsideTriangle(pos, leftUpper, rightUpper, rightBottom) || 
+                IsInsideTriangle(pos, rightBottom, leftBottom, leftUpper));
         }
     }
 }
