@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Game;
+using Vuforia;
 
 namespace Assets.Scripts
 {
@@ -11,6 +12,7 @@ namespace Assets.Scripts
         public static int PlayerNumber;
         public static List<Player> Players = new List<Player>();
         public static List<string> DebugLogs = new();
+        public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects = new();
 
         public static void Setup()
         {

@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using Vuforia;
 using System.Collections.Generic;
+using Assets.Scripts;
 
 public class MultiVuMarkHandler : DefaultObserverEventHandler
 {
-    private List<string> currentTrackedObjects = new List<string>();
     [SerializeField] public List<string> availableIds = new List<string>();
     [SerializeField] public List<GameObject> models = new List<GameObject>();
-
-    public List<string> CurrentTrackedObjects { get => currentTrackedObjects; }
 
     public GameObject FindModelById(string id)
     {
@@ -17,7 +15,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         int index = availableIds.FindIndex((i) => i == id);
         if(index < models.Count)
         {
-            Debug.Log($"w find model by id: { models[index].transform.position}");
             return models[index];
         }
         return null;
@@ -25,22 +22,24 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
 
     private void UntrackModel(string id)
     {
-        if(currentTrackedObjects.Contains(id))
+        if(GameManager.CurrentTrackedObjects.ContainsKey(id))
         {
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(false);
-            currentTrackedObjects.Remove(id);
+            GameManager.CurrentTrackedObjects.Remove(id);
             EventBroadcaster.InvokeOnMarkerLost(id);
         }
     }
 
-    private void TrackModel(string id)
+    private void TrackModel(string id, VuMarkBehaviour vmb)
     {
-        if (!currentTrackedObjects.Contains(id))
+        if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
         {
+            Debug.Log($"Element {id} has VuMarkBehaviour {vmb} on position {vmb.transform.position}");
+
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(true);
-            currentTrackedObjects.Add(id);
+            GameManager.CurrentTrackedObjects.Add(id, vmb);
             EventBroadcaster.InvokeOnMarkerDetected(id);
         }
     }
@@ -57,6 +56,8 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         }
         string id = vmb.InstanceId.StringValue;
 
+        Debug.Log($"VuMarkBehaviour {vmb} position : {vmb.transform.position}");
+
         switch (newStatus)
         {
             case Status.NO_POSE:
@@ -66,7 +67,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
                 UntrackModel(id);
                 break;
             case Status.TRACKED:
-                TrackModel(id);
+                TrackModel(id, vmb);
                 break;
             case Status.EXTENDED_TRACKED:
                 UntrackModel(id);

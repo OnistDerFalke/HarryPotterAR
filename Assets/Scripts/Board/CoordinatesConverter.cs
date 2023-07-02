@@ -36,8 +36,21 @@ namespace Assets.Scripts
         {
             if (IsTrackingBoard())
             {
-                //Debug.Log($"converting based on {referenceMarker.id}, {referenceMarker.marker}, pos: {referenceMarker.marker.transform.position}");
-                 return  referenceMarker.marker.transform.position +
+                var vuMarkBehaviourPosiiton = new Vector3(0, 0, 0);
+                if (GameManager.CurrentTrackedObjects.ContainsKey(referenceMarker.id))
+                {
+                    var vuMarkBehaviour = GameManager.CurrentTrackedObjects[referenceMarker.id];
+                    vuMarkBehaviourPosiiton = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
+                    Debug.Log($"CC corner --- reference marker {referenceMarker.id} position: {referenceMarker.marker.transform.position} " +
+                        $"---  VuMarkBehaviour position: {vuMarkBehaviourPosiiton}");
+                }
+                else
+                {
+                    Debug.Log($"ConvertCoordinates corner ({referenceMarker.id}) - VuMarkBehaviour not found in current tracked objects " +
+                        $"with length {GameManager.CurrentTrackedObjects.Count}");
+                }
+
+                return vuMarkBehaviourPosiiton + referenceMarker.marker.transform.position +
                     (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +
                     (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized * scale;
             }
@@ -51,6 +64,7 @@ namespace Assets.Scripts
         {
             GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
             (string id, GameObject marker) referenceMarker = (referenceMarkerId, marker);
+
             return referenceMarker.marker.transform.position +
                     (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +
                     (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized * scale;
@@ -141,9 +155,7 @@ namespace Assets.Scripts
                 GameObject marker = vuMarkHandler.FindModelById(id);
                 if (marker != null)
                 {
-                    Debug.Log($"przed przypisaniem: pozycja {marker.transform.position}");
                     referenceMarker = (id, marker);
-                    Debug.Log($"nowy reference marker: {referenceMarker.id} na pozycji {referenceMarker.marker.transform.position}");
                 }
             }
         }
