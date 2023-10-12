@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Vuforia;
 using System.Collections.Generic;
-using Assets.Scripts;
+
 
 public class MultiVuMarkHandler : DefaultObserverEventHandler
 {
@@ -50,7 +50,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(false);
             GameManager.CurrentTrackedObjects.Remove(id);
-            EventBroadcaster.InvokeOnMarkerLost(id);
         }
     }
 
@@ -61,7 +60,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(true);
             GameManager.CurrentTrackedObjects.Add(id, vmb);
-            EventBroadcaster.InvokeOnMarkerDetected(id);
         }
     }
 

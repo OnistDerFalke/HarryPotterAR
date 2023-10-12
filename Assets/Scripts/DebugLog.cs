@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,10 +20,11 @@ public class DebugLog : MonoBehaviour
     void Update()
     {
         debugText.text = "";
-        if (!logsSeen) { }
-        else
+        if (logsSeen)
         {
-            for (var i = GameManager.DebugLogs.Count - logsVisible - offset; i < GameManager.DebugLogs.Count - offset; i++)
+            for (var i = GameManager.DebugLogs.Count - logsVisible - offset;
+                 i < GameManager.DebugLogs.Count - offset;
+                 i++)
             {
                 if (i >= 0) debugText.text += GameManager.DebugLogs[i] + "\n";
             }
