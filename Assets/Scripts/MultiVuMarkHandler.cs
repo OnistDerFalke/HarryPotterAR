@@ -48,6 +48,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         if(GameManager.CurrentTrackedObjects.ContainsKey(id))
         {
             int modelIndex = availableIds.IndexOf(id);
+            GameManager.MarkersDetectionTimes[modelIndex] = Time.time - GameManager.MeasureTimeStart;
             models[modelIndex].SetActive(false);
             GameManager.CurrentTrackedObjects.Remove(id);
         }
