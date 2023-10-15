@@ -6,14 +6,12 @@ using UnityEngine.UI;
 public class GameUIController : MonoBehaviour
 { 
     [Header("Buttons")]
-    [SerializeField] private Button measureButton;
     [SerializeField] private Text measureButtonText;
 
     private bool _isMeasuring, _isMeasured;
 
     public void OnMeasureButtonClick()
     {
-        Debug.Log("MEASURE");
         if (_isMeasured)
         {
             GameManager.ClearLogs();
@@ -28,33 +26,49 @@ public class GameUIController : MonoBehaviour
 
         if (_isMeasuring) return;
         GameManager.MeasureTimeStart = Time.time;
-        GameManager.DebugLog("Rozpoczeto pomiary.");
+        GameManager.DebugLog("Measurement started.");
         _isMeasuring = true;
     }
 
     void Start()
     {
-        measureButtonText.text = "ROZPOCZNIJ POMIARY";
+        GameManager.CurrentTrackedObjects = new();
+        GameManager.MarkersDetectionTimes = new float[9];
+        GameManager.MeasureTimeStart = 0f;
+        OnMeasureButtonClick();
     }
     
     void Update()
     {
         if (_isMeasured) return;
-        if (!(_isMeasuring || _isMeasured)) return;
+        if (!_isMeasuring) return;
         measureButtonText.text = (Time.time - GameManager.MeasureTimeStart).ToString(CultureInfo.CurrentCulture);
         if (Time.time - GameManager.MeasureTimeStart >= 10f)
         {
             _isMeasuring = false;
             _isMeasured = true;
-            measureButtonText.text = "ZAKONCZ POMIARY";
-            GameManager.DebugLog("Czasy wykrycia znaczników:");
+            measureButtonText.text = "LEAVE";
+            GameManager.DebugLog("Marker detection time:");
+            float averageDetectionTime = 0f;
+            int detections = 0;
             for (var i = 0; i < 9; i++)
             {
-                GameManager.DebugLog($"Marker {i + 1} : {GameManager.MarkersDetectionTimes[i]}");
+                if(GameManager.MarkersDetectionTimes[i] <= 0f)
+                    GameManager.DebugLog($"Marker {i + 1} : Not detected or lost.");
+                else
+                {
+                    GameManager.DebugLog($"Marker {i + 1} : {GameManager.MarkersDetectionTimes[i]}s.");
+                    detections++;
+                    averageDetectionTime += GameManager.MarkersDetectionTimes[i];
+                }
             }
-            GameManager.DebugLog($"Wykryto {GameManager.CurrentTrackedObjects.Count}/9 znaczników " +
+
+            averageDetectionTime /= detections;
+            
+            GameManager.DebugLog($"{GameManager.CurrentTrackedObjects.Count}/9 markers detected " +
                                  $"({100f*GameManager.CurrentTrackedObjects.Count/9f}%).");
-            GameManager.DebugLog("Pomiary zakonczone sukcesem.");
+            GameManager.DebugLog($"Average detection time is {averageDetectionTime}s (in {detections} detections).");
+            GameManager.DebugLog("Measurement complete!");
         }
     }
 }

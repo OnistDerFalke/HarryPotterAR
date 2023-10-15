@@ -9,7 +9,7 @@ public static class GameManager
     public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects = new();
     public static float MeasureTimeStart;
     public static float[] MarkersDetectionTimes = new float[9];
-  
+
     public static void DebugLog(string log)
     {
         DebugLogs.Add(log);

@@ -5,6 +5,6 @@ public class MenuUIController : MonoBehaviour
 {
     public void OnStartContextPlayButtonClick()
     {
-        SceneManager.LoadScene("Scenes/Beta", LoadSceneMode.Single);
+        SceneManager.LoadScene("Scenes/Preview", LoadSceneMode.Single);
     }
 }

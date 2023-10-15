@@ -8,18 +8,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     [SerializeField] public List<string> availableIds = new List<string>();
     [SerializeField] public List<GameObject> models = new List<GameObject>();
 
-    public GameObject FindModelById(string id)
-    {
-        if (!availableIds.Contains(id)) return null;
-
-        int index = availableIds.FindIndex((i) => i == id);
-        if(index < models.Count)
-        {
-            return models[index];
-        }
-        return null;
-    }
-
     private void Awake()
     {
         VuMarkBehaviour myVuMarkBehaviour = GetComponent<VuMarkBehaviour>();
@@ -48,7 +36,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         if(GameManager.CurrentTrackedObjects.ContainsKey(id))
         {
             int modelIndex = availableIds.IndexOf(id);
-            GameManager.MarkersDetectionTimes[modelIndex] = Time.time - GameManager.MeasureTimeStart;
+            GameManager.MarkersDetectionTimes[modelIndex] = -1f;
             models[modelIndex].SetActive(false);
             GameManager.CurrentTrackedObjects.Remove(id);
         }
@@ -59,6 +47,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
         {
             int modelIndex = availableIds.IndexOf(id);
+            GameManager.MarkersDetectionTimes[modelIndex] = Time.time - GameManager.MeasureTimeStart;
             models[modelIndex].SetActive(true);
             GameManager.CurrentTrackedObjects.Add(id, vmb);
         }
