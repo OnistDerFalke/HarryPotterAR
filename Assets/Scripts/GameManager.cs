@@ -9,6 +9,8 @@ public static class GameManager
     public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects = new();
     public static float MeasureTimeStart;
     public static float[] MarkersDetectionTimes = new float[9];
+    public static float MeasureTime = 10f;
+    public static float MeasureTimeLimit = 20f;
 
     public static void DebugLog(string log)
     {

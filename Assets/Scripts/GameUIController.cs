@@ -43,7 +43,7 @@ public class GameUIController : MonoBehaviour
         if (_isMeasured) return;
         if (!_isMeasuring) return;
         measureButtonText.text = (Time.time - GameManager.MeasureTimeStart).ToString(CultureInfo.CurrentCulture);
-        if (Time.time - GameManager.MeasureTimeStart >= 10f)
+        if (Time.time - GameManager.MeasureTimeStart >= GameManager.MeasureTime)
         {
             _isMeasuring = false;
             _isMeasured = true;
