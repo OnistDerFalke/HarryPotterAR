@@ -8,6 +8,8 @@ public class GameUIController : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Text measureButtonText;
 
+    [SerializeField] private TakePhotos takePhotos;
+
     private bool _isMeasuring, _isMeasured;
 
     public void OnMeasureButtonClick()
@@ -69,6 +71,7 @@ public class GameUIController : MonoBehaviour
                                  $"({100f*GameManager.CurrentTrackedObjects.Count/9f}%).");
             GameManager.DebugLog($"Average detection time is {averageDetectionTime}s (in {detections} detections).");
             GameManager.DebugLog("Measurement complete!");
+            takePhotos.TakePhoto();
         }
     }
 }
