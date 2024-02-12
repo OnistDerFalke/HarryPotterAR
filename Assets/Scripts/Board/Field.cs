@@ -15,8 +15,10 @@ namespace Assets.Scripts
         [SerializeField] private bool isPortkeyField;
         [SerializeField] private List<Field> neighbors;
         [SerializeField] private Field portalField;
+        private List<int> missionNumbers;
+        private string name;
+        private List<Action> actions;
 
-        // TODO: delete variable
         [SerializeField] private bool isHighlighted = false;
 
         public int BoardId { get => boardId; }
@@ -24,26 +26,50 @@ namespace Assets.Scripts
         public int Index { get => index; }
         public bool IsTower { get => isTower; }
         public bool IsQuidditchPitch { get => isQuidditchPitch; }
+        //If IsMissionField=true than field should be lighted in different way
+        //there are many fields belonging to "Wielka Sala" thats why
+        //not every field where the player can fulfill a mission is set to true
         public bool IsMissionField { get => isMissionField; }
         public bool IsFiuuField { get => isFiuuField; }
         public List<Field> Neighbors { get => neighbors; }
         public Field PortalField { get => portalField; }
         public Vector2 Position2D { get => figure.CenterPosition; }
         public bool IsHighlighted { get => isHighlighted; }
+        public string Name { get => name; }
+        public List<Action> Actions { get => actions; }
+        public List<int> MissionNumbers { get => missionNumbers; }
 
-        public Field(int boardId, IFigure figure, int index, 
-            bool isTower=false, bool isMissionField=false, bool isFiuuField=false, bool isPortkeyField=false, bool isQuidditchPitch=false)
+        public Field(int boardId, IFigure figure, int index, string name, List<Action> actions,
+            bool isTower = false, bool isMissionField = false, bool isFiuuField = false,
+            bool isPortkeyField = false, bool isQuidditchPitch = false, List<int> missionNumbers = null)
         {
             this.boardId = boardId;
             this.figure = figure;
             this.index = index;
+            this.name = name;
+            this.actions = actions;
             this.isTower = isTower;
             this.isMissionField = isMissionField;
+            this.missionNumbers = missionNumbers;
             this.isFiuuField = isFiuuField;
             this.isPortkeyField = isPortkeyField;
             this.isQuidditchPitch = isQuidditchPitch;
             this.portalField = null;
             this.neighbors = new List<Field>();
+        }
+
+        public string GetActionsInfo()
+        {
+            string actionText = "";
+            for (var i = 0; i < actions.Count; i++)
+            {
+                actionText += ActionText.getActionText(actions[i], missionNumbers);
+                if (i < actions.Count - 1) 
+                    actionText += "\n";
+            }
+            if (actionText == "") 
+                actionText = "Brak akcji";
+            return actionText;
         }
 
         public void AddNeighbors(List<Field> neighbors)
@@ -56,10 +82,7 @@ namespace Assets.Scripts
             this.portalField = portalField;
         }
 
-        // TODO: Inaczej podkreœlaæ pola z trzeciej planszy, gdzie boardId = 2
-        // Fajnie by by³o jakby mo¿na by³o przekazaæ jak¹œ wartoœæ, ¿e nale¿y podkreœliæ pole jako MissionField, 
-        // czyli warunkowe - mo¿esz siê zatrzymaæ, jeœli masz misjê w danym miejscu i chcesz j¹ wykonaæ
-        public void Highlight(bool missionLight=false)
+        public void Highlight()
         {
             if(!isHighlighted)
             {

@@ -56,7 +56,7 @@ namespace Assets.Scripts
 
             myField.Neighbors.ForEach(delegate (Field neighbor)
             {
-                FindFieldsToHighlightRecursive(new List<Field>() { myField, neighbor }, 1);
+                FindFieldsToHighlightRecursive(new List<Field>() { myField, neighbor }, 1, false);
             });
         }
 
@@ -92,10 +92,9 @@ namespace Assets.Scripts
             });
         }
 
-        private void FindFieldsToHighlightRecursive(List<Field> path, int steps)
+        private void FindFieldsToHighlightRecursive(List<Field> path, int steps, bool fiuuFieldsHighlighted)
         {
             Field currentField = path.Last();
-            bool fiuuFieldsHighlighted = false;
 
             if (steps == GameManager.CurrentDiceThrownNumber)
             {
@@ -106,7 +105,7 @@ namespace Assets.Scripts
                 if (currentField.IsTower)
                 {
                     currentField.Highlight();
-                    if (fiuuFieldsHighlighted)
+                    if (!fiuuFieldsHighlighted)
                     {
                         boards[2].Fields.Where(field => field.IsFiuuField).ToList().ForEach(delegate (Field fiuuField)
                         {
@@ -117,7 +116,7 @@ namespace Assets.Scripts
                 }
                 else if (currentField.IsMissionField)
                 {
-                    currentField.Highlight(true);
+                    currentField.Highlight();
                 }
 
                 // go to neighbors of current field
@@ -126,7 +125,7 @@ namespace Assets.Scripts
                     if (!path.Contains(neighbor))
                     {
                         path.Add(neighbor);
-                        FindFieldsToHighlightRecursive(path, steps+1);
+                        FindFieldsToHighlightRecursive(path, steps+1, fiuuFieldsHighlighted);
                         path.Remove(neighbor);
                     }
                 });
@@ -138,7 +137,7 @@ namespace Assets.Scripts
                 if (!path.Contains(currentField.PortalField))
                 {
                     path.Add(currentField.PortalField);
-                    FindFieldsToHighlightRecursive(path, steps);
+                    FindFieldsToHighlightRecursive(path, steps, fiuuFieldsHighlighted);
                 }
             }
         }

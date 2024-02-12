@@ -45,6 +45,22 @@ namespace Game
             lastFieldId = fieldId;
         }
 
+        public string GetCurrentFieldName()
+        {
+            if (lastFieldId < 0)
+                return GameManager.BoardManager.GetFieldById(lastFieldId).Name;
+            Debug.Log("Aktualne pole gracza: " + lastFieldId);
+            return "";
+        }
+
+        public string GetCurrentFieldActions()
+        {
+            if (lastFieldId < 0)
+                return GameManager.BoardManager.GetFieldById(lastFieldId).GetActionsInfo();
+            Debug.Log("Aktualne pole gracza: " + lastFieldId);
+            return "";
+        }
+
         public static Character CharacterFromString(string s)
         {
             switch (s)

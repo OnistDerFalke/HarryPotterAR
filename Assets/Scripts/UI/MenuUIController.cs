@@ -49,6 +49,7 @@ namespace UI
         private void Start()
         {
             ChangeContext(Contexts.StartContext);
+            playersNumber = 1;
         }
 
         private void Update()
@@ -136,9 +137,21 @@ namespace UI
                 GameManager.Players.Add(new Player(i, chosenCharacters[i]));
         }
 
+        //TODO: wywaliæ odpowiednie ekrany
+        //Wywali³am koniecznoœæ wyboru liczby graczy - w tej funkcji by³a ta zakomentowana linijka wczeœniej,
+        //a przenios³am to co jest w funkcji OnPlayersContextNextButtonClick()
         public void OnStartContextPlayButtonClick()
         {
-            ChangeContext(Contexts.PlayersContext);
+            //ChangeContext(Contexts.PlayersContext);
+            ChangeContext(Contexts.CharactersContext);
+            chosenCharacters = new Character[playersNumber];
+            takenCharacters = new bool[charactersNumber + 1];
+            chosenCharacterIndex = 0;
+            nextPlayerButton.gameObject.SetActive(true);
+            previousPlayerButton.gameObject.SetActive(true);
+            startGameButton.gameObject.SetActive(false);
+            ChangeCharacterBoxContext(false);
+            UpdateCharactersContext();
         }
         
         public void OnPlayersContextNextButtonClick()

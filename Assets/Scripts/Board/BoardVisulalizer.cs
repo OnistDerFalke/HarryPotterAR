@@ -13,6 +13,8 @@ namespace Assets.Scripts
         [SerializeField] private float particleRadiusFactor;
 
         public GameObject highlightPrefab;
+        public GameObject fiuuHighlightPrefab;
+        public GameObject missionHighlightPrefab;
 
         private List<(Field, GameObject)> fieldHighlights = new();
 
@@ -118,6 +120,15 @@ namespace Assets.Scripts
             AdjustParticleEffectSize(field, highlight.transform.GetChild(0).GetComponent<Transform>());
         }
 
+        public GameObject GetFieldMeshObject(Field f)
+        {
+            if (f.IsFiuuField)
+                return Instantiate(fiuuHighlightPrefab, transform);
+            if (f.IsMissionField)
+                return Instantiate(missionHighlightPrefab, transform);
+            return Instantiate(highlightPrefab, transform);
+        }
+
         public void HighlightField(Field f)
         {
             if(f.BoardId != boardMono.Board.Id)
@@ -128,7 +139,7 @@ namespace Assets.Scripts
             {
                 return;
             }
-            GameObject highlight = Instantiate(highlightPrefab, transform);
+            GameObject highlight = GetFieldMeshObject(f);
             AssignFieldMesh(highlight, f);
             if(!boardMono.isTracked)
             {
