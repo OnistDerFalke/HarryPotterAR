@@ -10,15 +10,12 @@ namespace Game
         private bool isDuringMove;
         private bool myPlayer;
         private int lastFieldId;
-        private Vector2 lastPosition;
-        //[SerializeField] private GameObject characterObject;
 
         public int Index { get => index; }
         public Character Character { get => character; }
-        public bool IsDuringMove { get => isDuringMove;  set => isDuringMove = value;}
+        public bool IsDuringMove { get => isDuringMove; set => isDuringMove = value; }
         public bool IsMyPlayer { get => myPlayer; }
-        public int LastFieldId { get => lastFieldId; }
-        public Vector2 LastPosition { get => lastPosition; }
+        public int LastFieldId { get => lastFieldId; set => lastFieldId = value; }
 
         public Player(int index, Character character)
         {
@@ -27,22 +24,6 @@ namespace Game
             myPlayer = this.index == 0;
             isDuringMove = false;
             lastFieldId = 0;
-            
-            lastPosition = GameManager.BoardManager.GetFieldById(0).Position2D;
-        }
-
-        /*
-         * imo we won't need this, we pass character by constructor
-         */
-        public void SetCharacter(Character character)
-        {
-            this.character = character;
-        }
-
-        // TODO: delete function
-        public void ChangeField(int fieldId)
-        {
-            lastFieldId = fieldId;
         }
 
         public string GetCurrentFieldName()

@@ -121,7 +121,7 @@ public class BoardMono : MonoBehaviour
                 {
                     if (player.LastFieldId != f.Index)
                     {
-                        player.ChangeField(f.Index);
+                        player.LastFieldId = f.Index;
                     }
                 }
             }

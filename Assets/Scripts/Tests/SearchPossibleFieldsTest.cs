@@ -32,7 +32,7 @@ namespace Assets.Scripts.Tests
                 GameManager.BoardManager.UnhighlightAllFields();
             }
 
-            GameManager.GetMyPlayer().ChangeField(87);
+            GameManager.GetMyPlayer().LastFieldId = 87;
             GameManager.CurrentDiceThrownNumber = 4;
             GameManager.BoardManager.ShowPossibleMoves();
             PrintHighlightedFieldsId();

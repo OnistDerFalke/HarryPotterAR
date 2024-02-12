@@ -27,9 +27,32 @@ namespace UI
             UpdateContent();
         }
 
+        void Update()
+        {
+            UpdateContent();
+        }
+
         private void UpdateContent()
         {
-            diceThrowButtonText.text = GameManager.GetMyPlayer().IsDuringMove ? "Zakoncz ture" : "Rzuc koscia";
+            if (GameManager.GetMyPlayer().IsDuringMove)
+            {
+                diceThrowButton.interactable = true;
+                diceThrowButtonText.color = Color.white;
+                diceThrowButtonText.text = "Zakończ turę";
+            }
+            else if (GameManager.GetMyPlayer().LastFieldId < 0)
+            {
+                diceThrowButton.interactable = false;
+                diceThrowButtonText.color = new Color(0.345f, 0.212f, 0.208f);
+                diceThrowButtonText.text = "Zczytaj pozycję gracza";
+            }
+            else
+            {
+                diceThrowButton.interactable = true;
+                diceThrowButtonText.color = Color.white;
+                diceThrowButtonText.text = "Rzuć kością";
+            }
+
             //dices unseen until simulation changes it
             if (!GameManager.GetMyPlayer().IsDuringMove)
                 foreach (var dice in dicesGm)
@@ -72,6 +95,7 @@ namespace UI
             if (GameManager.GetMyPlayer().IsDuringMove)
             {
                 GameManager.GetMyPlayer().IsDuringMove = false;
+                GameManager.GetMyPlayer().LastFieldId = -1;
                 UpdateContent();
                 GameManager.BoardManager.UnhighlightAllFields();
             }
