@@ -35,6 +35,7 @@ namespace UI
         }
 
         private int playersNumber;
+        private int chosenPlayerIndex;
         private int charactersNumber = 9;
         private int chosenCharacterIndex;
         private Character[] chosenCharacters;
@@ -44,6 +45,7 @@ namespace UI
         {
             ChangeContext(Contexts.StartContext);
             playersNumber = 1;
+            chosenPlayerIndex = 0;
         }
 
         private void Update()
@@ -125,6 +127,9 @@ namespace UI
 
         public void OnStartGameButtonClick()
         {
+            chosenCharacters[chosenPlayerIndex] = (Character)Enum.ToObject(typeof(Character), chosenCharacterIndex);
+            takenCharacters[chosenCharacterIndex] = true;
+
             LoadDataToGameManager();
             SceneManager.LoadScene("Scenes/Beta", LoadSceneMode.Single);
         }

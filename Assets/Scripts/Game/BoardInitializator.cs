@@ -104,14 +104,14 @@ namespace Assets.Scripts
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(14.8f, 11.8f), new Vector2(17.4f, 11.8f), new Vector2(17.3f, 8.9f), new Vector2(14.8f, 8.9f)), 18,
                 "Pole z pojedynkiem", new List<Action>() { Action.FIGHT_FIELD }));
-            // Gwiazdka obok pokoju wspólnego Griffindoru
+            // Gwiazdka obok pokoju wspólnego Gryffindoru
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(12.1f, 11.8f), new Vector2(14.6f, 11.8f), new Vector2(14.6f, 9.0f), new Vector2(12.1f, 9.0f)), 19,
                 "Pole z gwiazdką", new List<Action>() { Action.CAN_GET_THING }));
-            // Pokój wspólny Griffindoru
+            // Pokój wspólny Gryffindoru
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(10.5f, 10.3f), 1.6f), 20,
-                "Pokój wspólny Griffindoru", new List<Action>() { Action.COMMON_ROOM_CHOICE, Action.CAN_USE_FIUU }, isTower: true));
-            // Eliksir nad pokojem wspólnym Griffindoru
+                "Pokój wspólny Gryffindoru", new List<Action>() { Action.COMMON_ROOM_CHOICE, Action.CAN_USE_FIUU }, isTower: true));
+            // Eliksir nad pokojem wspólnym Gryffindoru
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(9.3f, 14.3f), new Vector2(11.8f, 14.3f), new Vector2(11.8f, 12.0f), new Vector2(9.3f, 12.4f)), 21,
                 "Pole z eliksirem", new List<Action>() { Action.GET_ONE_ELIXIR }));

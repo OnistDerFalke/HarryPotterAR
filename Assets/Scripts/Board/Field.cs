@@ -65,10 +65,10 @@ namespace Assets.Scripts
             {
                 actionText += ActionText.getActionText(actions[i], missionNumbers);
                 if (i < actions.Count - 1) 
-                    actionText += "\n";
+                    actionText += "\n\n";
             }
             if (actionText == "") 
-                actionText = "Brak akcji";
+                actionText = "Pole nie posiada ¿adnych akcji.";
             return actionText;
         }
 

@@ -23,7 +23,7 @@ public class BoardMono : MonoBehaviour
     public Field GetOccupiedField(Vector3 pos)
     {
         Vector2 boardSpacePos = coordinatesConverter.WorldToBoard(pos);
-        Debug.Log(boardSpacePos);
+        //Debug.Log("Board Position: " + boardSpacePos);
         foreach (Field f in Board.Fields)
         {
             if (f.Figure.ContainsPosition(boardSpacePos))

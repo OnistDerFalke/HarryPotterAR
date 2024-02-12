@@ -28,18 +28,16 @@ namespace Game
 
         public string GetCurrentFieldName()
         {
-            if (lastFieldId < 0)
+            if (lastFieldId >= 0)
                 return GameManager.BoardManager.GetFieldById(lastFieldId).Name;
-            Debug.Log("Aktualne pole gracza: " + lastFieldId);
             return "";
         }
 
         public string GetCurrentFieldActions()
         {
-            if (lastFieldId < 0)
+            if (lastFieldId >= 0)
                 return GameManager.BoardManager.GetFieldById(lastFieldId).GetActionsInfo();
-            Debug.Log("Aktualne pole gracza: " + lastFieldId);
-            return "";
+            return "Pole nie posiada żadnych akcji.";
         }
 
         public static Character CharacterFromString(string s)

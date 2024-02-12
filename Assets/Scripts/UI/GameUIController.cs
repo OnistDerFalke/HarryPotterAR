@@ -7,23 +7,39 @@ namespace UI
 {
     public class GameUIController : MonoBehaviour
     { 
-        [Header("· Buttons ·")]
+        [Header("Buttons")]
         [SerializeField] private Button diceThrowButton;
         [SerializeField] private Text diceThrowButtonText;
-        
+
+        [Header("Position Info properties")]
+        [SerializeField] private Button infoButton;
+        [SerializeField] private GameObject currentFieldBox;
+        [SerializeField] private Text currentFieldText;
+
+        [Header("Action Info properties")]
+        [SerializeField] private Button actionInfoButton;
+        [SerializeField] private GameObject actionInfoBox;
+        [SerializeField] private Text actionInfoText;
+
         //(0, 1)->(left dice, right dice)
-        [Space(2)] [Header("· Dices properties ·")]
+        [Space(2)] [Header("Dices properties")]
         [SerializeField] private Image[] dicesGraphics = new Image[2];
         [SerializeField] private GameObject[] dicesGm = new GameObject[2];
         [SerializeField] private Sprite[] dicesGraphicsOptions = new Sprite[6];
 
-        [Space(2)] [Header("· Simulation properties ·")]
+        [Space(2)] [Header("Simulation properties")]
         [SerializeField] private float rotationSpeedFactor;
         [SerializeField] private float simulationTime;
         [SerializeField] private float simulationSmooth;
+
         private int diceResult;
+        private bool currentFieldShow;
+        private bool actionInfoShow;
+
         void Start()
         {
+            currentFieldShow = true;
+            actionInfoShow = false;
             UpdateContent();
         }
 
@@ -52,6 +68,9 @@ namespace UI
                 diceThrowButtonText.color = Color.white;
                 diceThrowButtonText.text = "Rzuć kością";
             }
+
+            UpdateCurrentFieldContent();
+            UpdateActionInfoBox();
 
             //dices unseen until simulation changes it
             if (!GameManager.GetMyPlayer().IsDuringMove)
@@ -90,6 +109,26 @@ namespace UI
             UpdateContent();
         }
 
+        public void UpdateCurrentFieldContent()
+        {
+            currentFieldBox.SetActive(currentFieldShow);
+            currentFieldText.enabled = currentFieldShow;
+            if (currentFieldShow)
+                currentFieldText.text = GameManager.GetMyPlayer().LastFieldId < 0 ?
+                    "Zczytaj pozycję gracza" : GameManager.GetMyPlayer().GetCurrentFieldName();
+        }
+
+        public void UpdateActionInfoBox()
+        {
+            actionInfoBox.SetActive(actionInfoShow);
+            actionInfoText.enabled = actionInfoShow;
+            if (actionInfoShow)
+                actionInfoText.text = GameManager.GetMyPlayer().LastFieldId < 0 ?
+                    "Zczytaj pozycję gracza poprzez nakierowanie kamery telefonu na znacznik gracza. " +
+                    "Zrób to tak, aby w obrębie ekranu był widoczny przynajmniej jeden znacznik planszy" 
+                    : GameManager.GetMyPlayer().GetCurrentFieldActions();
+        }
+
         public void OnDiceThrowButtonClick()
         {
             if (GameManager.GetMyPlayer().IsDuringMove)
@@ -105,6 +144,18 @@ namespace UI
                 GameManager.GetMyPlayer().IsDuringMove = true;
                 GameManager.BoardManager.ShowPossibleMoves();
             }
+        }
+        
+        public void OnShowCurrentFieldClick()
+        {
+            currentFieldShow = !currentFieldShow;
+            UpdateCurrentFieldContent();
+        }
+
+        public void OnShowActionInfoClick()
+        {
+            actionInfoShow = !actionInfoShow;
+            UpdateActionInfoBox();
         }
     }
 }
