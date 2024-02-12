@@ -17,8 +17,8 @@ namespace UI
 
         private Vector2 fingerDown;
         private Vector2 fingerUp;
-        private float swipeThreshold = 50f; 
-        private int currentPosition = 0;
+        //private float swipeThreshold = 50f; 
+        //private int currentPosition = 0;
         private float midDistance;
 
         private bool snapLock = false;

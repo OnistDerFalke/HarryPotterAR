@@ -11,27 +11,20 @@ namespace UI
 {
     public class MenuUIController : MonoBehaviour
     {
-        [SerializeField] private GameObject[] menuContext = new GameObject[3];
-        [SerializeField] private Text[] summaryCharactersNames = new Text[8];
+        [SerializeField] private GameObject[] menuContext = new GameObject[2];
         [SerializeField] private GameObject characterBox;
-        [SerializeField] private GameObject summaryBox;
-        [SerializeField] private PlayersSwipe playerSwipe;
-        [SerializeField] private Button nextPlayerButton;
-        [SerializeField] private Button previousPlayerButton;
         [SerializeField] private Button startGameButton;
-        [SerializeField] private Button editCharactersButton;
+        [SerializeField] private Button backButton;
         [SerializeField] private Button nextCharacterButton;
         [SerializeField] private Button previousCharacterButton;
         [SerializeField] private Sprite[] vuMarksSprites = new Sprite[9];
         [SerializeField] private Sprite vuMarksSpriteNotSet;
-        [SerializeField] private Text playerName;
         [SerializeField] private Text characterName;
         [SerializeField] private Image vuMarkImage;
         
         private enum Contexts
         {
             StartContext,
-            PlayersContext,
             CharactersContext
         }
 
@@ -41,8 +34,9 @@ namespace UI
             Right
         }
 
-        private int playersNumber, charactersNumber = 9;
-        private int chosenPlayerIndex = 0, chosenCharacterIndex;
+        private int playersNumber;
+        private int charactersNumber = 9;
+        private int chosenCharacterIndex;
         private Character[] chosenCharacters;
         private bool[] takenCharacters;
 
@@ -54,23 +48,14 @@ namespace UI
 
         private void Update()
         {
-            CheckButtonsActivity();
+            startGameButton.interactable = chosenCharacterIndex != 0;
         }
 
         private bool IfAllCharactersChosen()
         {
             return chosenCharacters.All(character => character != Character.None);
         }
-        
-        private void CheckButtonsActivity()
-        {
-            nextPlayerButton.interactable = chosenCharacterIndex != 0;
-            previousPlayerButton.interactable = chosenPlayerIndex != 0;
-
-            nextPlayerButton.GetComponentInChildren<Text>().text = 
-                chosenPlayerIndex == playersNumber - 1 ? "Podsumowanie" : "Nastepny";
-        }
-        
+                
         private void SwitchCharacter(SwitchDirection direction)
         {
             do
@@ -94,12 +79,13 @@ namespace UI
 
         private void UpdateCharactersContext()
         {
-            playerName.text = chosenPlayerIndex == 0 ? "Ja" : $"Gracz{chosenPlayerIndex + 1}";
             characterName.text = chosenCharacterIndex == 0 ? 
                 "Nie wybrano" : ((Character)Enum.ToObject(typeof(Character), chosenCharacterIndex)).ToString();
             if (chosenCharacterIndex <= charactersNumber)
-                vuMarkImage.sprite = chosenCharacterIndex == 0 
+            {
+                vuMarkImage.sprite = chosenCharacterIndex == 0
                     ? vuMarksSpriteNotSet : vuMarksSprites[chosenCharacterIndex - 1];
+            }
         }
 
         private void ChangeContext(Contexts context)
@@ -109,66 +95,35 @@ namespace UI
             menuContext[(int)context].SetActive(true);
         }
 
-        private void ChangeCharacterBoxContext(bool allChosen)
-        {
-            if (allChosen)
-            {
-                for (var i = 0; i < 8; i++)
-                {
-                    summaryCharactersNames[i].text = i < chosenCharacters.Length ? 
-                        chosenCharacters[i].ToString() : "(Nieaktywny)";
-                }
-            }
-            nextPlayerButton.gameObject.SetActive(!allChosen);
-            previousPlayerButton.gameObject.SetActive(!allChosen);
-            startGameButton.gameObject.SetActive(allChosen);
-            editCharactersButton.gameObject.SetActive(allChosen);
-            characterBox.SetActive(!allChosen);
-            summaryBox.SetActive(allChosen);
-            nextCharacterButton.gameObject.SetActive(!allChosen);
-            previousCharacterButton.gameObject.SetActive(!allChosen);
-        }
-
         private void LoadDataToGameManager()
         {
             GameManager.Setup();
             GameManager.PlayerNumber = playersNumber;
-            for(var i=0; i<playersNumber; i++)
+            for(var i = 0; i < playersNumber; i++)
                 GameManager.Players.Add(new Player(i, chosenCharacters[i]));
         }
 
-        //TODO: wywaliæ odpowiednie ekrany
-        //Wywali³am koniecznoœæ wyboru liczby graczy - w tej funkcji by³a ta zakomentowana linijka wczeœniej,
-        //a przenios³am to co jest w funkcji OnPlayersContextNextButtonClick()
         public void OnStartContextPlayButtonClick()
         {
-            //ChangeContext(Contexts.PlayersContext);
             ChangeContext(Contexts.CharactersContext);
             chosenCharacters = new Character[playersNumber];
             takenCharacters = new bool[charactersNumber + 1];
             chosenCharacterIndex = 0;
-            nextPlayerButton.gameObject.SetActive(true);
-            previousPlayerButton.gameObject.SetActive(true);
-            startGameButton.gameObject.SetActive(false);
-            ChangeCharacterBoxContext(false);
-            UpdateCharactersContext();
-        }
-        
-        public void OnPlayersContextNextButtonClick()
-        {
-            playersNumber = playerSwipe.currentOptionID+1;
-            ChangeContext(Contexts.CharactersContext);
-            chosenCharacters = new Character[playersNumber];
-            takenCharacters = new bool[charactersNumber+1];
-            chosenCharacterIndex = 0;
-            nextPlayerButton.gameObject.SetActive(true);
-            previousPlayerButton.gameObject.SetActive(true);
-            startGameButton.gameObject.SetActive(false);
-            ChangeCharacterBoxContext(false);
+
+            startGameButton.gameObject.SetActive(true);
+            characterBox.SetActive(true);
+            nextCharacterButton.gameObject.SetActive(true);
+            previousCharacterButton.gameObject.SetActive(true);
+
             UpdateCharactersContext();
         }
 
-        public void OnCharactersContextNextButtonClick()
+        public void OnBackButtonClick()
+        {
+            ChangeContext(Contexts.StartContext);
+        }
+
+        public void OnStartGameButtonClick()
         {
             LoadDataToGameManager();
             SceneManager.LoadScene("Scenes/Beta", LoadSceneMode.Single);
@@ -182,36 +137,6 @@ namespace UI
         public void OnPreviousCharacterButtonClick()
         {
             SwitchCharacter(SwitchDirection.Left);
-        }
-
-        public void OnNextPlayerButtonClick()
-        {
-            chosenCharacters[chosenPlayerIndex] = (Character)Enum.ToObject(typeof(Character), chosenCharacterIndex);
-            takenCharacters[chosenCharacterIndex] = true;
-            if (chosenPlayerIndex == playersNumber - 1 && IfAllCharactersChosen())
-            {
-                ChangeCharacterBoxContext(true);
-            }
-            else
-            {
-                chosenPlayerIndex = (chosenPlayerIndex + 1) % playersNumber;
-                chosenCharacterIndex = 0;
-            }
-            UpdateCharactersContext();
-        }
-
-        public void OnPreviousPlayerButtonClick()
-        {
-            chosenCharacters[chosenPlayerIndex] = (Character)Enum.ToObject(typeof(Character), chosenCharacterIndex);
-            takenCharacters[(int)chosenCharacters[chosenPlayerIndex]] = false;
-            chosenPlayerIndex = chosenPlayerIndex == 0 ? playersNumber-1 : chosenPlayerIndex-1;
-            chosenCharacterIndex = (int)chosenCharacters[chosenPlayerIndex];
-            UpdateCharactersContext();
-        }
-
-        public void OnEditCharactersButtonClick()
-        {
-            ChangeCharacterBoxContext(false);
         }
     }
 }
