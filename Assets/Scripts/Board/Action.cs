@@ -27,6 +27,7 @@ namespace Assets.Scripts
         ADD_SIX_LIVES,                  //skrzyd³o szpitalne
         CAN_MAKE_MISSION,               //wszystkie pola z misj¹
         CAN_USE_FIUU,                   //wie¿a zamkowa
+        CAN_USE_PORTKEY,                //boisko do quidditcha
 
         //Mo¿liwe, ale nieobowi¹zkowe akcje
         CAN_GET_THING,                  //wszystkie pola z gwiazdk¹
@@ -84,9 +85,12 @@ namespace Assets.Scripts
                 case Action.CAN_USE_FIUU:
                     return "Mo¿esz transportowaæ siê za pomoc¹ proszka fiuu na 1 z 7 pól na planszy 2 (z wyj¹tkiem \"Cmentarza w Little Hangleton\"). " +
                         "Na koniec tury wróæ do miejsca, z którego siê przenios³eœ.";
+                case Action.CAN_USE_PORTKEY:
+                    return "Mo¿esz za pomoc¹ œwistoklika przenieœæ siê na pole \"Cmentarz w Little Hangleton\".";
                 case Action.CAN_GET_THING:
                     return "Je¿eli na polu znajduje siê przedmiot, mo¿esz go podnieœæ. " +
-                        "Mo¿na posiadaæ maksymalnie 6 przedmiotów, a podczas jednego ruchu mo¿na podnieœæ tylko 2 przedmioty.";
+                        "Mo¿na posiadaæ maksymalnie 6 przedmiotów, a podczas jednego ruchu mo¿na podnieœæ tylko 2 przedmioty. " + 
+                        "Gracz ma mo¿liwoœæ wymiany przedmiotu.";
                 case Action.CAN_START_QUIDDITCH:
                     return "Mo¿esz wyzwaæ dowolnego gracza do meczu Quidditcha.";
                 case Action.CAN_TELEPORT:

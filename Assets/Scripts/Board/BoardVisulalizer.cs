@@ -141,6 +141,7 @@ namespace Assets.Scripts
             }
             GameObject highlight = GetFieldMeshObject(f);
             AssignFieldMesh(highlight, f);
+            highlight.GetComponent<InteractiveElement>().Index = f.Index;
             if(!boardMono.isTracked)
             {
                 highlight.SetActive(false);

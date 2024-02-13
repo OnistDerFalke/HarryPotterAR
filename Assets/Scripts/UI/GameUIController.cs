@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace UI
 {
     public class GameUIController : MonoBehaviour
-    { 
+    {
         [Header("Buttons")]
         [SerializeField] private Button diceThrowButton;
         [SerializeField] private Text diceThrowButtonText;
@@ -20,6 +20,12 @@ namespace UI
         [SerializeField] private Button actionInfoButton;
         [SerializeField] private GameObject actionInfoBox;
         [SerializeField] private Text actionInfoText;
+
+        [Header("Field Info properties")]
+        [SerializeField] private Button fieldInfoCloseButton;
+        [SerializeField] private GameObject fieldInfoBox;
+        [SerializeField] private Text fieldInfoText;
+        [SerializeField] private Text fieldNameText;
 
         //(0, 1)->(left dice, right dice)
         [Space(2)] [Header("Dices properties")]
@@ -35,17 +41,20 @@ namespace UI
         private int diceResult;
         private bool currentFieldShow;
         private bool actionInfoShow;
+        private bool fieldInfoShow;
 
         void Start()
         {
             currentFieldShow = true;
             actionInfoShow = false;
+            fieldInfoShow = false;
             UpdateContent();
         }
 
         void Update()
         {
             UpdateContent();
+            CheckColliders();
         }
 
         private void UpdateContent()
@@ -71,6 +80,7 @@ namespace UI
 
             UpdateCurrentFieldContent();
             UpdateActionInfoBox();
+            UpdateFieldInfoBox();
 
             //dices unseen until simulation changes it
             if (!GameManager.GetMyPlayer().IsDuringMove)
@@ -112,21 +122,51 @@ namespace UI
         public void UpdateCurrentFieldContent()
         {
             currentFieldBox.SetActive(currentFieldShow);
-            currentFieldText.enabled = currentFieldShow;
             if (currentFieldShow)
-                currentFieldText.text = GameManager.GetMyPlayer().LastFieldId < 0 ?
-                    "Zczytaj pozycję gracza" : GameManager.GetMyPlayer().GetCurrentFieldName();
+                currentFieldText.text = GameManager.GetMyPlayer().GetCurrentFieldName();
         }
 
         public void UpdateActionInfoBox()
         {
             actionInfoBox.SetActive(actionInfoShow);
-            actionInfoText.enabled = actionInfoShow;
             if (actionInfoShow)
-                actionInfoText.text = GameManager.GetMyPlayer().LastFieldId < 0 ?
-                    "Zczytaj pozycję gracza poprzez nakierowanie kamery telefonu na znacznik gracza. " +
-                    "Zrób to tak, aby w obrębie ekranu był widoczny przynajmniej jeden znacznik planszy" 
-                    : GameManager.GetMyPlayer().GetCurrentFieldActions();
+                actionInfoText.text = GameManager.GetMyPlayer().GetCurrentFieldActions();
+        }
+
+        public void UpdateFieldInfoBox()
+        {
+            fieldInfoBox.SetActive(fieldInfoShow);
+        }
+
+        public void CheckColliders()
+        {
+            Ray ray = new();
+            bool read = false;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                read = true;
+            }
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                Vector3 touchPosition = Input.GetTouch(0).position;
+                ray = Camera.main.ScreenPointToRay(touchPosition);
+                read = true;
+            }
+
+            if (!read) return;
+            if (!Physics.Raycast(ray, out var hit)) return;
+
+            if (hit.collider.CompareTag("FieldHighlight"))
+            {
+                fieldInfoBox.SetActive(true);
+                int fieldId = hit.collider.GetComponent<InteractiveElement>().Index;
+                var field = GameManager.BoardManager.GetFieldById(fieldId);
+                fieldNameText.text = "Pole: " + field.Name;
+                fieldInfoText.text = field.GetActionsInfo();
+                fieldInfoShow = true;
+            }
         }
 
         public void OnDiceThrowButtonClick()
@@ -156,6 +196,12 @@ namespace UI
         {
             actionInfoShow = !actionInfoShow;
             UpdateActionInfoBox();
+        }
+
+        public void OnCloseFieldInfoButton()
+        {
+            fieldInfoShow = false;
+            UpdateFieldInfoBox();
         }
     }
 }

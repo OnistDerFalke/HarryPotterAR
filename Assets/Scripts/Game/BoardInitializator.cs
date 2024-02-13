@@ -351,7 +351,7 @@ namespace Assets.Scripts
                 "Pokój życzeń", new List<Action>() { Action.CAN_MAKE_MISSION, Action.CAN_TELEPORT }, 
                 isMissionField: true, missionNumbers: new List<int>() { 26 } ));
             // Wieża z eliksirem obok pokoju życzeń
-            GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(30.1f, 37.1f), 1.5f), 82,
+            GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(20.1f, 37.1f), 1.5f), 82,
                 "Wieża z eliksirem", new List<Action>() { Action.GET_ONE_ELIXIR, Action.CAN_USE_FIUU }, isTower: true));
             // Sprawowanie nad pokojem życzeń
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
@@ -396,7 +396,7 @@ namespace Assets.Scripts
                 isMissionField: true, missionNumbers: new List<int>() { 4, 27 } ));
             // Boisko do quidditcha
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(15.2f, 45.4f), 1.8f), 93,
-                "Boisko do quidditcha", new List<Action>() { Action.CAN_MAKE_MISSION, Action.CAN_START_QUIDDITCH }, 
+                "Boisko do quidditcha", new List<Action>() { Action.CAN_MAKE_MISSION, Action.CAN_USE_PORTKEY, Action.CAN_START_QUIDDITCH }, 
                 isMissionField: true, isQuidditchPitch: true, missionNumbers: new List<int>() { 7, 13, 16 } ));
             // Eliksir obok zakazanego lasu
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(11.4f, 39.6f), 1.5f), 94,
