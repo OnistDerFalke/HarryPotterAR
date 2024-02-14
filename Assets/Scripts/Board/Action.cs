@@ -26,6 +26,7 @@ namespace Assets.Scripts
         ADD_FIVE_LIVES,                 //pola +5¿ (ko³o jeziora)
         ADD_SIX_LIVES,                  //skrzyd³o szpitalne
         CAN_MAKE_MISSION,               //wszystkie pola z misj¹
+        CAN_PASS_EXAMS,                 //klasy
         CAN_USE_FIUU,                   //wie¿a zamkowa
         CAN_USE_PORTKEY,                //boisko do quidditcha
 
@@ -82,6 +83,8 @@ namespace Assets.Scripts
                     }
                     result += "), mo¿esz j¹ wykonaæ.";
                     return result;
+                case Action.CAN_PASS_EXAMS:
+                    return "Mo¿esz zdaæ egzaminy, jeœli posiadasz karty ksiêgi powi¹zane z t¹ klas¹.";
                 case Action.CAN_USE_FIUU:
                     return "Mo¿esz transportowaæ siê za pomoc¹ proszka fiuu na 1 z 7 pól na planszy 2 (z wyj¹tkiem \"Cmentarza w Little Hangleton\"). " +
                         "Na koniec tury wróæ do miejsca, z którego siê przenios³eœ.";

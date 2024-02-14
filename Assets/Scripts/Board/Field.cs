@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts;
 
 namespace Assets.Scripts
 {
@@ -38,6 +40,7 @@ namespace Assets.Scripts
         public string Name { get => name; }
         public List<Action> Actions { get => actions; }
         public List<int> MissionNumbers { get => missionNumbers; }
+        public List<Instruction.InstructionInfo> InstructionParts;
 
         public Field(int boardId, IFigure figure, int index, string name, List<Action> actions,
             bool isTower = false, bool isMissionField = false, bool isFiuuField = false,
@@ -56,6 +59,7 @@ namespace Assets.Scripts
             this.isQuidditchPitch = isQuidditchPitch;
             this.portalField = null;
             this.neighbors = new List<Field>();
+            CreateFieldInstruction();
         }
 
         public string GetActionsInfo()
@@ -95,6 +99,50 @@ namespace Assets.Scripts
         {
             RequestBroker.requests.Add(new UnhighlightFieldRequest(this));
             isHighlighted = false;
+        }
+
+        public void CreateFieldInstruction()
+        {
+            Instruction instruction = new();
+
+            InstructionParts = new();
+
+            if (IsQuidditchPitch)
+            {
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchPreparation);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound1);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound1_Actions1);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound1_Actions2);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound2);
+            }
+            if (IsMissionField)
+            {
+                InstructionParts.Add(Instruction.InstructionInfo.MissionCompleting);
+                InstructionParts.Add(Instruction.InstructionInfo.MissionFight);
+            }
+            if (Actions.Contains(Action.FIGHT_FIELD))
+                InstructionParts.Add(Instruction.InstructionInfo.FightOnFightField);
+
+            InstructionParts.Add(Instruction.InstructionInfo.PlayerMove);
+            InstructionParts.Add(Instruction.InstructionInfo.SpecialItems);
+            InstructionParts.Add(Instruction.InstructionInfo.FightWithPlayer);
+            InstructionParts.Add(Instruction.InstructionInfo.GameDuration);
+
+            if (!IsMissionField)
+            {
+                InstructionParts.Add(Instruction.InstructionInfo.MissionCompleting);
+                InstructionParts.Add(Instruction.InstructionInfo.MissionFight);
+            }
+            if (!Actions.Contains(Action.FIGHT_FIELD))
+                InstructionParts.Add(Instruction.InstructionInfo.FightOnFightField);
+            if (!IsQuidditchPitch)
+            {
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchPreparation);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound1);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound1_Actions1);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound1_Actions2);
+                InstructionParts.Add(Instruction.InstructionInfo.QuidditchRound2);
+            }
         }
     }
 }

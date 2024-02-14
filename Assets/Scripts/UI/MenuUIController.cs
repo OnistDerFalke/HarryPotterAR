@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace UI
+namespace Scripts
 {
     public class MenuUIController : MonoBehaviour
     {
-        [SerializeField] private GameObject[] menuContext = new GameObject[2];
+        [SerializeField] private GameObject[] menuContext = new GameObject[3];
+
+        [Header("Character Context")]
         [SerializeField] private GameObject characterBox;
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button backButton;
@@ -21,11 +23,19 @@ namespace UI
         [SerializeField] private Sprite vuMarksSpriteNotSet;
         [SerializeField] private Text characterName;
         [SerializeField] private Image vuMarkImage;
-        
+
+        [Header("Instruction Context")]
+        [SerializeField] private GameObject instructionBox;
+        [SerializeField] private Button nextInstructionButton;
+        [SerializeField] private Button previousInstructionButton;
+        [SerializeField] private Text instructionTitle;
+        [SerializeField] private Text instructionText;
+
         private enum Contexts
         {
             StartContext,
-            CharactersContext
+            CharactersContext,
+            InstructionContext
         }
 
         private enum SwitchDirection
@@ -34,6 +44,7 @@ namespace UI
             Right
         }
 
+        // character context
         private int playersNumber;
         private int chosenPlayerIndex;
         private int charactersNumber = 9;
@@ -41,11 +52,18 @@ namespace UI
         private Character[] chosenCharacters;
         private bool[] takenCharacters;
 
+        // instruction context
+        private Instruction instruction;
+        private int currentInstructionPartId;
+        private int instructionPartNumber;
+
         private void Start()
         {
             ChangeContext(Contexts.StartContext);
             playersNumber = 1;
             chosenPlayerIndex = 0;
+            instruction = new();
+            instructionPartNumber = instruction.instructions.Count;
         }
 
         private void Update()
@@ -88,6 +106,13 @@ namespace UI
                 vuMarkImage.sprite = chosenCharacterIndex == 0
                     ? vuMarksSpriteNotSet : vuMarksSprites[chosenCharacterIndex - 1];
             }
+        }
+
+        private void UpdateInstructionContext()
+        {
+            var info = (Instruction.InstructionInfo)currentInstructionPartId;
+            instructionTitle.text = instruction.GetInstructionInfoString(info);
+            instructionText.text = instruction.instructions[info];
         }
 
         private void ChangeContext(Contexts context)
@@ -142,6 +167,25 @@ namespace UI
         public void OnPreviousCharacterButtonClick()
         {
             SwitchCharacter(SwitchDirection.Left);
+        }
+
+        public void OnInstructionContextButtonClick()
+        {
+            ChangeContext(Contexts.InstructionContext);
+            currentInstructionPartId = 0;
+            UpdateInstructionContext();
+        }
+
+        public void OnNextInstructionButtonClick()
+        {
+            currentInstructionPartId = (currentInstructionPartId + 1) % instructionPartNumber;
+            UpdateInstructionContext();
+        }
+
+        public void OnPreviousInstructionButtonClick()
+        {
+            currentInstructionPartId = (currentInstructionPartId - 1) < 0 ? instructionPartNumber - 1 : currentInstructionPartId - 1;
+            UpdateInstructionContext();
         }
     }
 }

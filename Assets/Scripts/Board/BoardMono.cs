@@ -119,7 +119,7 @@ public class BoardMono : MonoBehaviour
                 Player player = GameManager.Players.Find((e) => e.Character == character);
                 if (f != null && player != null)
                 {
-                    if (player.LastFieldId != f.Index)
+                    if (!player.IsDuringMove && player.LastFieldId != f.Index)
                     {
                         player.LastFieldId = f.Index;
                     }

@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts;
+using System.Collections.Generic;
 using UnityEngine;
+using Scripts;
 
 namespace Game
 {  
@@ -39,6 +41,11 @@ namespace Game
                 return GameManager.BoardManager.GetFieldById(lastFieldId).GetActionsInfo();
             return "Zczytaj pozycję gracza poprzez nakierowanie kamery telefonu na znacznik gracza. " +
                     "Zrób to tak, aby w obrębie ekranu był widoczny przynajmniej jeden znacznik planszy";
+        }
+
+        public List<Instruction.InstructionInfo> GetCurrentInstructionParts()
+        {
+            return GameManager.BoardManager.GetFieldById(lastFieldId).InstructionParts;
         }
 
         public static Character CharacterFromString(string s)

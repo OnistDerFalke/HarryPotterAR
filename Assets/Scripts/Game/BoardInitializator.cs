@@ -225,7 +225,7 @@ namespace Assets.Scripts
                 "Pole z eliksirem", new List<Action>() { Action.GET_ONE_ELIXIR }));
             // Eliksiry - sala w części z nauką Eliksirów
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(28.85f, 20.15f), 1.5f), 50,
-                "Eliksiry (klasa)", new List<Action>() { Action.GET_TWO_ELIXIRS, Action.CAN_USE_FIUU }, isTower: true));
+                "Eliksiry (klasa)", new List<Action>() { Action.GET_TWO_ELIXIRS, Action.CAN_PASS_EXAMS, Action.CAN_USE_FIUU }, isTower: true));
             // Księga obok eliksirów w części z nauką Eliksirów
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(30.5f, 21.25f), new Vector2(32.7f, 21.25f), new Vector2(32.7f, 18.9f), new Vector2(30.5f, 18.9f)), 51,
@@ -252,7 +252,7 @@ namespace Assets.Scripts
                 "Pole z zaklęciem", new List<Action>() { Action.GET_ONE_SPELL }));
             // Transmutacja
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(43.1f, 31.1f), 1.5f), 58,
-                "Transmutacja (klasa)", new List<Action>() { Action.GET_ONE_SPELL, Action.CAN_USE_FIUU}, isTower: true));
+                "Transmutacja (klasa)", new List<Action>() { Action.GET_ONE_SPELL, Action.CAN_PASS_EXAMS, Action.CAN_USE_FIUU}, isTower: true));
             // Pojedynek nad transmutacją
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(41.5f, 35.3f), new Vector2(44.2f, 35.3f), new Vector2(44.1f, 33.0f), new Vector2(41.55f, 32.8f)), 59,
@@ -275,7 +275,7 @@ namespace Assets.Scripts
             // Zielarstwo
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(44.5f, 46.4f), new Vector2(46.7f, 46.4f), new Vector2(46.7f, 43.9f), new Vector2(44.5f, 43.9f)), 64,
-                "Zielarstwo (klasa)", new List<Action>() { Action.GET_TWO_ELIXIRS }));
+                "Zielarstwo (klasa)", new List<Action>() { Action.GET_TWO_ELIXIRS, Action.CAN_PASS_EXAMS }));
             // +4PŻ obok zielarstwa
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(44.5f, 43.5f), new Vector2(46.8f, 43.5f), new Vector2(46.8f, 41.5f), new Vector2(44.5f, 41.5f)), 65,
@@ -302,7 +302,7 @@ namespace Assets.Scripts
                 "Pole", new List<Action>() { }));
             // Zaklęcia i uroki
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(31.5f, 37.1f), 1.5f), 70,
-                "Zaklęcia i uroki (klasa)", new List<Action>() { Action.GET_ONE_SPELL, Action.CAN_USE_FIUU }, isTower: true));
+                "Zaklęcia i uroki (klasa)", new List<Action>() { Action.GET_ONE_SPELL, Action.CAN_PASS_EXAMS, Action.CAN_USE_FIUU }, isTower: true));
             // Zaklęcie pod zaklęciami i urokami
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
                 new Vector2(30.35f, 35.3f), new Vector2(33.0f, 35.3f), new Vector2(33.0f, 33.0f), new Vector2(30.35f, 33.0f)), 71,
@@ -329,7 +329,7 @@ namespace Assets.Scripts
                 "Pole z pojedynkiem", new List<Action>() { Action.FIGHT_FIELD }));
             // Obrona przed czarną magią
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(19.7f, 30.9f), 2.0f), 77,
-                "Obrona przed czarną magią (klasa)", new List<Action>() { Action.GET_ONE_SPELL, Action.CAN_MAKE_MISSION, Action.CAN_USE_FIUU }, 
+                "Obrona przed czarną magią (klasa)", new List<Action>() { Action.GET_ONE_SPELL, Action.CAN_MAKE_MISSION, Action.CAN_PASS_EXAMS, Action.CAN_USE_FIUU }, 
                 isTower: true, isMissionField: true, missionNumbers: new List<int>() { 17 } ));
             // Most wiszący
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Quadrangle(
@@ -414,7 +414,7 @@ namespace Assets.Scripts
                 "Pole ze sprawowaniem", new List<Action>() { Action.GET_ONE_EXERCISE }));
             // Opieka nad magicznymi stworzeniami
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(6.7f, 37.3f), 1.6f), 98,
-                "Opieka nad magicznymi stworzeniami (klasa)", new List<Action>() { Action.GET_TWO_ELIXIRS }));
+                "Opieka nad magicznymi stworzeniami (klasa)", new List<Action>() { Action.GET_TWO_ELIXIRS, Action.CAN_PASS_EXAMS }));
             // +4PŹ niedaleko Jeziora
             GameManager.BoardManager.Boards[boardId].Fields.Add(new Field(boardId, new Circle(new Vector2(8.3f, 32.3f), 1.3f), 99,
                 "Pole z +4PŻ", new List<Action>() { Action.ADD_FOUR_LIVES }));

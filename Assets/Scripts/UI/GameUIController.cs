@@ -1,9 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace Scripts
 {
     public class GameUIController : MonoBehaviour
     {
@@ -22,10 +23,17 @@ namespace UI
         [SerializeField] private Text actionInfoText;
 
         [Header("Field Info properties")]
-        [SerializeField] private Button fieldInfoCloseButton;
         [SerializeField] private GameObject fieldInfoBox;
         [SerializeField] private Text fieldInfoText;
         [SerializeField] private Text fieldNameText;
+
+        [Header("Instruction properties")]
+        [SerializeField] private GameObject instructionBox;
+        [SerializeField] private Button instructionShowButton;
+        [SerializeField] private Button nextInstructionButton;
+        [SerializeField] private Button previousInstructionButton;
+        [SerializeField] private Text instructionTitle;
+        [SerializeField] private Text instructionText;
 
         //(0, 1)->(left dice, right dice)
         [Space(2)] [Header("Dices properties")]
@@ -43,11 +51,20 @@ namespace UI
         private bool actionInfoShow;
         private bool fieldInfoShow;
 
+        //instruction variables
+        private bool instructionShow;
+        private List<Instruction.InstructionInfo> instructionParts;
+        private Instruction baseInstruction;
+        private int currentInstructionPartId;
+        private int instructionPartNumber;
+
         void Start()
         {
             currentFieldShow = true;
             actionInfoShow = false;
             fieldInfoShow = false;
+            instructionShow = false;
+            baseInstruction = new();
             UpdateContent();
         }
 
@@ -81,6 +98,7 @@ namespace UI
             UpdateCurrentFieldContent();
             UpdateActionInfoBox();
             UpdateFieldInfoBox();
+            UpdateInstructionBox();
 
             //dices unseen until simulation changes it
             if (!GameManager.GetMyPlayer().IsDuringMove)
@@ -131,6 +149,18 @@ namespace UI
             actionInfoBox.SetActive(actionInfoShow);
             if (actionInfoShow)
                 actionInfoText.text = GameManager.GetMyPlayer().GetCurrentFieldActions();
+        }
+
+        public void UpdateInstructionBox()
+        {
+            instructionBox.SetActive(instructionShow);
+
+            if (instructionShow)
+            {
+                var info = instructionParts[currentInstructionPartId];
+                instructionTitle.text = baseInstruction.GetInstructionInfoString(info);
+                instructionText.text = baseInstruction.instructions[info];
+            }
         }
 
         public void UpdateFieldInfoBox()
@@ -202,6 +232,30 @@ namespace UI
         {
             fieldInfoShow = false;
             UpdateFieldInfoBox();
+        }
+
+        public void OnShowInstructionButtonClick()
+        {
+            instructionShow = !instructionShow;
+            if (instructionShow)
+            {
+                currentInstructionPartId = 0;
+                instructionParts = GameManager.GetMyPlayer().GetCurrentInstructionParts();
+                instructionPartNumber = instructionParts.Count;
+            }
+            UpdateInstructionBox();
+        }
+
+        public void OnNextInstructionButtonClick()
+        {
+            currentInstructionPartId = (currentInstructionPartId + 1) % instructionPartNumber;
+            UpdateInstructionBox();
+        }
+
+        public void OnPreviousInstructionButtonClick()
+        {
+            currentInstructionPartId = (currentInstructionPartId - 1) < 0 ? instructionPartNumber - 1 : currentInstructionPartId - 1;
+            UpdateInstructionBox();
         }
     }
 }
