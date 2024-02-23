@@ -1095,7 +1095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &339324363
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1741,8 +1741,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1970195337}
-        m_TargetAssemblyTypeName: UI.MenuUIController, Assembly-CSharp
-        m_MethodName: OnBackButtonClick
+        m_TargetAssemblyTypeName: Scripts.MenuUIController, Assembly-CSharp
+        m_MethodName: OnBackToMenuButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2157,7 +2157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &937553879
 RectTransform:
   m_ObjectHideFlags: 0

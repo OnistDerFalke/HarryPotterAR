@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -139,7 +140,7 @@ namespace Assets.Scripts
             return err;
         }
 
-        private string ChooseReferenceMarker()
+        private (string, float) ChooseReferenceMarker()
         {
             string bestId = null;
             float minErrorRate = float.MaxValue;
@@ -153,7 +154,7 @@ namespace Assets.Scripts
                     bestId = markerId;
                 }
             }
-            return bestId;
+            return (bestId, minErrorRate);
         }
 
         private void Awake()
@@ -168,13 +169,21 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            string id = ChooseReferenceMarker();
-            if (id != referenceMarker.id)
+            var bestMarker = ChooseReferenceMarker();
+            if (bestMarker.Item1 != referenceMarker.id)
             {
-                GameObject marker = vuMarkHandler.FindModelById(id);
+                if (referenceMarker.marker != null && board.CurrentTrackedBoardMarks.Contains(referenceMarker.id))
+                {
+                    float referenceError = CalculateErrorRate(referenceMarker.id);
+                    if (Math.Abs(bestMarker.Item2 - referenceError) < 0.00005f)
+                        return;
+                }
+
+                Debug.Log("Podmianka");
+                GameObject marker = vuMarkHandler.FindModelById(bestMarker.Item1);
                 if (marker != null)
                 {
-                    referenceMarker = (id, marker);
+                    referenceMarker = (bestMarker.Item1, marker);
                 }
             }
         }

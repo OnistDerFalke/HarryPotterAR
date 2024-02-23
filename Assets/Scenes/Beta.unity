@@ -13345,7 +13345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[9].y
-      value: 18.5
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6242176047080628768, guid: a23174d1f16ccaf42a23ee4782f6a3ed, type: 3}
       propertyPath: boardMarkPositions.Array.data[10].x
