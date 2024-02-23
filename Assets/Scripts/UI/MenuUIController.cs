@@ -11,7 +11,7 @@ namespace Scripts
 {
     public class MenuUIController : MonoBehaviour
     {
-        [SerializeField] private GameObject[] menuContext = new GameObject[3];
+        [SerializeField] private GameObject[] menuContext = new GameObject[4];
 
         [Header("Character Context")]
         [SerializeField] private GameObject characterBox;
@@ -25,17 +25,21 @@ namespace Scripts
         [SerializeField] private Image vuMarkImage;
 
         [Header("Instruction Context")]
-        [SerializeField] private GameObject instructionBox;
         [SerializeField] private Button nextInstructionButton;
         [SerializeField] private Button previousInstructionButton;
         [SerializeField] private Text instructionTitle;
         [SerializeField] private Text instructionText;
 
+        [Header("Start Instruction Context")]
+        [SerializeField] private Text startInstructionTitle;
+        [SerializeField] private Text startInstructionText;
+
         private enum Contexts
         {
             StartContext,
             CharactersContext,
-            InstructionContext
+            InstructionContext,
+            StartInstructionContext
         }
 
         private enum SwitchDirection
@@ -138,24 +142,36 @@ namespace Scripts
             chosenCharacterIndex = 0;
 
             startGameButton.gameObject.SetActive(true);
-            characterBox.SetActive(true);
+            //characterBox.SetActive(true);
             nextCharacterButton.gameObject.SetActive(true);
             previousCharacterButton.gameObject.SetActive(true);
 
             UpdateCharactersContext();
         }
 
-        public void OnBackButtonClick()
+        public void OnBackToMenuButtonClick()
         {
             ChangeContext(Contexts.StartContext);
         }
 
-        public void OnStartGameButtonClick()
+        public void OnBackToCharactersButtonClick()
+        {
+            ChangeContext(Contexts.CharactersContext);
+        }
+
+        public void OnStartInstructionButtonClick()
         {
             chosenCharacters[chosenPlayerIndex] = (Character)Enum.ToObject(typeof(Character), chosenCharacterIndex);
             takenCharacters[chosenCharacterIndex] = true;
 
             LoadDataToGameManager();
+            startInstructionTitle.text = instruction.GetInstructionInfoString(Instruction.InstructionInfo.GamePreparation);
+            startInstructionText.text = instruction.instructions[Instruction.InstructionInfo.GamePreparation];
+            ChangeContext(Contexts.StartInstructionContext);
+        }
+
+        public void OnStartGameButtonClick()
+        {
             SceneManager.LoadScene("Scenes/Beta", LoadSceneMode.Single);
         }
 

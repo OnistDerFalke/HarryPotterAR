@@ -194,7 +194,7 @@ namespace Scripts
                 int fieldId = hit.collider.GetComponent<InteractiveElement>().Index;
                 var field = GameManager.BoardManager.GetFieldById(fieldId);
                 fieldNameText.text = "Pole: " + field.Name;
-                fieldInfoText.text = field.GetActionsInfo();
+                fieldInfoText.text = field.GetActionsShortInfo();
                 fieldInfoShow = true;
             }
         }

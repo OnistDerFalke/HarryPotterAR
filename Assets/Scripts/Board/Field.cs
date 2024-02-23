@@ -76,6 +76,20 @@ namespace Assets.Scripts
             return actionText;
         }
 
+        public string GetActionsShortInfo()
+        {
+            string actionText = "";
+            for (var i = 0; i < actions.Count; i++)
+            {
+                actionText += ActionText.getActionShortText(actions[i], missionNumbers);
+                if (i < actions.Count - 1)
+                    actionText += "\n";
+            }
+            if (actionText == "")
+                actionText = "Pole nie posiada ¿adnych akcji.";
+            return actionText;
+        }
+
         public void AddNeighbors(List<Field> neighbors)
         {
             this.neighbors.AddRange(neighbors);

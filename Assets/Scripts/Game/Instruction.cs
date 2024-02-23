@@ -77,7 +77,7 @@ namespace Scripts
 
             instructions[InstructionInfo.GamePreparation] =
                 "1. Umieszczenie przedmiotów (³¹cznie 30) na polach z gwiazdk¹.\n\n" +
-                "2. Ka¿dy gracz wybiera 1 z 9 plaszetek z dostêpnymi postaciami.\n\n" +
+                "2. Ka¿dy gracz wybiera 1 z 9 planszetek z dostêpnymi postaciami.\n\n" +
                 "3. Ka¿dy gracz dostaje 2 ¿etony proszka fiuu, 1 œwistoklik, odpowiedni¹ liczbê ¿yæ oraz karty okreœlone na planszetce.\n\n" +
                 "4. Ka¿dy losuje 5 kart misji (je¿eli w grze bierze udzia³ wiêcej ni¿ 6 graczy, losuj¹ po 3).\n\n" +
                 "5. Wszyscy gracze zaczynaj¹ na polu \"Start\".";

@@ -102,5 +102,67 @@ namespace Assets.Scripts
 
             return "";
         }
+
+        public static string getActionShortText(Action action, List<int> missionNumbers)
+        {
+            switch (action)
+            {
+                case Action.COMMON_ROOM_CHOICE:
+                    return "WeŸ jedn¹ dowoln¹ kartê lub zaproponuj wymianê przedmiotu pozosta³ym graczom.";
+                case Action.FIGHT_FIELD:
+                    return "Pobierz kartê z pojedynkiem i przeprowadŸ walkê.";
+                case Action.GET_ONE_BOOK:
+                    return "WeŸ jedn¹ kartê ksiêgi.";
+                case Action.GET_ONE_ELIXIR:
+                    return "WeŸ jedn¹ kartê eliksiru.";
+                case Action.GET_ONE_EVENT:
+                    return "WeŸ jedn¹ kartê wydarzenia.";
+                case Action.GET_ONE_EXERCISE:
+                    return "WeŸ jedn¹ kartê sprawowania.";
+                case Action.GET_ONE_SPELL:
+                    return "WeŸ jedn¹ kartê zaklêcia.";
+                case Action.GET_TWO_BOOKS:
+                    return "WeŸ dwie karty ksiêgi.";
+                case Action.GET_TWO_ELIXIRS:
+                    return "WeŸ dwie karty eliksiru.";
+                case Action.GET_TWO_SPELLS:
+                    return "WeŸ dwie karty zaklêcia.";
+                case Action.GET_QUIDDITCH_CARD:
+                    return "WeŸ jedn¹ kartê quidditcha.";
+                case Action.ADD_TWO_LIVES:
+                    return "Jeœli masz miejsce, dobierz 2 ¿ycia.";
+                case Action.ADD_THREE_LIVES:
+                    return "Jeœli masz miejsce, dobierz 3 ¿ycia.";
+                case Action.ADD_FOUR_LIVES:
+                    return "Jeœli masz miejsce, dobierz 4 ¿ycia.";
+                case Action.ADD_FIVE_LIVES:
+                    return "Jeœli masz miejsce, dobierz 5 ¿yæ.";
+                case Action.ADD_SIX_LIVES:
+                    return "Jeœli masz miejsce, dobierz 6 ¿yæ.";
+                case Action.CAN_MAKE_MISSION:
+                    string result = "Je¿eli spe³niasz wszystkie warunki odpowiedniej misji (nr ";
+                    for (int i = 0; i < missionNumbers.Count; i++)
+                    {
+                        result += $"{missionNumbers[i]}";
+                        if (i < missionNumbers.Count - 1) result += ", ";
+                    }
+                    result += "), mo¿esz j¹ wykonaæ.";
+                    return result;
+                case Action.CAN_PASS_EXAMS:
+                    return "Mo¿esz zdaæ egzaminy, jeœli posiadasz karty ksiêgi powi¹zane z t¹ klas¹.";
+                case Action.CAN_USE_FIUU:
+                    return "Mo¿esz transportowaæ siê za pomoc¹ proszka fiuu planszê 2.";
+                case Action.CAN_USE_PORTKEY:
+                    return "Mo¿esz za pomoc¹ œwistoklika przenieœæ siê na pole \"Cmentarz w Little Hangleton\".";
+                case Action.CAN_GET_THING:
+                    return "Mo¿esz podnieœæ przedmiot, który znajduje siê na tym polu.";
+                case Action.CAN_START_QUIDDITCH:
+                    return "Mo¿esz wyzwaæ dowolnego gracza do meczu Quidditcha.";
+                case Action.CAN_TELEPORT:
+                    return "Z tego pola mo¿esz siê teleportowaæ (za darmo) na odpowiednio po³¹czone z nim pole.";
+            }
+
+            return "";
+        }
     }
 }
