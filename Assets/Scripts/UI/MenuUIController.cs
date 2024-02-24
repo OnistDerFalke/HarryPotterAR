@@ -64,6 +64,7 @@ namespace Scripts
         private void Start()
         {
             ChangeContext(Contexts.StartContext);
+            GameManager.Setup();
             playersNumber = 1;
             chosenPlayerIndex = 0;
             instruction = new();
@@ -88,7 +89,7 @@ namespace Scripts
                 {
                     case SwitchDirection.Left:
                         chosenCharacterIndex =
-                            chosenCharacterIndex == 0 ? charactersNumber - 1 : chosenCharacterIndex - 1;
+                            chosenCharacterIndex == 0 ? charactersNumber : chosenCharacterIndex - 1;
                         break;
                     case SwitchDirection.Right:
                         chosenCharacterIndex = (chosenCharacterIndex + 1) % (charactersNumber + 1);

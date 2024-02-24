@@ -10,14 +10,19 @@ namespace Assets.Scripts
         public static BoardManager BoardManager = new();
         public static int CurrentDiceThrownNumber;
         public static int PlayerNumber;
-        public static List<Player> Players = new List<Player>();
-        public static List<string> DebugLogs = new();
-        public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects = new();
+        public static List<Player> Players;
+        public static List<string> DebugLogs;
+        public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects;
         public static bool setup = false;
 
         public static void Setup()
         {
             BoardManager.Setup();
+            Players = new();
+            DebugLogs = new();
+            CurrentDiceThrownNumber = -1;
+            PlayerNumber = 0;
+            CurrentTrackedObjects = new();
             setup = true;
         }
 

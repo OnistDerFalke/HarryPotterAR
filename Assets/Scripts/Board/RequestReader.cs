@@ -17,7 +17,13 @@ public class RequestReader : MonoBehaviour
         else if(request is UnhighlightFieldRequest)
         {
             UnhighlightFieldRequest unhighlightRequest = request as UnhighlightFieldRequest;
-            boards[unhighlightRequest.field.BoardId].boardVisualiser.UnhighlightField(unhighlightRequest.field);
+            if (unhighlightRequest.field == null)
+            {
+                foreach (var board in boards)
+                    board.boardVisualiser.UnhighlightField(null);
+            }
+            else
+                boards[unhighlightRequest.field.BoardId].boardVisualiser.UnhighlightField(unhighlightRequest.field);
         }
         else if(request is BoardInitializedRequest)
         {

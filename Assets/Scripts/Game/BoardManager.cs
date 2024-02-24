@@ -78,7 +78,9 @@ namespace Assets.Scripts
 
         public void UnhighlightAllFields()
         {
-            boards[0].Fields.ForEach(delegate(Field field)
+            RequestBroker.requests.Add(new UnhighlightFieldRequest(null));
+
+            boards[0].Fields.ForEach(delegate (Field field)
             {
                 field.Unhighlight();
             });

@@ -67,7 +67,7 @@ namespace Assets.Scripts
             string actionText = "";
             for (var i = 0; i < actions.Count; i++)
             {
-                actionText += ActionText.getActionText(actions[i], missionNumbers);
+                actionText += ActionText.GetActionText(actions[i], missionNumbers);
                 if (i < actions.Count - 1) 
                     actionText += "\n\n";
             }
@@ -81,7 +81,7 @@ namespace Assets.Scripts
             string actionText = "";
             for (var i = 0; i < actions.Count; i++)
             {
-                actionText += ActionText.getActionShortText(actions[i], missionNumbers);
+                actionText += ActionText.GetActionShortText(actions[i], missionNumbers);
                 if (i < actions.Count - 1)
                     actionText += "\n";
             }
@@ -102,7 +102,7 @@ namespace Assets.Scripts
 
         public void Highlight()
         {
-            if(!isHighlighted)
+            if (!isHighlighted)
             {
                 RequestBroker.requests.Add(new HighlightFieldRequest(this));
                 isHighlighted = true;
@@ -111,8 +111,11 @@ namespace Assets.Scripts
 
         public void Unhighlight()
         {
-            RequestBroker.requests.Add(new UnhighlightFieldRequest(this));
-            isHighlighted = false;
+            if (isHighlighted)
+            {
+                //RequestBroker.requests.Add(new UnhighlightFieldRequest(this));
+                isHighlighted = false;
+            }
         }
 
         public void CreateFieldInstruction()

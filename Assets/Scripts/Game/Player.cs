@@ -9,12 +9,14 @@ namespace Game
     {
         private int index;
         private Character character;
+        private SpecialPower specialPower;
         private bool isDuringMove;
         private bool myPlayer;
         private int lastFieldId;
 
         public int Index { get => index; }
         public Character Character { get => character; }
+        public SpecialPower SpecialPower { get => specialPower; }
         public bool IsDuringMove { get => isDuringMove; set => isDuringMove = value; }
         public bool IsMyPlayer { get => myPlayer; }
         public int LastFieldId { get => lastFieldId; set => lastFieldId = value; }
@@ -26,6 +28,7 @@ namespace Game
             myPlayer = this.index == 0;
             isDuringMove = false;
             lastFieldId = 0;
+            this.specialPower = GetSpecialPower();
         }
 
         public string GetCurrentFieldName()
@@ -72,6 +75,33 @@ namespace Game
                     return Character.Ginny;
                 default:
                     return Character.None;
+            }
+        }
+
+        private SpecialPower GetSpecialPower()
+        {
+            switch (this.character)
+            {
+                case Character.Harry:
+                    return SpecialPower.GetOneMoreSpell;
+                case Character.Hermiona:
+                    return SpecialPower.GetOneMoreBook;
+                case Character.Luna:
+                    return SpecialPower.GetOneMoreBook;
+                case Character.Peter:
+                    return SpecialPower.AddTwoToMove;
+                case Character.Draco:
+                    return SpecialPower.GetOneMoreElixir;
+                case Character.Ron:
+                    return SpecialPower.AddThreeToMove;
+                case Character.Cedrik:
+                    return SpecialPower.GetAdditionalLive;
+                case Character.Neville:
+                    return SpecialPower.GetOneMoreElixir;
+                case Character.Ginny:
+                    return SpecialPower.AddTwoToMove;
+                default:
+                    return SpecialPower.None;
             }
         }
     }

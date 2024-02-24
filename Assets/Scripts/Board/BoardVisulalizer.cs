@@ -151,11 +151,25 @@ namespace Assets.Scripts
 
         public void UnhighlightField(Field f)
         {
-            List<(Field, GameObject)> highlights = fieldHighlights.FindAll((e) => e.Item1 == f);
-            foreach (var h in highlights)
+            if (f != null)
             {
-                Destroy(h.Item2);
-                fieldHighlights.Remove(h);
+                List<(Field, GameObject)> highlights = fieldHighlights.FindAll((e) => e.Item1.Index == f.Index);
+                foreach (var h in highlights)
+                {
+                    h.Item2.SetActive(false);
+                    Destroy(h.Item2);
+                    fieldHighlights.Remove(h);
+                }
+            }
+            else
+            {
+                List<(Field, GameObject)> highlights = new List<(Field, GameObject)>(fieldHighlights);
+                foreach (var h in highlights)
+                {
+                    h.Item2.SetActive(false);
+                    Destroy(h.Item2);
+                    fieldHighlights.Remove(h);
+                }
             }
         }
 

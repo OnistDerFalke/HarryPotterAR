@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Scripts
@@ -27,6 +28,12 @@ namespace Scripts
         [SerializeField] private Text fieldInfoText;
         [SerializeField] private Text fieldNameText;
 
+        [Header("Special Power Info properties")]
+        [SerializeField] private GameObject specialPowerInfoBox;
+        [SerializeField] private Text simpleSpecialPowerInfoText;
+        [SerializeField] private Text complexSpecialPowerInfoText;
+        [SerializeField] private Button specialPowerUseButton;
+
         [Header("Instruction properties")]
         [SerializeField] private GameObject instructionBox;
         [SerializeField] private Button instructionShowButton;
@@ -50,6 +57,7 @@ namespace Scripts
         private bool currentFieldShow;
         private bool actionInfoShow;
         private bool fieldInfoShow;
+        private bool specialPowerUsed;
 
         //instruction variables
         private bool instructionShow;
@@ -64,6 +72,7 @@ namespace Scripts
             actionInfoShow = false;
             fieldInfoShow = false;
             instructionShow = false;
+            specialPowerUsed = false;
             baseInstruction = new();
             UpdateContent();
         }
@@ -99,6 +108,7 @@ namespace Scripts
             UpdateActionInfoBox();
             UpdateFieldInfoBox();
             UpdateInstructionBox();
+            UpdateSpecialPowerInfoBox();
 
             //dices unseen until simulation changes it
             if (!GameManager.GetMyPlayer().IsDuringMove)
@@ -163,6 +173,59 @@ namespace Scripts
             }
         }
 
+        public void UpdateSpecialPowerInfoBox()
+        {
+            if (!specialPowerUsed)
+            {
+                SpecialPower power = GameManager.GetMyPlayer().SpecialPower;
+                bool addToMovePowerShow =
+                    (power == SpecialPower.AddThreeToMove || power == SpecialPower.AddTwoToMove) && GameManager.GetMyPlayer().IsDuringMove;
+                bool addLivePowerShow =
+                    power == SpecialPower.GetAdditionalLive && !GameManager.GetMyPlayer().IsDuringMove && GameManager.GetMyPlayer().LastFieldId >= 0;
+                specialPowerInfoBox.SetActive(addToMovePowerShow || addLivePowerShow);
+
+                if (addToMovePowerShow)
+                {
+                    if (power == SpecialPower.AddThreeToMove) complexSpecialPowerInfoText.text = "Dodaj 3 do ruchu";
+                    else if (power == SpecialPower.AddTwoToMove) complexSpecialPowerInfoText.text = "Dodaj 2 do ruchu";
+                    simpleSpecialPowerInfoText.text = "";
+                }
+                else if (addLivePowerShow)
+                {
+                    simpleSpecialPowerInfoText.text = "Dobierz 1 PŹ, jeśli masz taką możliwość";
+                    complexSpecialPowerInfoText.text = "";
+                }
+
+                specialPowerUseButton.gameObject.SetActive(addToMovePowerShow && !addLivePowerShow);
+            }
+            else
+            {
+                specialPowerInfoBox.SetActive(false);
+            }
+        }
+
+        public void OnSpecialPowerButtonClick()
+        {
+            SpecialPower power = GameManager.GetMyPlayer().SpecialPower;
+            if (power == SpecialPower.AddThreeToMove)
+            {
+                GameManager.CurrentDiceThrownNumber += 3;
+            }
+            else if (power == SpecialPower.AddTwoToMove)
+            {
+                GameManager.CurrentDiceThrownNumber += 2;
+            }
+            specialPowerUsed = true;
+
+            GameManager.BoardManager.UnhighlightAllFields();
+            GameManager.BoardManager.ShowPossibleMoves();
+        }
+
+        public void OnBackToMenuButtonClick()
+        {
+            SceneManager.LoadScene("Scenes/Menu", LoadSceneMode.Single);
+        }
+
         public void UpdateFieldInfoBox()
         {
             fieldInfoBox.SetActive(fieldInfoShow);
@@ -207,6 +270,7 @@ namespace Scripts
                 GameManager.GetMyPlayer().LastFieldId = -1;
                 UpdateContent();
                 GameManager.BoardManager.UnhighlightAllFields();
+                specialPowerUsed = false;
             }
             else
             {

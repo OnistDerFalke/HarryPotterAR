@@ -38,24 +38,35 @@ namespace Assets.Scripts
 
     public static class ActionText
     {
-        public static string getActionText(Action action, List<int> missionNumbers)
+        public static string GetActionText(Action action, List<int> missionNumbers)
         {
-            switch(action)
+            SpecialPower power = GameManager.GetMyPlayer().SpecialPower;
+
+            switch (action)
             {
                 case Action.COMMON_ROOM_CHOICE:
                     return "WeŸ jedn¹ dowoln¹ kartê lub zaproponuj wymianê przedmiotu pozosta³ym graczom.";
                 case Action.FIGHT_FIELD:
                     return "Pobierz kartê z pojedynkiem i przeprowadŸ walkê.";
                 case Action.GET_ONE_BOOK:
-                    return "WeŸ jedn¹ kartê ksiêgi.";
+                    if (power == SpecialPower.GetOneMoreBook)
+                        return "WeŸ dwie karty ksiêgi.";
+                    else
+                        return "WeŸ jedn¹ kartê ksiêgi.";
                 case Action.GET_ONE_ELIXIR:
-                    return "WeŸ jedn¹ kartê eliksiru.";
+                    if (power == SpecialPower.GetOneMoreElixir)
+                        return "WeŸ dwie karty eliksiru.";
+                    else
+                        return "WeŸ jedn¹ kartê eliksiru.";
                 case Action.GET_ONE_EVENT:
                     return "WeŸ jedn¹ kartê wydarzenia.";
                 case Action.GET_ONE_EXERCISE:
                     return "WeŸ jedn¹ kartê sprawowania.";
                 case Action.GET_ONE_SPELL:
-                    return "WeŸ jedn¹ kartê zaklêcia.";
+                    if (power == SpecialPower.GetOneMoreSpell)
+                        return "WeŸ dwie karty zaklêcia.";
+                    else
+                        return "WeŸ jedn¹ kartê zaklêcia.";
                 case Action.GET_TWO_BOOKS:
                     return "WeŸ dwie karty ksiêgi.";
                 case Action.GET_TWO_ELIXIRS:
@@ -103,8 +114,10 @@ namespace Assets.Scripts
             return "";
         }
 
-        public static string getActionShortText(Action action, List<int> missionNumbers)
+        public static string GetActionShortText(Action action, List<int> missionNumbers)
         {
+            SpecialPower power = GameManager.GetMyPlayer().SpecialPower;
+
             switch (action)
             {
                 case Action.COMMON_ROOM_CHOICE:
@@ -112,15 +125,24 @@ namespace Assets.Scripts
                 case Action.FIGHT_FIELD:
                     return "Pobierz kartê z pojedynkiem i przeprowadŸ walkê.";
                 case Action.GET_ONE_BOOK:
-                    return "WeŸ jedn¹ kartê ksiêgi.";
+                    if (power == SpecialPower.GetOneMoreBook)
+                        return "WeŸ dwie karty ksiêgi.";
+                    else
+                        return "WeŸ jedn¹ kartê ksiêgi.";
                 case Action.GET_ONE_ELIXIR:
-                    return "WeŸ jedn¹ kartê eliksiru.";
+                    if (power == SpecialPower.GetOneMoreElixir)
+                        return "WeŸ dwie karty eliksiru.";
+                    else
+                        return "WeŸ jedn¹ kartê eliksiru.";
                 case Action.GET_ONE_EVENT:
                     return "WeŸ jedn¹ kartê wydarzenia.";
                 case Action.GET_ONE_EXERCISE:
                     return "WeŸ jedn¹ kartê sprawowania.";
                 case Action.GET_ONE_SPELL:
-                    return "WeŸ jedn¹ kartê zaklêcia.";
+                    if (power == SpecialPower.GetOneMoreSpell)
+                        return "WeŸ dwie karty zaklêcia.";
+                    else
+                        return "WeŸ jedn¹ kartê zaklêcia.";
                 case Action.GET_TWO_BOOKS:
                     return "WeŸ dwie karty ksiêgi.";
                 case Action.GET_TWO_ELIXIRS:
