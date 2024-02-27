@@ -304,10 +304,28 @@ namespace Scripts
             if (instructionShow)
             {
                 currentInstructionPartId = 0;
-                instructionParts = GameManager.GetMyPlayer().GetCurrentInstructionParts();
+                instructionParts = GameManager.GetMyPlayer().LastFieldId >= 0 ? GameManager.GetMyPlayer().GetCurrentInstructionParts() : GetDefaultInstruction();
                 instructionPartNumber = instructionParts.Count;
             }
             UpdateInstructionBox();
+        }
+
+        private List<Instruction.InstructionInfo> GetDefaultInstruction()
+        {
+            List<Instruction.InstructionInfo> instructionParts = new();
+            instructionParts.Add(Instruction.InstructionInfo.PlayerMove);
+            instructionParts.Add(Instruction.InstructionInfo.SpecialItems);
+            instructionParts.Add(Instruction.InstructionInfo.FightWithPlayer);
+            instructionParts.Add(Instruction.InstructionInfo.GameDuration);
+            instructionParts.Add(Instruction.InstructionInfo.MissionCompleting);
+            instructionParts.Add(Instruction.InstructionInfo.MissionFight);
+            instructionParts.Add(Instruction.InstructionInfo.FightOnFightField);
+            instructionParts.Add(Instruction.InstructionInfo.QuidditchPreparation);
+            instructionParts.Add(Instruction.InstructionInfo.QuidditchRound1);
+            instructionParts.Add(Instruction.InstructionInfo.QuidditchRound1_Actions1);
+            instructionParts.Add(Instruction.InstructionInfo.QuidditchRound1_Actions2);
+            instructionParts.Add(Instruction.InstructionInfo.QuidditchRound2);
+            return instructionParts;
         }
 
         public void OnNextInstructionButtonClick()
