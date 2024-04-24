@@ -223,6 +223,7 @@ namespace Scripts
 
         public void OnBackToMenuButtonClick()
         {
+            GameManager.setup = false;
             SceneManager.LoadScene("Scenes/Menu", LoadSceneMode.Single);
         }
 
