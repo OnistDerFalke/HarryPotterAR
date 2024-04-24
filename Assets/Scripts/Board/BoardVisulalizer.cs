@@ -6,7 +6,7 @@ namespace Assets.Scripts
 {
     public class BoardVisulalizer : MonoBehaviour
     {
-        [SerializeField] private GameObject[] corners;
+        //[SerializeField] private GameObject[] corners;
         [SerializeField] private CoordinatesConverter converter;
         [SerializeField] private BoardMono boardMono;
         [SerializeField] private Material fieldMaterial;
@@ -20,17 +20,17 @@ namespace Assets.Scripts
 
         private Quaternion referenceRotation = Quaternion.identity;
 
-        private void TrackCorners()
-        {
-            corners[0].transform.position = converter.ConvertCoordinates(Vector2.zero);
-            corners[1].transform.position = converter.ConvertCoordinates(Vector2.right * boardMono.Board.Width);
-            corners[2].transform.position = converter.ConvertCoordinates(Vector2.up * boardMono.Board.Heigth);
-            corners[3].transform.position = converter.ConvertCoordinates(Vector2.one * boardMono.Board.Size);
-            corners[0].transform.rotation = referenceRotation;
-            corners[1].transform.rotation = referenceRotation;
-            corners[2].transform.rotation = referenceRotation;
-            corners[3].transform.rotation = referenceRotation;
-        }
+        //private void TrackCorners()
+        //{
+        //    corners[0].transform.position = converter.ConvertCoordinates(Vector2.zero);
+        //    corners[1].transform.position = converter.ConvertCoordinates(Vector2.right * boardMono.Board.Width);
+        //    corners[2].transform.position = converter.ConvertCoordinates(Vector2.up * boardMono.Board.Heigth);
+        //    corners[3].transform.position = converter.ConvertCoordinates(Vector2.one * boardMono.Board.Size);
+        //    corners[0].transform.rotation = referenceRotation;
+        //    corners[1].transform.rotation = referenceRotation;
+        //    corners[2].transform.rotation = referenceRotation;
+        //    corners[3].transform.rotation = referenceRotation;
+        //}
 
         private void TrackHighlights()
         {
@@ -124,6 +124,8 @@ namespace Assets.Scripts
         {
             if (f.IsFiuuField)
                 return Instantiate(fiuuHighlightPrefab, transform);
+            if (f.IsTower)
+                return Instantiate(highlightPrefab, transform);
             if (f.IsMissionField)
                 return Instantiate(missionHighlightPrefab, transform);
             return Instantiate(highlightPrefab, transform);
@@ -179,10 +181,10 @@ namespace Assets.Scripts
             {
                 highlight.Item2.SetActive(false);
             }
-            for (int i = 0; i < 4; i++)
-            {
-                corners[i].SetActive(false);
-            }
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    corners[i].SetActive(false);
+            //}
         }
 
         public void ShowVisuals()
@@ -191,16 +193,16 @@ namespace Assets.Scripts
             {
                 highlight.Item2.SetActive(true);
             }
-            for (int i = 0; i < 4; i++)
-            {
-                corners[i].SetActive(true);
-            }
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    corners[i].SetActive(true);
+            //}
         }
 
         private void Update()
         {
             referenceRotation = converter.ReferenceRotation();
-            TrackCorners();
+            //TrackCorners();
             TrackHighlights();
         }
     }
