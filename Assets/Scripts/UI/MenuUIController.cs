@@ -22,6 +22,7 @@ namespace Scripts
         [SerializeField] private Sprite[] vuMarksSprites = new Sprite[9];
         [SerializeField] private Sprite vuMarksSpriteNotSet;
         [SerializeField] private Text characterName;
+        [SerializeField] private Text specialPowerText;
         [SerializeField] private Image vuMarkImage;
 
         [Header("Instruction Context")]
@@ -106,6 +107,8 @@ namespace Scripts
         {
             characterName.text = chosenCharacterIndex == 0 ? 
                 "Nie wybrano" : ((Character)Enum.ToObject(typeof(Character), chosenCharacterIndex)).ToString();
+            specialPowerText.text = chosenCharacterIndex == 0 ? 
+                "Moc specjalna:\nBrak" : "Moc specjalna:\n" + CharacterSpecialPower.GetSpecialPowerText((Character)Enum.ToObject(typeof(Character), chosenCharacterIndex));
             if (chosenCharacterIndex <= charactersNumber)
             {
                 vuMarkImage.sprite = chosenCharacterIndex == 0
