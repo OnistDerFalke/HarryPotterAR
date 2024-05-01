@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -17,16 +19,12 @@ namespace Assets.Scripts
         public float Scale => scale;
 
         private Dictionary<string, Vector2> boardMarks;
-        private (string id, GameObject marker) referenceMarker;
         private BoardMono board;
 
-        /// <summary>
-        /// Use this method to make sure that the result of converting coordinates is valid
-        /// </summary>
-        /// <returns>true if at least one board marker is tracked, false otherwise</returns>
+
         public bool IsTrackingBoard()
         {
-            return referenceMarker.marker != null;
+            return board.CurrentTrackedBoardMarks.Count != 0;
         }
 
         /// <summary>
@@ -36,156 +34,103 @@ namespace Assets.Scripts
         /// <returns>scene coordinates of a given point or (0,0,0) if the board is not tracked</returns>
         public Vector3 ConvertCoordinates(Vector2 boardCoordinates)
         {
-            if (IsTrackingBoard())
+            if (!IsTrackingBoard())
+                return Vector3.zero;
+
+            var result = Vector3.zero;
+            foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
             {
                 var vuMarkBehaviourPosiiton = new Vector3(0, 0, 0);
-                if (GameManager.CurrentTrackedObjects.ContainsKey(referenceMarker.id))
+                if (GameManager.CurrentTrackedObjects.ContainsKey(refMarkerId))
                 {
-                    var vuMarkBehaviour = GameManager.CurrentTrackedObjects[referenceMarker.id];
+                    var vuMarkBehaviour = GameManager.CurrentTrackedObjects[refMarkerId];
                     vuMarkBehaviourPosiiton = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
-                    //Debug.Log($"CC corner --- reference marker {referenceMarker.id} position: {referenceMarker.marker.transform.position} " +
-                    //    $"---  VuMarkBehaviour position: {vuMarkBehaviourPosiiton}");
                 }
-                //else
-                //{
-                //    Debug.Log($"ConvertCoordinates corner ({referenceMarker.id}) - VuMarkBehaviour not found in current tracked objects " +
-                //        $"with length {GameManager.CurrentTrackedObjects.Count}");
-                //}
 
-                return vuMarkBehaviourPosiiton + referenceMarker.marker.transform.position +
-                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +
-                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized * scale;
+                GameObject refMarker = vuMarkHandler.FindModelById(refMarkerId);
+
+                result = result + vuMarkBehaviourPosiiton + refMarker.transform.position +
+                    (boardCoordinates.x - boardMarks[refMarkerId].x) * refMarker.transform.right.normalized * scale +
+                    (boardCoordinates.y - boardMarks[refMarkerId].y) * refMarker.transform.forward.normalized * scale;
             }
-            else
-            {
-                return Vector3.zero;
-            }
+
+            return result / board.CurrentTrackedBoardMarks.Count;
         }
 
         public Vector3 ConvertCoordinates(Vector2 boardCoordinates, string referenceMarkerId)
         {
             GameObject marker = vuMarkHandler.FindModelById(referenceMarkerId);
-            (string id, GameObject marker) referenceMarker = (referenceMarkerId, marker);
 
-            return referenceMarker.marker.transform.position +
-                    (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +
-                    (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized * scale;
+            return marker.transform.position +
+                    (boardCoordinates.x - boardMarks[referenceMarkerId].x) * marker.transform.right.normalized * scale +
+                    (boardCoordinates.y - boardMarks[referenceMarkerId].y) * marker.transform.forward.normalized * scale;
         }
 
         public Quaternion ReferenceRotation()
         {
-            if(IsTrackingBoard())
-            {
-                return referenceMarker.marker.transform.rotation;
-            }
-            else
-            {
+            if (!IsTrackingBoard())
                 return Quaternion.identity;
+
+            Quaternion totalRotation = Quaternion.identity;
+            foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
+            {
+                GameObject refMarker = vuMarkHandler.FindModelById(refMarkerId);
+                totalRotation *= refMarker.transform.rotation;
             }
+            totalRotation.Normalize();
+            return Quaternion.Slerp(Quaternion.identity, totalRotation, 1.0f / board.CurrentTrackedBoardMarks.Count);
         }
 
         public Vector2 WorldToBoard(Vector3 worldPos)
         {
-            if(referenceMarker.marker == null)
+            if (!IsTrackingBoard())
+                return -Vector2.one;
+
+            var boardPos = Vector2.zero;
+            foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
             {
-                return Vector2.one * -1;
-            }
+                GameObject refMarker = vuMarkHandler.FindModelById(refMarkerId);
 
-            var vuMarkBehaviourPosiiton = new Vector3(0, 0, 0);
-            if (GameManager.CurrentTrackedObjects.ContainsKey(referenceMarker.id))
-            {
-                var vuMarkBehaviour = GameManager.CurrentTrackedObjects[referenceMarker.id];
-                vuMarkBehaviourPosiiton = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
-            }
-
-            Vector3 referencePosition = referenceMarker.marker.transform.position - vuMarkBehaviourPosiiton;
-
-            // direction down the pawn
-            Vector3 normalizedDirection = -1 * referenceMarker.marker.transform.up.normalized;
-
-            // line from given position to reference marker in 3d space
-            Vector3 lineToBoard = referencePosition - worldPos;
-
-            // distance of the pawn from the board
-            float projection = Vector3.Dot(lineToBoard, normalizedDirection);
-            projection /= scale;
-
-            // pawn projected onto the board
-            Vector3 intersection = worldPos + projection * normalizedDirection;
-
-            // offset from reference transform to projected pawn position
-            Vector3 offset = intersection - referencePosition;
-            float y_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.forward);
-            float x_dist_board = Vector3.Dot(offset, referenceMarker.marker.transform.right);
-            Vector2 boardPos = boardMarks[referenceMarker.id]
-                - Vector2.right * x_dist_board / scale
-                - Vector2.up * y_dist_board / scale;
-
-            return boardPos;
-        }
-
-        private float CalculateErrorRate(string markerId)
-        {
-            float err = 0f;
-            foreach(string otherId in board.CurrentTrackedBoardMarks)
-            {
-                if(otherId == markerId)
+                var vuMarkBehaviourPosiiton = new Vector3(0, 0, 0);
+                if (GameManager.CurrentTrackedObjects.ContainsKey(refMarkerId))
                 {
-                    continue;
+                    var vuMarkBehaviour = GameManager.CurrentTrackedObjects[refMarkerId];
+                    vuMarkBehaviourPosiiton = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
                 }
-                Vector3 expectedPosition = ConvertCoordinates(boardMarks[otherId], markerId);
-                Vector3 actualPosition = vuMarkHandler.FindModelById(otherId).transform.position;
-                err += Vector3.SqrMagnitude(expectedPosition - actualPosition);
-            }
-            return err;
-        }
 
-        private (string, float) ChooseReferenceMarker()
-        {
-            string bestId = null;
-            float minErrorRate = float.MaxValue;
+                Vector3 referencePosition = refMarker.transform.position - vuMarkBehaviourPosiiton;
 
-            foreach (string markerId in board.CurrentTrackedBoardMarks)
-            {
-                float err = CalculateErrorRate(markerId);
-                if (err < minErrorRate)
-                {
-                    minErrorRate = err;
-                    bestId = markerId;
-                }
-            }
-            return (bestId, minErrorRate);
+                // direction down the pawn
+                Vector3 normalizedDirection = -1 * refMarker.transform.up.normalized;
+
+                // line from given position to reference marker in 3d space
+                Vector3 lineToBoard = referencePosition - worldPos;
+
+                // distance of the pawn from the board
+                float projection = Vector3.Dot(lineToBoard, normalizedDirection);
+                projection /= scale;
+
+                // pawn projected onto the board
+                Vector3 intersection = worldPos + projection * normalizedDirection;
+
+                // offset from reference transform to projected pawn position
+                Vector3 offset = intersection - referencePosition;
+                float y_dist_board = Vector3.Dot(offset, refMarker.transform.forward);
+                float x_dist_board = Vector3.Dot(offset, refMarker.transform.right);
+                boardPos = boardPos + boardMarks[refMarkerId]
+                    - Vector2.right * x_dist_board / scale
+                    - Vector2.up * y_dist_board / scale;
+            }                
+
+            return boardPos / board.CurrentTrackedBoardMarks.Count;
         }
 
         private void Awake()
         {
             boardMarks = new Dictionary<string, Vector2>();
             for (int i = 0; i < boardMarkPositions.Count; i++)
-            {
                 boardMarks[boardMarkIds[i]] = boardMarkPositions[i];
-            }
             board = GetComponentInParent<BoardMono>();
-        }
-
-        private void Update()
-        {
-            var bestMarker = ChooseReferenceMarker();
-            if (bestMarker.Item1 != referenceMarker.id)
-            {
-                if (referenceMarker.marker != null && board.CurrentTrackedBoardMarks.Contains(referenceMarker.id))
-                {
-                    float referenceError = CalculateErrorRate(referenceMarker.id);
-                    if (Math.Abs(bestMarker.Item2 - referenceError) < 0.00005f)
-                        return;
-                }
-
-                Debug.Log("Podmianka");
-                GameObject marker = vuMarkHandler.FindModelById(bestMarker.Item1);
-                if (marker != null)
-                {
-                    referenceMarker = (bestMarker.Item1, marker);
-                }
-            }
         }
     }
 }
