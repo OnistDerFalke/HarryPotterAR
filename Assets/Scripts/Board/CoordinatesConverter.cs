@@ -19,12 +19,14 @@ namespace Assets.Scripts
         public float Scale => scale;
 
         private Dictionary<string, Vector2> boardMarks;
+        //private (string id, GameObject marker) referenceMarker;
         private BoardMono board;
 
 
         public bool IsTrackingBoard()
         {
-            return board.CurrentTrackedBoardMarks.Count != 0;
+            return board.CurrentTrackedBoardMarks.Count > 0;
+            //return referenceMarker.marker != null;
         }
 
         /// <summary>
@@ -36,6 +38,28 @@ namespace Assets.Scripts
         {
             if (!IsTrackingBoard())
                 return Vector3.zero;
+
+            //var vuMarkBehaviourPosiiton = new Vector3(0, 0, 0);
+            //if (GameManager.CurrentTrackedObjects.ContainsKey(referenceMarker.id))
+            //{
+            //    var vuMarkBehaviour = GameManager.CurrentTrackedObjects[referenceMarker.id];
+            //    vuMarkBehaviourPosiiton = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
+            //}
+
+            //return vuMarkBehaviourPosiiton + referenceMarker.marker.transform.position +
+            //        (boardCoordinates.x - boardMarks[referenceMarker.id].x) * referenceMarker.marker.transform.right.normalized * scale +
+            //        (boardCoordinates.y - boardMarks[referenceMarker.id].y) * referenceMarker.marker.transform.forward.normalized * scale;
+
+
+
+            //Dictionary<string, float> distanceFromMarkers = new Dictionary<string, float>();
+            //foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
+            //    distanceFromMarkers[refMarkerId] = Vector2.Distance(boardMarks[refMarkerId], boardCoordinates);
+
+            //int count = board.CurrentTrackedBoardMarks.Count > 4 ? 4 : board.CurrentTrackedBoardMarks.Count;
+            //var closestMarkerIds = distanceFromMarkers.OrderBy(pair => pair.Value).Take(count).Select(pair => pair.Key).ToList();
+
+
 
             var result = Vector3.zero;
             foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
@@ -71,14 +95,40 @@ namespace Assets.Scripts
             if (!IsTrackingBoard())
                 return Quaternion.identity;
 
-            Quaternion totalRotation = Quaternion.identity;
-            foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
+            //return referenceMarker.marker.transform.rotation;
+
+            //uśrednienie 4 najbliższych
+            Dictionary<string, float> maxDifferences = new();
+
+            foreach (var markerId in board.CurrentTrackedBoardMarks)
             {
-                GameObject refMarker = vuMarkHandler.FindModelById(refMarkerId);
-                totalRotation *= refMarker.transform.rotation;
+                GameObject marker = vuMarkHandler.FindModelById(markerId);
+                float maxDiff = float.MinValue;
+                foreach (var markerId2 in board.CurrentTrackedBoardMarks)
+                {
+                    GameObject marker2 = vuMarkHandler.FindModelById(markerId2);
+                    float diff = CalculateQuaternionDiff(marker.transform.localRotation, marker2.transform.localRotation);
+                    if (markerId != markerId2 && diff > maxDiff)
+                        maxDiff = diff;
+                }
+                maxDifferences[markerId] = maxDiff;
             }
-            totalRotation.Normalize();
-            return Quaternion.Slerp(Quaternion.identity, totalRotation, 1.0f / board.CurrentTrackedBoardMarks.Count);
+
+            var bestMarkerId = maxDifferences.OrderBy(pair => pair.Value).First().Key;
+            GameObject bestMarker = vuMarkHandler.FindModelById(bestMarkerId);
+
+            return bestMarker.transform.localRotation;
+
+
+            //uśrednienie
+            //Quaternion totalRotation = Quaternion.identity;
+            //foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
+            //{
+            //    GameObject refMarker = vuMarkHandler.FindModelById(refMarkerId);
+            //    totalRotation *= refMarker.transform.rotation;
+            //}
+            //totalRotation.Normalize();
+            //return Quaternion.Slerp(Quaternion.identity, totalRotation, 1.0f / board.CurrentTrackedBoardMarks.Count);
         }
 
         public Vector2 WorldToBoard(Vector3 worldPos)
@@ -86,6 +136,17 @@ namespace Assets.Scripts
             if (!IsTrackingBoard())
                 return -Vector2.one;
 
+            //var vuMarkBehaviourPosition = new Vector3(0, 0, 0);
+            //if (GameManager.CurrentTrackedObjects.ContainsKey(referenceMarker.id))
+            //{
+            //    var vuMarkBehaviour = GameManager.CurrentTrackedObjects[referenceMarker.id];
+            //    vuMarkBehaviourPosition = vuMarkBehaviour.transform.position - vuMarkHandler.transform.position;
+            //}
+
+            //Vector3 referencePosition = referenceMarker.marker.transform.position - vuMarkBehaviourPosiiton;
+
+
+            //uśrednienie
             var boardPos = Vector2.zero;
             foreach (var refMarkerId in board.CurrentTrackedBoardMarks)
             {
@@ -120,7 +181,7 @@ namespace Assets.Scripts
                 boardPos = boardPos + boardMarks[refMarkerId]
                     - Vector2.right * x_dist_board / scale
                     - Vector2.up * y_dist_board / scale;
-            }                
+            }
 
             return boardPos / board.CurrentTrackedBoardMarks.Count;
         }
@@ -131,6 +192,13 @@ namespace Assets.Scripts
             for (int i = 0; i < boardMarkPositions.Count; i++)
                 boardMarks[boardMarkIds[i]] = boardMarkPositions[i];
             board = GetComponentInParent<BoardMono>();
+        }
+
+        private float CalculateQuaternionDiff(Quaternion q1, Quaternion q2)
+        {
+            var dotProduct = Quaternion.Dot(q1, q2);
+            var angleDifference = (float)Math.Acos(2 * Math.Pow(dotProduct, 2) - 1);
+            return angleDifference;
         }
     }
 }

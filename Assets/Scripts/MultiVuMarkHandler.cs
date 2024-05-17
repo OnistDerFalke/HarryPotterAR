@@ -50,7 +50,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         if (!alreadyBigger)
         {
             alreadyBigger = true;
-            models[(int)GameManager.GetMyPlayer().Character - 1].gameObject.transform.localScale *= 1.45f;
+            //models[(int)GameManager.GetMyPlayer().Character - 1].gameObject.transform.localScale *= 1.4f;
         }
     }
 
