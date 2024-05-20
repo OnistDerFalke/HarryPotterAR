@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public static List<string> DebugLogs;
         public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects;
         public static bool setup = false;
+        public static int ChosenIndex;
 
         public static void Setup()
         {

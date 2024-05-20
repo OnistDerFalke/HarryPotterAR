@@ -114,6 +114,7 @@ namespace Scripts
                 vuMarkImage.sprite = chosenCharacterIndex == 0
                     ? vuMarksSpriteNotSet : vuMarksSprites[chosenCharacterIndex - 1];
             }
+            GameManager.ChosenIndex = chosenCharacterIndex - 1;
         }
 
         private void UpdateInstructionContext()

@@ -8,6 +8,7 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
 {
     [SerializeField] public List<string> availableIds = new List<string>();
     [SerializeField] public List<GameObject> models = new List<GameObject>();
+    [SerializeField] public List<GameObject> marks = new List<GameObject>();
     private bool alreadyBigger = false;
 
     public GameObject FindModelById(string id)
@@ -25,7 +26,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     private void Awake()
     {
         VuMarkBehaviour myVuMarkBehaviour = GetComponent<VuMarkBehaviour>();
-
         // turn off cloned objects
         foreach (GameObject model in models)
         {
@@ -52,6 +52,12 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
             alreadyBigger = true;
             //models[(int)GameManager.GetMyPlayer().Character - 1].gameObject.transform.localScale *= 1.4f;
         }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        marks[GameManager.ChosenIndex].SetActive(true);
     }
 
     private void UntrackModel(string id)
