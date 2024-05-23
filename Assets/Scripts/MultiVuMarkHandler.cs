@@ -57,7 +57,8 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
     protected override void Start()
     {
         base.Start();
-        marks[GameManager.ChosenIndex].SetActive(true);
+        for (int i = 0; i < marks.Count; i++)
+            marks[i].SetActive(i == GameManager.ChosenIndex);
     }
 
     private void UntrackModel(string id)

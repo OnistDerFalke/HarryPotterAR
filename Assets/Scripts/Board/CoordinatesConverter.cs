@@ -95,9 +95,6 @@ namespace Assets.Scripts
             if (!IsTrackingBoard())
                 return Quaternion.identity;
 
-            //return referenceMarker.marker.transform.rotation;
-
-            //uśrednienie 4 najbliższych
             Dictionary<string, float> maxDifferences = new();
 
             foreach (var markerId in board.CurrentTrackedBoardMarks)
@@ -115,9 +112,16 @@ namespace Assets.Scripts
             }
 
             var bestMarkerId = maxDifferences.OrderBy(pair => pair.Value).First().Key;
+            var vuMarkBehaviour = GameManager.CurrentTrackedObjects[bestMarkerId];
             GameObject bestMarker = vuMarkHandler.FindModelById(bestMarkerId);
 
-            return bestMarker.transform.localRotation;
+            return bestMarker.transform.localRotation * vuMarkBehaviour.transform.localRotation;
+
+            //var rot = bestMarker.transform.localRotation * vuMarkBehaviour.transform.localRotation;
+            //var result = bestMarker.transform.localRotation.eulerAngles;
+            //result.z = rot.eulerAngles.z;
+            
+            //return Quaternion.Euler(result);
 
 
             //uśrednienie
