@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 using Vuforia;
 using System.Collections.Generic;
-using Assets.Scripts;
 
-public class MultiVuMarkHandler : DefaultObserverEventHandler
+public class MultiVuMarkHandlerTest : DefaultObserverEventHandler
 {
     [SerializeField] public List<string> availableIds = new List<string>();
     [SerializeField] public List<GameObject> models = new List<GameObject>();
-    [SerializeField] public List<GameObject> marks = new List<GameObject>();
-    private bool alreadyBigger = false;
 
     public GameObject FindModelById(string id)
     {
@@ -31,11 +28,11 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
             if (model.activeInHierarchy)
             {
                 string id = availableIds[models.IndexOf(model)];
-                if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
+                if (!TestManager.CurrentTrackedObjects.ContainsKey(id))
                 {
                     continue;
                 }
-                VuMarkBehaviour trackingInstance = GameManager.CurrentTrackedObjects[id];
+                VuMarkBehaviour trackingInstance = TestManager.CurrentTrackedObjects[id];
                 if (trackingInstance != myVuMarkBehaviour)
                 {
                     model.SetActive(false);
@@ -44,41 +41,37 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
         }
     }
 
-    private void Update()
-    {
-        if (!alreadyBigger)
-        {
-            alreadyBigger = true;
-            //models[(int)GameManager.GetMyPlayer().Character - 1].gameObject.transform.localScale *= 1.4f;
-        }
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        for (int i = 0; i < marks.Count; i++)
-            marks[i].SetActive(i == GameManager.ChosenIndex);
-    }
+    //protected override void Start()
+    //{
+    //    base.Start();
+    //}
 
     private void UntrackModel(string id)
     {
-        if(GameManager.CurrentTrackedObjects.ContainsKey(id))
+        if(TestManager.CurrentTrackedObjects.ContainsKey(id))
         {
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(false);
-            GameManager.CurrentTrackedObjects.Remove(id);
-            EventBroadcaster.InvokeOnMarkerLost(id);
+            TestManager.UpdateDetected(id, false);
+        }
+    }
+
+    private void UntrackAll()
+    {
+        foreach(var obj in TestManager.CurrentTrackedObjects)
+        {
+            int modelIndex = availableIds.IndexOf(obj.Key);
+            models[modelIndex].SetActive(false);
         }
     }
 
     private void TrackModel(string id, VuMarkBehaviour vmb)
     {
-        if (!GameManager.CurrentTrackedObjects.ContainsKey(id))
+        if (!TestManager.CurrentTrackedObjects.ContainsKey(id))
         {
             int modelIndex = availableIds.IndexOf(id);
             models[modelIndex].SetActive(true);
-            GameManager.CurrentTrackedObjects.Add(id, vmb);
-            EventBroadcaster.InvokeOnMarkerDetected(id);
+            TestManager.UpdateDetected(id, true, vmb);
         }
     }
 
@@ -93,20 +86,28 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
             return;
         }
         string id = vmb.InstanceId.StringValue;
-        switch (newStatus)
+        if (TestManager.DetectingStarted)
         {
-            case Status.NO_POSE:
-                UntrackModel(id);
-                break;
-            case Status.LIMITED:
-                UntrackModel(id);
-                break;
-            case Status.TRACKED:
-                TrackModel(id, vmb);
-                break;
-            case Status.EXTENDED_TRACKED:
-                UntrackModel(id);
-                break;
+            Debug.Log("Hi");
+            switch (newStatus)
+            {
+                case Status.NO_POSE:
+                    UntrackModel(id);
+                    break;
+                case Status.LIMITED:
+                    UntrackModel(id);
+                    break;
+                case Status.TRACKED:
+                    TrackModel(id, vmb);
+                    break;
+                case Status.EXTENDED_TRACKED:
+                    UntrackModel(id);
+                    break;
+            }
+        }
+        else
+        {
+            UntrackAll();
         }
     }
 }
