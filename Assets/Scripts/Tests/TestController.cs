@@ -24,6 +24,7 @@ public class TestController : MonoBehaviour
         {
             TestManager.DetectingStarted = false;
             TestManager.Time = 0;
+            FileNameInput.text = "";
         }
 
         FileNameInput.interactable = !TestManager.DetectingStarted;
