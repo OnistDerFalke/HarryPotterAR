@@ -1,6 +1,4 @@
-﻿using UnityEngine.TextCore.Text;
-
-namespace Assets.Scripts
+﻿namespace Assets.Scripts
 {
     public enum Character
     {

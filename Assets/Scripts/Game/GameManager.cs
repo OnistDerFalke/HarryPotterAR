@@ -11,7 +11,6 @@ namespace Assets.Scripts
         public static int CurrentDiceThrownNumber;
         public static int PlayerNumber;
         public static List<Player> Players;
-        public static List<string> DebugLogs;
         public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects;
         public static bool setup = false;
         public static int ChosenIndex;
@@ -22,7 +21,6 @@ namespace Assets.Scripts
             {
                 BoardManager.Setup();
                 Players = new();
-                DebugLogs = new();
                 CurrentDiceThrownNumber = -1;
                 PlayerNumber = 0;
                 CurrentTrackedObjects = new();
@@ -33,11 +31,6 @@ namespace Assets.Scripts
         public static Player GetMyPlayer()
         {
             return Players.Where(player => player.IsMyPlayer).FirstOrDefault();
-        }
-
-        public static void DebugLog(string log)
-        {
-            DebugLogs.Add(log);
         }
     }
 }

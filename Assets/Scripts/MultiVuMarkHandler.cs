@@ -2,14 +2,12 @@
 using Vuforia;
 using System.Collections.Generic;
 using Assets.Scripts;
-using UnityEngine.Networking.Types;
 
 public class MultiVuMarkHandler : DefaultObserverEventHandler
 {
     [SerializeField] public List<string> availableIds = new List<string>();
     [SerializeField] public List<GameObject> models = new List<GameObject>();
     [SerializeField] public List<GameObject> marks = new List<GameObject>();
-    private bool alreadyBigger = false;
 
     public GameObject FindModelById(string id)
     {
@@ -42,15 +40,6 @@ public class MultiVuMarkHandler : DefaultObserverEventHandler
                     model.SetActive(false);
                 }
             }
-        }
-    }
-
-    private void Update()
-    {
-        if (!alreadyBigger)
-        {
-            alreadyBigger = true;
-            //models[(int)GameManager.GetMyPlayer().Character - 1].gameObject.transform.localScale *= 1.4f;
         }
     }
 

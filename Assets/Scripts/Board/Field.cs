@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Scripts;
 
@@ -113,7 +112,6 @@ namespace Assets.Scripts
         {
             if (isHighlighted)
             {
-                //RequestBroker.requests.Add(new UnhighlightFieldRequest(this));
                 isHighlighted = false;
             }
         }
