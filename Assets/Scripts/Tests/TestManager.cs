@@ -9,9 +9,12 @@ public static class TestManager
     public static Dictionary<string, VuMarkBehaviour> CurrentTrackedObjects;
     public static bool DetectingStarted;
     public static float Time;
-    public static float MaxTime = 30f;
+    public static float MaxTime = 10f;
     private static string FilePath;
     public static string Logs;
+    public static string FileName;
+
+    public static bool sceneReloaded;
 
     public static void Setup()
     {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TestController : MonoBehaviour
@@ -11,11 +12,19 @@ public class TestController : MonoBehaviour
     void Start()
     {
         TestManager.Setup();
+
+        if (TestManager.sceneReloaded)
+        {
+            FileNameInput.text = TestManager.FileName;
+            TestManager.DetectingStarted = true;
+            TestManager.sceneReloaded = false;
+        }
     }
 
     void Update()
     {
-        MainButton.GetComponentInChildren<Text>().text = TestManager.DetectingStarted ? $"Zatrzymaj wykrywanie\nCzas wykrywania: {Math.Round(TestManager.Time, 3)}" : "Rozpocznij wykrywanie";
+        MainButton.GetComponentInChildren<Text>().text = TestManager.DetectingStarted ? 
+            $"Zatrzymaj wykrywanie\nCzas wykrywania: {Math.Round(TestManager.Time, 3)}" : "Rozpocznij wykrywanie";
         Status.text = $"Obecnie wykrytych: {TestManager.CurrentTrackedObjects.Count}";
 
         if (TestManager.DetectingStarted)
@@ -33,13 +42,19 @@ public class TestController : MonoBehaviour
 
     public void OnMainButtonClick()
     {
-        TestManager.DetectingStarted = !TestManager.DetectingStarted;
         if (!TestManager.DetectingStarted)
         {
+            TestManager.SetFilePath(FileNameInput.text);
+            TestManager.FileName = FileNameInput.text;
+            TestManager.sceneReloaded = true;
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
+        else
+        {
+            TestManager.DetectingStarted = false;
             TestManager.Time = 0;
             FileNameInput.text = "";
         }
-        else
-            TestManager.SetFilePath(FileNameInput.text);
     }
 }

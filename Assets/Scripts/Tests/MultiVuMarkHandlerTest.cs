@@ -41,11 +41,6 @@ public class MultiVuMarkHandlerTest : DefaultObserverEventHandler
         }
     }
 
-    //protected override void Start()
-    //{
-    //    base.Start();
-    //}
-
     private void UntrackModel(string id)
     {
         if(TestManager.CurrentTrackedObjects.ContainsKey(id))
